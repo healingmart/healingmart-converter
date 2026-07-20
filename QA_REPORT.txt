@@ -1,0 +1,6 @@
+VALIDATION PASS
+Categories: 21
+Converters: 228
+Unit groups: 34
+Roundtrip cases: 6472
+Errors: 0
