@@ -1,6 +1,14 @@
-Catalog parse: PASS
-Categories: 15
-File/text converters: 192
-Unit converters: 228
-Total catalog: 420
-JS syntax: run node --check separately
+HealingMart Converter Studio v3.0.0
+
+UI 구조 점검
+- 홈 대표 변환 3개: 적용
+- 인기 변환 기본 6개 + 더 보기: 적용
+- 카테고리 아코디언: 적용
+- 한 번에 하나의 카테고리만 열기: 적용
+- 카테고리 페이지 24개 progressive disclosure: 적용
+- 모바일 2열: 적용
+- 파일 드롭 확장자 추천: 유지
+
+주의
+- HWP/PDF/Office/영상 등 서버 엔진 필요 항목은 준비 중 상태입니다.
+- 실제 Blogger 및 Android/iOS 실기기 테스트는 별도 필요합니다.
