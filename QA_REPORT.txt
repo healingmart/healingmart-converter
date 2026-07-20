@@ -1,6 +1,6 @@
-VALIDATION PASS
-Categories: 21
-Converters: 228
-Unit groups: 34
-Roundtrip cases: 6472
-Errors: 0
+Catalog parse: PASS
+Categories: 15
+File/text converters: 192
+Unit converters: 228
+Total catalog: 420
+JS syntax: run node --check separately
