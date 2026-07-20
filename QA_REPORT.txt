@@ -1,14 +1,9 @@
-HealingMart Converter Studio v3.0.0
-
-UI 구조 점검
-- 홈 대표 변환 3개: 적용
-- 인기 변환 기본 6개 + 더 보기: 적용
-- 카테고리 아코디언: 적용
-- 한 번에 하나의 카테고리만 열기: 적용
-- 카테고리 페이지 24개 progressive disclosure: 적용
-- 모바일 2열: 적용
-- 파일 드롭 확장자 추천: 유지
-
-주의
-- HWP/PDF/Office/영상 등 서버 엔진 필요 항목은 준비 중 상태입니다.
-- 실제 Blogger 및 Android/iOS 실기기 테스트는 별도 필요합니다.
+HealingMart Converter v3.5.0 QA
+- 상단 빠른찾기 details 기본 접힘: PASS (코드 확인)
+- 빠른찾기 카테고리 / 인기 변환 / 검색 UI: PASS (코드 확인)
+- 기존 대형 파일 드롭존 유지: PASS (코드 확인)
+- 하단 카테고리 아코디언 기본 전체 접힘: PASS (코드 확인)
+- Blogger PC left/transform 강제 중앙정렬 제거: PASS (CSS 확인)
+- 새 CSS/JS 캐시 경로 v3.5.0 분리: PASS
+- JavaScript syntax: PENDING
+- 실제 Blogger/Android/iPhone 실기기 QA: 미실시

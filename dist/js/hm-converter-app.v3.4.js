@@ -1,9 +1,9 @@
-/* HealingMart Converter Platform v3.3.0 */
+/* HealingMart Converter Platform v3.4.0 */
 (function(w,d){"use strict";
 var script=d.currentScript,base=(script&&script.dataset.base)||"https://healingmart.github.io/healingmart-converter",stage=d.querySelector('[data-hm-converter-stage]');if(!stage)return;
 function loadScript(src){return new Promise(function(res,rej){var s=d.createElement('script');s.src=src;s.onload=res;s.onerror=rej;d.head.appendChild(s)})}
 function loadStyle(href){if(d.querySelector('link[data-hm-converter-style]'))return;var l=d.createElement('link');l.rel='stylesheet';l.href=href;l.dataset.hmConverterStyle='1';d.head.appendChild(l)}
-loadStyle(base+'/dist/css/hm-converter.v3.css?v=3.3.0');
+loadStyle(base+'/dist/css/hm-converter.v3.4.css?v=3.4.0');
 function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])})}
 function route(obj){var u=new URL(w.location.href);u.searchParams.delete('category');u.searchParams.delete('convert');if(obj.category)u.searchParams.set('category',obj.category);if(obj.convert)u.searchParams.set('convert',obj.convert);return u.pathname+u.search+u.hash}
 function current(){var u=new URL(w.location.href);return{category:u.searchParams.get('category'),convert:u.searchParams.get('convert')}}
@@ -54,5 +54,5 @@ function convertReciprocal(g,n,a,b){if(g.id==='fuel'){function toKmpl(v,u){if(u.
 function detail(id){var x=conv(id);if(!x){home();return}if(x.engine==='unit')return unitTool(x);if(x.status!=='active')return coming(x);if(x.engine==='image'||x.engine==='heic-image')return imageConvert(x);if(x.engine==='image-pdf')return imageToPdf(x);if(x.engine==='pdf-image')return pdfToImage(x);if(['json-csv','csv-json','csv-tsv','tsv-csv','json-yaml','yaml-json'].includes(x.engine))return dataTool(x);if(x.category==='subtitle'||x.category==='developer')return textTool(x);if(x.category==='color')return colorTool(x);if(x.category==='other')return otherTool(x);coming(x)}
 function render(){var r=current();if(r.convert)detail(r.convert);else if(r.category)categoryPage(r.category);else home()}
 stage.addEventListener('click',function(e){var a=e.target.closest('[data-route]');if(!a)return;e.preventDefault();go(a.getAttribute('href'))});w.addEventListener('popstate',render);
-(async function(){try{if(!w.HM_CONVERTER_PLATFORM)await loadScript(base+'/dist/data/hm-converter-registry.v2.js?v=3.3.0');if(!w.HM_UNIT_CONVERTER_DATA)await loadScript(base+'/dist/data/hm-unit-registry.v1.js?v=1.0.0');render()}catch(e){stage.innerHTML='<div class="hm-fx-note">변환기 데이터를 불러오지 못했습니다.</div>';console.error(e)}})();
+(async function(){try{if(!w.HM_CONVERTER_PLATFORM)await loadScript(base+'/dist/data/hm-converter-registry.v2.js?v=3.4.0');if(!w.HM_UNIT_CONVERTER_DATA)await loadScript(base+'/dist/data/hm-unit-registry.v1.js?v=1.0.0');render()}catch(e){stage.innerHTML='<div class="hm-fx-note">변환기 데이터를 불러오지 못했습니다.</div>';console.error(e)}})();
 })(window,document);
