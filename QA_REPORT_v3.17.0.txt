@@ -1,0 +1,58 @@
+HealingMart Converter v3.17.0 QA
+
+[레지스트리]
+전체 파일 변환기: 192
+사용 가능: 112
+준비 중: 80
+
+[이번 신규 활성화 6개]
+- TXT → DOCX
+- HTML → DOCX
+- DOCX → RTF
+- RTF → DOCX
+- DOCX → ODT
+- ODT → DOCX
+
+[문서 처리 원칙]
+TXT → DOCX
+- 빈 줄을 기본 문단 구분으로 사용
+- 기본 글꼴 맑은 고딕
+- 서식 없는 TXT 특성상 기본 문서 구조로 생성
+
+HTML → DOCX
+- 제목·문단·목록·표 등 기본 구조 추출
+- script/style/form/iframe 등 문서 변환에 불필요한 요소 제거
+- CSS/웹 레이아웃 완전 재현 아님
+
+DOCX → RTF
+- Mammoth로 DOCX의 내용 구조를 HTML로 읽은 뒤 기본 RTF로 재구성
+- Unicode RTF 제어문 사용
+- 이미지·도형·정밀한 페이지 레이아웃은 제외 또는 단순화
+
+RTF → DOCX
+- 기존 RTF 파서로 Unicode/주요 코드페이지 텍스트 추출
+- 기본 DOCX 문단으로 재구성
+
+DOCX → ODT
+- DOCX의 문단·목록·표를 기본 ODT 구조로 변환
+- ODT mimetype은 STORE 방식으로 생성하도록 구현
+
+ODT → DOCX
+- ODT content.xml에서 문단과 표 셀을 읽어 기본 DOCX 생성
+
+[검증]
+hm-engine-document.v1.1.0.js Node 구문 검사: PASS
+Registry JSON 파싱: PASS
+활성 수 계산: PASS (112)
+QA DOCX 필수 구조: PASS
+QA ODT mimetype 첫 항목 + STORE: PASS
+Blogger document v1.1.0 경로: PASS
+대표 이미지 포함: PASS
+AdSense client 포함: PASS
+AdSense slot 포함: PASS
+
+[주의]
+이번 6개는 문서의 '내용 구조' 중심 변환입니다.
+Word/LibreOffice의 전체 레이아웃 엔진을 브라우저에 구현한 것이 아니므로
+세밀한 스타일, 머리글/바닥글, 각주, 도형, 차트, 복잡한 목록, 페이지 나눔은
+단순화되거나 제외될 수 있습니다.
