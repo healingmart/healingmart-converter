@@ -1,0 +1,68 @@
+HealingMart Converter v3.15.0 QA
+
+[레지스트리]
+전체 파일 변환기: 192
+사용 가능: 102
+준비 중: 90
+
+[이번 신규 활성화 5개]
+- TXT → EPUB
+- HTML → EPUB
+- DOCX → EPUB
+- EPUB → TXT
+- EPUB → PDF
+
+[중요 수정]
+v3.14.0에서 PDF → TXT / TXT → PDF / PDF → HTML / HTML → PDF는
+레지스트리는 active였지만 Blogger detail 라우팅에 신규 PDF 엔진명이 빠져 있었습니다.
+v3.15.0에서 아래 엔진을 모두 PDF 엔진으로 라우팅하도록 수정했습니다.
+- image-pdf
+- pdf-image
+- pdf-text
+- text-pdf
+- html-pdf
+
+[EPUB 생성]
+- mimetype 파일을 ZIP 첫 항목으로 배치
+- mimetype은 무압축 STORE 방식
+- META-INF/container.xml 포함
+- OEBPS/content.opf 포함
+- EPUB 3.0 기본 패키지 구조
+- nav.xhtml 목차 포함
+- 제목 / 저자 입력 지원
+- TXT / HTML / DOCX 입력 지원
+
+[EPUB 읽기]
+- META-INF/container.xml에서 OPF 경로 확인
+- OPF manifest + spine 읽기 순서를 기준으로 본문 추출
+- 최대 50MB EPUB
+- 내부 파일 최대 1,500개
+- spine 최대 500개
+- 본문 최대 100만 자
+- DRM EPUB 미지원
+
+[EPUB → PDF]
+- 본문 텍스트를 추출한 후 A4 PDF 생성
+- 한글 안정성을 위해 Canvas 렌더링
+- 원본 EPUB 디자인을 그대로 재현하지 않음
+- 최대 70만 자 / 300페이지
+- 결과 본문은 이미지 기반
+
+[외부 라이브러리]
+- JSZip 3.10.1: EPUB 읽기
+- Mammoth 1.12.0: DOCX → EPUB의 DOCX 내용 구조 읽기
+- jsPDF 2.5.2: EPUB → PDF
+
+[검증]
+hm-engine-ebook.v1.0.0.js Node 구문 검사: PASS
+Registry JSON 파싱: PASS
+활성 수 계산: PASS (102)
+EPUB mimetype 첫 항목 + STORE: PASS
+container.xml: PASS
+content.opf: PASS
+content.xhtml: PASS
+PDF 신규 엔진 Blogger 라우팅: PASS
+E-book Blogger 라우팅: PASS
+대표 이미지 포함: PASS
+AdSense client 포함: PASS
+AdSense slot 포함: PASS

@@ -1,14 +1,19 @@
 {
-  "release": "3.14.0",
-  "registry": "2.3.0",
+  "release": "3.15.0",
+  "registry": "2.4.0",
   "engines": [
     {
-      "name": "pdf",
-      "version": "1.1.0",
-      "path": "dist/js/engines/hm-engine-pdf.v1.1.0.js"
+      "name": "ebook",
+      "version": "1.0.0",
+      "path": "dist/js/engines/hm-engine-ebook.v1.0.0.js"
     }
   ],
-  "activeFileConverters": 97,
-  "comingFileConverters": 95,
+  "fixes": [
+    "pdf-text-route",
+    "text-pdf-route",
+    "html-pdf-route"
+  ],
+  "activeFileConverters": 102,
+  "comingFileConverters": 90,
   "totalFileConverters": 192
 }
