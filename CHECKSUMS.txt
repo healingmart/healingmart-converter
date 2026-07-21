@@ -1,6 +1,6 @@
-e768f92894d5870f31be87717f108f7cdbdbb615a96f7ae926c7aae19364ad06  dist/js/engines/hm-engine-hwpx.v1.1.0.js
-dc728911856ad886b96e29c664e2dcc1d4aab675c1c63c2b895bf7b117e7ad7d  dist/js/engines/hm-engine-image.v1.3.0.js
-11a2cd62bc07e959a27813ee905d501f8a992754065d14741fb90083c0dc2579  dist/data/hm-converter-registry.v2.js
-3db44f27d9d12b6cdbba6453b902536f5a0da33a913a197c16f55fd0469997ab  QA_REPORT_v3.24.0.txt
-84fba461c5f72c1179d9beb474347de4481381bd52cbc2bfa163d60d7528e243  README_UPLOAD.txt
-ed14f152128cb38d20901bf98570a47463a64d084942f56d876336fe37541aad  engine-manifest.json
+9f20609301fc8a93fc731a36f3253f742dbdd1b4b43f0205779d38fd8db4c779  dist/js/engines/hm-engine-hwpx.v1.2.0.js
+1531f9b92bda78a2009b59f07700c9c11fc8a9529473735d1e404915b7818fde  dist/js/engines/hm-engine-font.v1.1.0.js
+33c69b5249f815957e4b69928455276e75e181a7133b4b23fa186de14ccdb7e8  dist/data/hm-converter-registry.v2.js
+dc21da5a265150fc4b1d31eca58d9ceacc39f0dbfc075de99c1e7f786c9259c5  QA_REPORT_v3.25.0.txt
+7b1c48ab7f557d62c7e4b8f9a7d64fa650e45a8c624f06f8709bf9ca6bac3969  README_UPLOAD.txt
+84004fa5d90eb04ecedbac00103d684df12b9f151bcdb41b1dc867f223522471  engine-manifest.json

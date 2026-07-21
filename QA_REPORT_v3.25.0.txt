@@ -1,0 +1,77 @@
+HealingMart Converter v3.25.0 QA
+
+[레지스트리]
+전체 파일 변환기: 192
+사용 가능: 186
+준비 중: 6
+
+[이번 신규 활성화 3개]
+- DOCX → HWPX
+- PDF → HWPX
+- TTF → OTF
+
+[DOCX → HWPX]
+- Mammoth 1.12.0 브라우저 빌드로 DOCX → HTML 내용 구조 추출
+- script/style/form/iframe 등 제거
+- 외부 URL 이미지는 제거하고 data:image 이미지만 허용
+- @ssabrojs/hwpxjs 0.4.0의 htmlToHwpx()로 표준 HWPX 생성
+- DOCX 최대 30MB
+- Word의 정밀한 페이지 배치·머리글/바닥글·도형은 단순화 가능
+
+[PDF → HWPX]
+- PDF.js 3.11.174 텍스트 레이어 사용
+- 글자 Y/X 좌표로 줄 순서 정리
+- 페이지별 제목 + 문단 HTML 생성
+- @ssabrojs/hwpxjs htmlToHwpx()로 HWPX 생성
+- PDF 최대 60MB / 300페이지 / 본문 100만 자
+- 스캔 PDF는 OCR이 없으면 변환 불가
+- PDF 화면 레이아웃을 HWPX로 그대로 복원하는 방식은 아님
+
+[HWPX Writer]
+- @ssabrojs/hwpxjs 0.4.0
+- 공식 브라우저 ESM 번들:
+  dist/browser/hwpxjs.browser.mjs
+- 문서상 HWPX writer는 첫 STORED mimetype,
+  META-INF/container.xml / manifest.xml,
+  OPF manifest+spine,
+  header.xml 등을 포함하는 OWPML 패키지를 생성
+
+[TTF → OTF]
+- opentype.js 2.0.0
+- TTF를 parse() 후 Font.toArrayBuffer()로 OpenType 출력
+- 출력 4바이트가 OTTO인지 확인
+- OTTO가 아니면 .otf 다운로드를 중단해 잘못된 확장자 변환 방지
+- 가변/컬러 폰트·고급 OpenType 레이아웃·힌팅 등 일부 특수 테이블은 손실 가능
+
+[구문 검사]
+hm-engine-hwpx.v1.2.0.js: PASS
+hm-engine-font.v1.1.0.js: PASS
+
+[정적 API 검증]
+HWPX Writer API/라우팅 포함: PASS
+TTF → OTF API + OTTO 검증 포함: PASS
+신규 3개 active: PASS
+
+[로컬 샘플 QA]
+HWPX mimetype 첫 항목 + STORE: PASS
+HWPX 최소 패키지 구조: PASS
+실제 TTF 구조 검사 (Lohit-Malayalam.ttf): PASS
+
+[Blogger]
+HWP/HWPX Engine v1.2.0 경로: PASS
+Font Engine v1.1.0 경로: PASS
+대표 이미지 포함: PASS
+AdSense client 포함: PASS
+AdSense slot 포함: PASS
+
+[브라우저 최종 확인 필요]
+현재 실행 환경에서는 외부 hwpxjs 브라우저 ESM과 opentype.js 2.0.0을
+HealingMart 실제 페이지에서 끝까지 실행하지 않았습니다.
+
+배포 뒤 작은 대표 파일로:
+1. DOCX → HWPX
+2. PDF → HWPX
+3. TTF → OTF
+를 확인해 주세요.
+
+TTF → OTF는 출력이 실제 OTTO 시그니처일 때만 다운로드하도록 안전장치를 넣었습니다.

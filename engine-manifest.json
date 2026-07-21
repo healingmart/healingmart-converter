@@ -1,23 +1,25 @@
 {
-  "release": "3.24.0",
-  "registry": "3.3.0",
+  "release": "3.25.0",
+  "registry": "3.4.0",
   "engines": [
     {
       "name": "hwp",
-      "version": "1.1.0",
-      "path": "dist/js/engines/hm-engine-hwpx.v1.1.0.js"
+      "version": "1.2.0",
+      "path": "dist/js/engines/hm-engine-hwpx.v1.2.0.js"
     },
     {
-      "name": "image",
-      "version": "1.3.0",
-      "path": "dist/js/engines/hm-engine-image.v1.3.0.js"
+      "name": "font",
+      "version": "1.1.0",
+      "path": "dist/js/engines/hm-engine-font.v1.1.0.js"
     }
   ],
   "thirdParty": {
-    "@rhwp/core": "0.7.19",
-    "@jsquash/avif": "2.1.1"
+    "@ssabrojs/hwpxjs": "0.4.0",
+    "mammoth": "1.12.0",
+    "pdf.js": "3.11.174",
+    "opentype.js": "2.0.0"
   },
-  "activeFileConverters": 183,
-  "comingFileConverters": 9,
+  "activeFileConverters": 186,
+  "comingFileConverters": 6,
   "totalFileConverters": 192
 }
