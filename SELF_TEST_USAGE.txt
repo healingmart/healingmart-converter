@@ -1,0 +1,64 @@
+HealingMart Converter Self Test v1.0.0
+
+목적
+- 지금까지 수작업으로 확인하던 Registry / 라우팅 / 최신 엔진 JS / Blogger 연결을 한 번에 검사
+- 대상: Converter v3.27.0 / Registry v3.6.0
+- 기대값: 전체 192 / active 190 / server-required 2
+
+1. GitHub 업로드
+아래 파일을 저장소에 업로드:
+test/hm-converter-self-test.v1.0.0.js
+
+배포 URL:
+https://healingmart.github.io/healingmart-converter/test/hm-converter-self-test.v1.0.0.js
+
+2. 실제 Converter 페이지에서 실행
+https://www.healing-mart.com/2026/07/converter.html
+페이지를 연 뒤 브라우저 개발자도구 Console에서 아래 코드를 한 번 실행:
+
+(() => {
+  const s = document.createElement("script");
+  s.src = "https://healingmart.github.io/healingmart-converter/test/hm-converter-self-test.v1.0.0.js?v=" + Date.now();
+  document.head.appendChild(s);
+})();
+
+
+3. 결과
+우측(모바일은 화면 상단)에 테스트 패널이 자동으로 열립니다.
+
+검사 항목
+- 13개 배포 파일 HTTP
+- 정확한 SHA-256
+- 12개 엔진 JS syntax
+- 12개 HM_CONVERTER_ENGINES 등록
+- Registry version
+- 전체/active/coming 수
+- 중복 ID
+- category 참조
+- status
+- 필수 필드
+- 마지막 coming 2개
+- serverRequired/Calibre backend
+- 190 active 라우팅 누락
+- 카테고리별 개수
+- Blogger 내장 Registry와 GitHub Registry 일치
+- 대표 이미지
+- AdSense client/slot
+- Bottom Boundary
+- jumpToApp
+- Entity Repair
+- MutationObserver
+- active reverse 조건
+- ENGINE_FILES 12개 경로
+- 오래된 준비 중 문구 제거
+- WebAssembly/Canvas/Fetch/WebCrypto 등 브라우저 기능
+
+결과 버튼
+- 전체 재검사
+- 결과 복사
+- TXT 저장
+- JSON 저장
+
+중요
+이 테스트는 정적/통합 검사를 한꺼번에 자동화합니다.
+190개 변환 조합에 실제 사용자 파일을 넣어 모두 변환하는 End-to-End 전수 테스트를 대체하지는 않습니다.

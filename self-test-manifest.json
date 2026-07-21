@@ -1,0 +1,13 @@
+{
+  "selfTestVersion": "1.0.0",
+  "targetConverterRelease": "3.27.0",
+  "targetRegistryVersion": "3.6.0",
+  "expected": {
+    "total": 192,
+    "active": 190,
+    "coming": 2
+  },
+  "script": "test/hm-converter-self-test.v1.0.0.js",
+  "nodeSyntaxCheck": true,
+  "sha256": "b0887cfebd18fbc29be502884ffbe05fb8d2eb0fe4c42f8114cc8db106dd4255"
+}
