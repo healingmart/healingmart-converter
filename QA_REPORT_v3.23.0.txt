@@ -1,0 +1,74 @@
+HealingMart Converter v3.23.0 QA
+
+[레지스트리]
+전체 파일 변환기: 192
+사용 가능: 177
+준비 중: 15
+
+[이번 신규 활성화 6개]
+- ZIP → 7Z
+- 7Z → ZIP
+- RAR → ZIP
+- BZ2 → ZIP
+- XZ → ZIP
+- ZIP → GZ
+
+[7-Zip WASM]
+- 7z-wasm 1.2.0
+- 7-Zip 24.09 기반 WebAssembly
+- UMD loader: 7zz.umd.js
+- WASM: 7zz.wasm 약 1.65MB
+- ZIP / 7Z / RAR / BZ2 / XZ 처리
+- 브라우저 Emscripten 가상 파일시스템 안에서만 압축 해제/재압축
+- 외부 서버 업로드 없음
+
+[ZIP → 7Z]
+- ZIP을 가상 파일시스템에서 해제
+- 항목/확장 크기 검사
+- 7-Zip -t7z 방식으로 다시 압축
+
+[7Z / RAR → ZIP]
+- 7-Zip WebAssembly로 압축 해제
+- 일반 파일/폴더를 표준 ZIP으로 재압축
+- 암호화·손상 파일은 제한될 수 있음
+
+[BZ2 / XZ → ZIP]
+- 단일 압축 스트림을 해제
+- 결과 파일을 ZIP 컨테이너 안에 저장
+
+[ZIP → GZ]
+- ZIP 내부 항목을 GZ로 변환하는 것이 아님
+- ZIP 파일 바이트 자체를 GZIP으로 압축
+- 출력명: 원본이 sample.zip이면 sample.zip.gz
+- GZIP이 단일 데이터 스트림 형식이라는 특성에 맞춘 구현
+
+[안전 한도]
+- 원본 최대 80MB
+- 압축 해제 결과 최대 150MB
+- 최대 500개 항목
+- 브라우저 가상 파일시스템 사용
+- 결과 생성 후 작업 폴더 정리
+
+[정적 검증]
+hm-engine-archive.v1.1.0.js Node 구문 검사: PASS
+Registry JSON 파싱: PASS
+신규 6개 active: PASS
+7z-wasm 로더/명령 계획 포함: PASS
+Blogger Archive Engine v1.1.0 경로: PASS
+대표 이미지 포함: PASS
+AdSense client 포함: PASS
+AdSense slot 포함: PASS
+
+[로컬 샘플 QA]
+BZ2 생성/해제 왕복: PASS
+XZ 생성/해제 왕복: PASS
+ZIP → GZ → 원본 ZIP 바이트 왕복: PASS
+왕복된 ZIP 내부 파일 확인: PASS
+
+[배포 후 대표 브라우저 확인]
+현재 실행 환경에서는 외부 7z-wasm CDN을 실제 브라우저까지 실행하지 못했습니다.
+GitHub 배포 뒤 다음 4개를 작은 샘플로 확인하는 것이 좋습니다.
+1. ZIP → 7Z
+2. 7Z → ZIP
+3. RAR → ZIP
+4. XZ → ZIP
