@@ -1,0 +1,63 @@
+{
+  "release": "3.27.0",
+  "registry": "3.6.0",
+  "releaseType": "browser-safe-release-candidate",
+  "totalFileConverters": 192,
+  "activeFileConverters": 190,
+  "serverRequiredConverters": 2,
+  "serverRequiredIds": [
+    "epub-mobi",
+    "epub-azw3"
+  ],
+  "engines": [
+    {
+      "name": "image",
+      "path": "dist/js/engines/hm-engine-image.v1.3.0.js"
+    },
+    {
+      "name": "pdf",
+      "path": "dist/js/engines/hm-engine-pdf.v1.2.0.js"
+    },
+    {
+      "name": "data",
+      "path": "dist/js/engines/hm-engine-data.v1.0.0.js"
+    },
+    {
+      "name": "color",
+      "path": "dist/js/engines/hm-engine-color.v1.0.0.js"
+    },
+    {
+      "name": "document",
+      "path": "dist/js/engines/hm-engine-document.v1.1.0.js"
+    },
+    {
+      "name": "subtitle",
+      "path": "dist/js/engines/hm-engine-subtitle.v1.1.0.js"
+    },
+    {
+      "name": "archive",
+      "path": "dist/js/engines/hm-engine-archive.v1.1.0.js"
+    },
+    {
+      "name": "ebook",
+      "path": "dist/js/engines/hm-engine-ebook.v1.2.0.js"
+    },
+    {
+      "name": "hwp",
+      "path": "dist/js/engines/hm-engine-hwpx.v1.2.0.js"
+    },
+    {
+      "name": "font",
+      "path": "dist/js/engines/hm-engine-font.v1.1.0.js"
+    },
+    {
+      "name": "media",
+      "path": "dist/js/engines/hm-engine-media.v1.0.0.js"
+    },
+    {
+      "name": "office",
+      "path": "dist/js/engines/hm-engine-office.v1.0.0.js"
+    }
+  ],
+  "staticAuditPass": true
+}

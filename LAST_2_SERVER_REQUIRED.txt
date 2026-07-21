@@ -1,0 +1,30 @@
+HealingMart Converter — 서버형 변환이 필요한 마지막 2개
+
+1. EPUB → MOBI
+2. EPUB → AZW3
+
+현재 브라우저 단독 배포:
+- Blogger
+- GitHub Pages
+- 정적 JavaScript / WebAssembly
+
+이 구조에서는 검증된 MOBI/AZW3 writer를 확보하지 못했으므로 두 항목을 coming으로 유지합니다.
+
+권장 구현:
+Calibre ebook-convert를 설치한 별도 서버 또는 컨테이너
+
+예시 개념:
+ebook-convert input.epub output.mobi
+ebook-convert input.epub output.azw3
+
+서버 기능을 실제 연결할 때는:
+- 업로드 용량 제한
+- 임시 파일 자동 삭제
+- 확장자와 MIME 검사
+- 변환 시간 제한
+- 동시 변환 제한
+- 악성 압축/전자책 리소스 방어
+- DRM 파일 거부
+를 같이 구현해야 합니다.
+
+단순히 EPUB ZIP 파일에 .mobi 또는 .azw3 확장자를 붙이는 방식은 사용하지 않습니다.
