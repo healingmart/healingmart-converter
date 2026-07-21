@@ -1,33 +1,35 @@
-HealingMart Converter v3.20.0
-오디오 · 비디오 FFmpeg WASM 엔진 확장
+HealingMart Converter v3.21.0
+PDF · EPUB · SUB 확장
 
 [GitHub 업로드]
-dist/js/engines/hm-engine-media.v1.0.0.js
+dist/js/engines/hm-engine-pdf.v1.2.0.js
+dist/js/engines/hm-engine-ebook.v1.1.0.js
+dist/js/engines/hm-engine-subtitle.v1.1.0.js
 dist/data/hm-converter-registry.v2.js
 
 [업로드 후 확인]
-https://healingmart.github.io/healingmart-converter/dist/js/engines/hm-engine-media.v1.0.0.js
+https://healingmart.github.io/healingmart-converter/dist/js/engines/hm-engine-pdf.v1.2.0.js
+https://healingmart.github.io/healingmart-converter/dist/js/engines/hm-engine-ebook.v1.1.0.js
+https://healingmart.github.io/healingmart-converter/dist/js/engines/hm-engine-subtitle.v1.1.0.js
 https://healingmart.github.io/healingmart-converter/dist/data/hm-converter-registry.v2.js
 
-두 주소가 코드로 정상 표시되면 Blogger HTML 전체를
-HealingMart_변환기_Blogger_오디오비디오엔진확장_v3.20.0.html
+네 주소가 코드로 정상 표시되면 Blogger HTML 전체를
+HealingMart_변환기_Blogger_PDF전자책자막엔진확장_v3.21.0.html
 파일로 교체하세요.
 
 [신규 활성화]
-비디오 16종 + 오디오 16종 = 32종
+PDF → DOCX
+DOCX → PDF
+PDF → SVG
+SVG → PDF
+PDF → EPUB
+SUB → SRT
+
+[중요]
+PDF 상세 라우팅을 특정 엔진명 나열 방식에서 PDF 카테고리 전체 라우팅으로 변경했습니다.
+앞으로 PDF 카테고리 기능을 추가할 때 상세 라우팅 누락 가능성을 줄입니다.
 
 [현재 레지스트리]
 전체: 192
-사용 가능: 159
-준비 중: 33
-
-[첫 실행]
-미디어 변환은 처음 사용할 때 @ffmpeg/core WASM 약 32MB를 불러옵니다.
-같은 페이지를 유지하는 동안에는 로딩한 엔진을 재사용합니다.
-
-[대표 확인 권장]
-WAV → MP3
-MP4 → MP3
-MP4 → WEBM
-MP4 → GIF
-MOV → MP4
+사용 가능: 165
+준비 중: 27

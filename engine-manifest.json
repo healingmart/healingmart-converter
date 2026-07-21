@@ -1,18 +1,27 @@
 {
-  "release": "3.20.0",
-  "registry": "2.9.0",
+  "release": "3.21.0",
+  "registry": "3.0.0",
   "engines": [
     {
-      "name": "media",
-      "version": "1.0.0",
-      "path": "dist/js/engines/hm-engine-media.v1.0.0.js"
+      "name": "pdf",
+      "version": "1.2.0",
+      "path": "dist/js/engines/hm-engine-pdf.v1.2.0.js"
+    },
+    {
+      "name": "ebook",
+      "version": "1.1.0",
+      "path": "dist/js/engines/hm-engine-ebook.v1.1.0.js"
+    },
+    {
+      "name": "subtitle",
+      "version": "1.1.0",
+      "path": "dist/js/engines/hm-engine-subtitle.v1.1.0.js"
     }
   ],
-  "thirdParty": {
-    "@ffmpeg/ffmpeg": "0.12.15",
-    "@ffmpeg/core": "0.12.10"
-  },
-  "activeFileConverters": 159,
-  "comingFileConverters": 33,
+  "fixes": [
+    "pdf-category-routing"
+  ],
+  "activeFileConverters": 165,
+  "comingFileConverters": 27,
   "totalFileConverters": 192
 }

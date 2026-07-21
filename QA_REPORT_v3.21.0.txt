@@ -1,0 +1,77 @@
+HealingMart Converter v3.21.0 QA
+
+[레지스트리]
+전체 파일 변환기: 192
+사용 가능: 165
+준비 중: 27
+
+[이번 신규 활성화 6개]
+- PDF → DOCX
+- DOCX → PDF
+- PDF → SVG
+- SVG → PDF
+- PDF → EPUB
+- SUB → SRT
+
+[PDF → DOCX]
+- PDF.js의 선택 가능한 텍스트 레이어 사용
+- 페이지 범위 지원
+- 최대 300페이지
+- 기본 OOXML DOCX 패키지 생성
+- 페이지 사이에 Word 페이지 나눔 삽입
+- 스캔 PDF는 OCR이 없으면 변환 불가
+
+[DOCX → PDF]
+- Mammoth 브라우저 ArrayBuffer 입력으로 DOCX 기본 구조 → HTML
+- 스크립트·폼·iframe 등 제거
+- html2canvas + jsPDF로 A4 PDF 생성
+- Word 원본 페이지 렌더링 완전 복제 아님
+
+[PDF → SVG]
+- PDF.js로 선택 페이지 렌더링
+- SVG 안에 PNG data URI를 넣는 래스터 기반 SVG
+- 벡터 객체를 직접 추출하는 방식이 아님
+
+[SVG → PDF]
+- 브라우저 SVG 렌더링 → Canvas → jsPDF
+- A4 페이지
+- 외부 폰트/외부 이미지 연결은 브라우저 정책 영향 가능
+
+[PDF → EPUB]
+- PDF.js 텍스트 레이어 추출
+- 페이지 순서대로 EPUB 본문 생성
+- EPUB 패키지는 기존 E-book Engine 구조 재사용
+- 스캔 PDF는 OCR 필요
+
+[SUB → SRT]
+- 텍스트 기반 MicroDVD {start-frame}{stop-frame}Text 형식
+- {1}{1}25.000 같은 FPS 선언이 있으면 우선 사용
+- 선언이 없으면 사용자 선택 FPS 사용
+- | 문자는 줄바꿈으로 변환
+- 기본 MicroDVD 스타일 태그 제거
+- VobSub 바이너리 .sub는 명시적으로 미지원
+
+[구문 검사]
+hm-engine-pdf.v1.2.0.js: PASS
+hm-engine-ebook.v1.1.0.js: PASS
+hm-engine-subtitle.v1.1.0.js: PASS
+
+[구조/알고리즘 QA]
+DOCX 샘플 필수 패키지 구조: PASS
+MicroDVD FPS/타임코드 샘플 변환: PASS
+SVG 샘플 생성: PASS
+
+[Blogger]
+PDF category 전체 라우팅: PASS
+PDF Engine v1.2.0 경로: PASS
+E-book Engine v1.1.0 경로: PASS
+Subtitle Engine v1.1.0 경로: PASS
+대표 이미지 포함: PASS
+AdSense client 포함: PASS
+AdSense slot 포함: PASS
+
+[주의]
+이번 PDF/DOCX/SVG/EPUB 변환은 브라우저에서 안전하게 구현할 수 있는
+'내용 구조' 또는 '렌더링 결과' 중심 방식입니다.
+Adobe Acrobat, Microsoft Word, 한컴오피스와 같은 전체 문서 렌더링 엔진을
+브라우저에 복제한 것이 아니므로 정밀 레이아웃과 편집 객체는 단순화될 수 있습니다.
