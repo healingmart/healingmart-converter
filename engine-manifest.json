@@ -1,19 +1,14 @@
 {
-  "release": "3.15.0",
-  "registry": "2.4.0",
+  "release": "3.16.0",
+  "registry": "2.5.0",
   "engines": [
     {
-      "name": "ebook",
+      "name": "hwp",
       "version": "1.0.0",
-      "path": "dist/js/engines/hm-engine-ebook.v1.0.0.js"
+      "path": "dist/js/engines/hm-engine-hwpx.v1.0.0.js"
     }
   ],
-  "fixes": [
-    "pdf-text-route",
-    "text-pdf-route",
-    "html-pdf-route"
-  ],
-  "activeFileConverters": 102,
-  "comingFileConverters": 90,
+  "activeFileConverters": 106,
+  "comingFileConverters": 86,
   "totalFileConverters": 192
 }
