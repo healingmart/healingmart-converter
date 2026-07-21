@@ -1,0 +1,84 @@
+HealingMart Converter v3.24.0 QA
+
+[레지스트리]
+전체 파일 변환기: 192
+사용 가능: 183
+준비 중: 9
+
+[이번 신규 활성화 6개]
+- HWP → TXT
+- HWP → HTML
+- HWP → PDF
+- HWP → DOCX
+- JPG → AVIF
+- PNG → AVIF
+
+[HWP 브라우저 엔진]
+- @rhwp/core 0.7.19
+- Rust + WebAssembly 기반 HWP/HWPX 파서·렌더러
+- HWP 5.0 바이너리 파일을 HwpDocument로 로드
+- pageCount()로 페이지 수 확인
+- renderPageSvg(pageIndex)로 페이지별 SVG 생성
+- 첫 실행 시 rhwp_bg.wasm 로드
+- 파일은 외부 변환 서버로 업로드하지 않음
+
+[HWP → TXT]
+- 페이지별 SVG에서 text 요소의 렌더링 텍스트 추출
+- 페이지 구분 추가
+- 표·도형·수식의 시각적 위치 정보는 TXT에 포함되지 않음
+
+[HWP → HTML]
+- 각 페이지의 renderPageSvg 결과를 HTML 문서에 그대로 배치
+- 페이지형 HTML로 저장
+- 정적인 시각 보존을 우선
+
+[HWP → PDF]
+- HWP 페이지 SVG → Canvas → jsPDF
+- 한 페이지씩 PDF 페이지로 구성
+- 최대 200페이지
+- 설치 글꼴/브라우저 글꼴 접근 차이로 원본과 줄바꿈 차이 가능
+
+[HWP → DOCX]
+- 렌더링된 SVG 페이지의 텍스트를 추출
+- 기본 DOCX 문단으로 구성
+- 원본 HWP의 표·도형·페이지 레이아웃이 Word 편집 객체로 복원되는 방식은 아님
+
+[AVIF 출력]
+- @jsquash/avif 2.1.1
+- libavif WebAssembly 인코더
+- JPG → AVIF
+- PNG → AVIF
+- PNG 투명 픽셀은 ImageData 알파 채널을 통해 인코더에 전달
+- 최대 2,500만 픽셀
+- 고해상도 이미지는 AVIF 인코딩 시간이 길 수 있음
+
+[구문/정적 검증]
+hm-engine-hwpx.v1.1.0.js Node 구문 검사: PASS
+hm-engine-image.v1.3.0.js Node 구문 검사: PASS
+@rhwp/core 핵심 API 호출 포함: PASS
+신규 6개 active: PASS
+
+[AVIF 로컬 샘플 QA]
+Pillow AVIF 생성/디코딩: PASS
+AVIF format: AVIF
+AVIF size: (160, 120)
+ISO BMFF ftyp/avif 브랜드 확인: PASS
+
+[Blogger]
+HWP/HWPX Engine v1.1.0 경로: PASS
+Image Engine v1.3.0 경로: PASS
+대표 이미지 포함: PASS
+AdSense client 포함: PASS
+AdSense slot 포함: PASS
+
+[실제 브라우저 최종 확인]
+현재 실행 환경에서는 외부 @rhwp/core WASM과 @jsquash/avif WASM을 실제 서비스 브라우저에서
+끝까지 실행하지 않았습니다.
+
+GitHub 배포 뒤 작은 대표 파일로 다음 4개를 먼저 확인하는 것이 좋습니다.
+1. HWP → HTML
+2. HWP → PDF
+3. JPG → AVIF
+4. PNG → AVIF
+
+특히 HWP는 시스템 글꼴 접근 범위와 설치 글꼴에 따라 페이지네이션이 달라질 수 있습니다.
