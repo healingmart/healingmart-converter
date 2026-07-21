@@ -1,0 +1,59 @@
+HealingMart Converter v3.18.0 QA
+
+[레지스트리]
+전체 파일 변환기: 192
+사용 가능: 121
+준비 중: 71
+
+[이번 신규 활성화 9개]
+- TTF → WOFF
+- TTF → WOFF2
+- OTF → TTF
+- OTF → WOFF
+- OTF → WOFF2
+- WOFF → WOFF2
+- WOFF2 → WOFF
+- EOT → WOFF
+- EOT → TTF
+
+[준비 중 유지]
+- TTF → OTF
+fonteditor-core 2.6.3은 OTF 읽기와 TTF 계열 변환은 지원하지만 OTF 쓰기는 지원하지 않으므로
+단순 확장자 변경 같은 잘못된 변환을 하지 않고 준비 중으로 유지했습니다.
+
+[사용 엔진]
+- fonteditor-core 2.6.3
+- WOFF2: fonteditor-core의 Google WOFF2 WebAssembly 모듈
+- WOFF inflate/deflate: pako 2.1.0
+- 브라우저 ESM 로딩: esm.sh
+- WOFF2 WASM: jsDelivr
+
+[안전/정확성]
+- 폰트 한 파일 최대 20MB
+- 파일 확장자 입력 형식 검사
+- 변환 결과는 브라우저 Blob으로 생성
+- 외부 변환 서버 업로드 없음
+- OTF/가변폰트/컬러폰트/특수 OpenType 테이블은 일부 손실 가능성을 화면에서 안내
+- 폰트 형식 변환이 원래 라이선스를 변경하지 않는다는 안내 포함
+
+[중요 보정]
+v3.17.0의 신규 문서 변환 6개는 레지스트리에서는 active였지만
+Blogger detail 라우팅이 기존 문서 엔진 5개만 허용하고 있었습니다.
+v3.18.0에서 document 카테고리 전체를 document 엔진으로 라우팅하도록 수정했습니다.
+
+[검증]
+hm-engine-font.v1.0.0.js Node 구문 검사: PASS
+Registry JSON 파싱: PASS
+활성 수 계산: PASS (121)
+Blogger font 엔진 경로: PASS
+Font 카테고리 라우팅: PASS
+Document 카테고리 라우팅 보정: PASS
+QA 실제 TTF 구조 확인 (Lohit-Malayalam.ttf): PASS
+대표 이미지 포함: PASS
+AdSense client 포함: PASS
+AdSense slot 포함: PASS
+
+[브라우저 최종 확인]
+fonteditor-core는 공식 문서상 TTF/WOFF/WOFF2/EOT 읽기·쓰기 및 OTF 읽기→TTF 변환을 지원합니다.
+다만 이 실행 환경에서는 외부 ESM/WASM을 실제 브라우저에서 끝까지 실행하지 않았으므로,
+GitHub 배포 뒤 대표 폰트 1개로 TTF→WOFF2와 WOFF2→WOFF를 먼저 확인하는 것을 권장합니다.
