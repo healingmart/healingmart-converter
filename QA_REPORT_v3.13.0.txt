@@ -1,0 +1,56 @@
+HealingMart Converter v3.13.0 QA
+
+[레지스트리]
+전체 파일 변환기: 192
+사용 가능: 93
+준비 중: 99
+이미지 사용 가능: 20 / 28
+
+[이번 신규 활성화 10개]
+- avif-jpg
+- avif-png
+- svg-webp
+- bmp-jpg
+- bmp-png
+- tiff-jpg
+- tiff-png
+- gif-jpg
+- gif-png
+- ico-png
+
+[테스트용 실제 이미지 파일 검증]
+BMP: PASS (64×48, BMP)
+GIF: PASS (64×48, GIF)
+ICO: PASS (32×24, ICO)
+AVIF: PASS (64×48, AVIF)
+TIFF: PASS (64×48, TIFF)
+SVG: PASS (64×48 테스트 SVG 생성)
+
+[엔진 검증]
+- hm-engine-image.v1.1.0.js Node 구문 검사: PASS
+- Blogger 내장 레지스트리 JSON 파싱: PASS
+- Blogger v3.13.0 버전/엔진 경로: PASS
+- 대표 이미지 유지: PASS
+- AdSense client/slot 유지: PASS
+
+[TIFF]
+- 런타임에서 UTIF 3.1.0을 필요할 때만 동적 로딩
+- 다중 페이지 TIFF는 첫 페이지 기준
+- UTIF CDN 파일 존재 여부는 jsDelivr 검색으로 확인
+- 실제 CDN 로딩은 이용자의 네트워크/CDN 상태에 영향을 받을 수 있음
+
+[안전/정확성]
+- 이미지 1개 80MB 제한
+- 9천만 픽셀 초과 차단
+- GIF는 첫 프레임 기준
+- TIFF는 첫 페이지 기준
+- ICO 다중 크기는 브라우저가 선택한 대표 이미지 기준
+- AVIF는 브라우저 디코딩 지원 필요
+- SVG 외부 리소스는 브라우저 보안 정책 영향 가능
+- JPG 출력은 투명 영역 배경색 선택 가능
+- 여러 결과 ZIP 다운로드 유지
+
+[참고]
+현재 실행 환경의 Chromium 프로세스가 시스템 DBus 제한으로 정상 종료되지 않아
+브라우저 자동 E2E 검사는 수행하지 못했습니다.
+따라서 AVIF/BMP/GIF/ICO의 최종 브라우저 디코딩은 배포 후 대표 파일 1회 확인을 권장합니다.

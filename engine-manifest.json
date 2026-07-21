@@ -1,19 +1,14 @@
 {
-  "release": "3.12.0",
-  "registry": "2.1.0",
+  "release": "3.13.0",
+  "registry": "2.2.0",
   "engines": [
     {
-      "name": "subtitle",
-      "version": "1.0.0",
-      "path": "dist/js/engines/hm-engine-subtitle.v1.0.0.js"
-    },
-    {
-      "name": "archive",
-      "version": "1.0.0",
-      "path": "dist/js/engines/hm-engine-archive.v1.0.0.js"
+      "name": "image",
+      "version": "1.1.0",
+      "path": "dist/js/engines/hm-engine-image.v1.1.0.js"
     }
   ],
-  "activeFileConverters": 83,
-  "comingFileConverters": 109,
+  "activeFileConverters": 93,
+  "comingFileConverters": 99,
   "totalFileConverters": 192
 }
