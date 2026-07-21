@@ -1,32 +1,34 @@
-# HealingMart Converter Studio v3.7.0
+# HealingMart Converter
 
-## 핵심 변경
-- Blogger 앱형 페이지에서 게시글 제목·날짜·읽기시간 등 중복 헤더 숨김
-- Blogger 앱이 들어간 큰 외곽 흰색 게시글 카드 시각 제거
-- 모바일 고정 바텀 내비게이션 추가
-  - 홈
-  - 빠른찾기
-  - 파일넣기
-  - 카테고리
-- 빠른찾기·파일 업로드·카테고리 영역에 이동 앵커 추가
-- 모바일 바텀 내비가 콘텐츠를 가리지 않도록 하단 안전 여백 추가
-- 모바일의 큰 섹션을 12px 간격의 독립 컨테이너처럼 보이도록 정리
-- 운영용 Blogger shell에 JSON-LD, TOOL_INFO, 허용 도메인 검사, 로딩 실패 처리, noscript 포함
+HealingMart에서 운영하는 파일 변환도구 플랫폼의 배포용 저장소입니다.
 
-## 운영 구조
-- Blogger: 실제 사용자 화면
-- GitHub Pages: CSS / JS / Registry 정적 호스팅
+- 서비스: HealingMart
+- 운영 사이트: https://www.healing-mart.com/
+- 프로젝트: HealingMart Converter
 
-## 컨테이너 분리
-Blogger HTML 자체에는 앱 페이지의 바깥 흰색 카드 제거 보정을 포함합니다.
-본문 카드와 이용안내·SNS 공유 등의 하단 공통 카드를 완전히 형제 컨테이너로 분리하려면 별도 VTrick 테마 XML 패치를 적용해야 합니다.
+## Copyright & Usage Notice
 
+Copyright © 2026 HealingMart. All rights reserved.
 
-## v3.7.0 최종 UI 정리
-- Blogger XML에서 제목·메타가 이미 제거된 구조를 기준으로 셸 단순화
-- PC: `변환도구 / 빠른찾기 / 파일넣기 / 카테고리 / 오류·문의` 단일 로컬 퀵바
-- 모바일: 로컬 퀵바 숨김, 하단 바텀 내비게이션 유지
-- 앱 내부 저작권 푸터 제거(테마 공통 하단 영역과 중복 방지)
-- 모바일 하단 공백 원인이던 앱 내부 108~112px padding 제거
-- 고정 바텀 메뉴 여유 공간은 페이지 body 하단에만 확보
-- 본문과 공통 하단 컨테이너 간격 PC 18px / 모바일 12px
+본 저장소에 포함된 **HealingMart 자체 제작 소스코드, UI 구성, 변환도구 통합 구조, Registry 구조, 라우팅 구조 및 관련 자료**는 HealingMart 서비스 운영을 위해 공개 배포된 파일입니다.
+
+별도의 명시적인 서면 허가 없이 다음 행위를 허용하지 않습니다.
+
+- 본 프로젝트의 전체 또는 실질적인 부분을 복제하여 다른 웹사이트·앱·서비스에 사용하는 행위
+- HealingMart 자체 코드를 수정한 뒤 다른 이름이나 브랜드로 재배포하는 행위
+- HealingMart의 UI 구성, 변환기 통합 구조, Registry 구조 또는 라우팅 구성을 실질적으로 복제하여 서비스하는 행위
+- 본 저장소의 HealingMart 자체 제작물을 재판매하거나 상업적으로 재배포하는 행위
+
+이 안내는 본 프로젝트가 사용하는 공개 파일 포맷, 공개 표준, 일반적인 변환 개념 자체에 독점권을 주장하는 것이 아닙니다.
+
+## Third-Party Components
+
+본 프로젝트에서 사용되는 FFmpeg, PDF.js, JSZip, SheetJS, jsPDF 및 기타 제3자 오픈소스 라이브러리·패키지·WASM 구성요소는 각각의 저작권자와 해당 라이선스 조건을 따릅니다.
+
+HealingMart의 Copyright & Usage Notice는 제3자 오픈소스의 기존 권리나 라이선스 조건을 변경하지 않습니다.
+
+## Contact
+
+사용 허가 및 기타 문의:
+
+eternityland34@gmail.com
