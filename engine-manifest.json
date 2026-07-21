@@ -1,14 +1,14 @@
 {
-  "release": "3.13.0",
-  "registry": "2.2.0",
+  "release": "3.14.0",
+  "registry": "2.3.0",
   "engines": [
     {
-      "name": "image",
+      "name": "pdf",
       "version": "1.1.0",
-      "path": "dist/js/engines/hm-engine-image.v1.1.0.js"
+      "path": "dist/js/engines/hm-engine-pdf.v1.1.0.js"
     }
   ],
-  "activeFileConverters": 93,
-  "comingFileConverters": 99,
+  "activeFileConverters": 97,
+  "comingFileConverters": 95,
   "totalFileConverters": 192
 }

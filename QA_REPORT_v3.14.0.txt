@@ -1,0 +1,59 @@
+HealingMart Converter v3.14.0 QA
+
+[레지스트리]
+전체 파일 변환기: 192
+사용 가능: 97
+준비 중: 95
+
+[이번 신규 활성화 4개]
+- PDF → TXT
+- TXT → PDF
+- PDF → HTML
+- HTML → PDF
+
+[동작 원칙]
+PDF → TXT
+- PDF.js 텍스트 레이어를 읽어 페이지 순서대로 TXT 추출
+- 페이지 범위 지정 지원
+- 최대 300페이지
+- 스캔 이미지 PDF는 OCR이 없으므로 텍스트 추출 불가
+
+PDF → HTML
+- PDF 디자인을 복원하는 방식이 아니라 선택 가능한 텍스트를 페이지별 HTML로 정리
+- 스크립트 없는 독립 HTML 파일 생성
+
+TXT → PDF
+- UTF-8 / EUC-KR 계열 선택 지원
+- 한글 안정성을 위해 브라우저 Canvas로 A4 페이지를 만든 뒤 PDF에 삽입
+- 최대 80만 자 / 300페이지
+- 결과 본문은 이미지 기반이므로 텍스트 검색·선택 제한 가능
+
+HTML → PDF
+- 스크립트, 외부 스타일, 폼, iframe, 외부 이미지 제거
+- 제목·문단·목록·표 등 기본 문서 구조를 안전하게 렌더링
+- html2canvas 1.4.1 + jsPDF 사용
+- 긴 HTML은 브라우저 메모리 보호를 위해 제한
+
+[기존 기능 유지]
+- 이미지 → PDF
+- PDF → JPG / PNG
+- 대표 이미지
+- AdSense client / slot
+- Converter 바텀시트 / 모바일 하단 메뉴
+- 스크롤 및 엔티티 보정
+
+[검증]
+hm-engine-pdf.v1.1.0.js Node 구문 검사: PASS
+Registry JSON 파싱: PASS
+활성 수 계산: PASS (97)
+대표 이미지 포함: PASS
+AdSense client 포함: PASS
+AdSense slot 포함: PASS
+
+[CDN 확인]
+- PDF.js 3.11.174: cdnjs에서 현재 제공 확인
+- html2canvas 1.4.1: cdnjs에서 현재 제공 확인
+- jsPDF: 기존 엔진과 동일한 2.5.2 경로 유지
+
+[주의]
+실제 브라우저에서 CDN을 포함한 최종 파일 변환은 GitHub 배포 뒤 대표 샘플 1회 확인을 권장합니다.
