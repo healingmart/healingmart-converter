@@ -1,0 +1,57 @@
+HealingMart Converter v3.19.0 QA
+
+[레지스트리]
+전체 파일 변환기: 192
+사용 가능: 127
+준비 중: 65
+
+[이번 신규 활성화 6개]
+- JPG → BMP
+- PNG → BMP
+- JPG → ICO
+- PNG → ICO
+- JPG → GIF
+- PNG → GIF
+
+[출력 방식]
+BMP
+- 24비트 BI_RGB 비압축 BMP
+- 행 4바이트 정렬
+- 투명 PNG 입력은 선택 배경색으로 합성
+
+ICO
+- 최대 256×256
+- 1개 아이콘 엔트리 생성
+- 내부 이미지 데이터는 PNG
+- PNG 투명 배경 유지 가능
+
+GIF
+- gifenc 1.0.3 사용
+- 단일 정지 프레임 GIF 생성
+- 최대 256색
+- PNG 투명도는 GIF 1비트 투명도로 단순화 가능
+- GIF 변환은 1,600만 픽셀 이하 제한
+
+[준비 중 유지]
+- JPG → AVIF
+- PNG → AVIF
+브라우저 Canvas의 AVIF 출력 지원이 아직 환경별 차이가 있어 무리하게 active 처리하지 않았습니다.
+
+[검증]
+hm-engine-image.v1.2.0.js Node 구문 검사: PASS
+Registry JSON 파싱: PASS
+활성 수 계산: PASS (127)
+BMP 샘플 헤더 BM: PASS
+ICO 샘플 ICONDIR: PASS
+GIF 샘플 GIF87a/GIF89a: PASS
+Pillow BMP 읽기: BMP (96, 72)
+Pillow ICO 읽기: ICO (96, 72)
+Pillow GIF 읽기: GIF (96, 72)
+Blogger Image Engine v1.2.0 경로: PASS
+대표 이미지 포함: PASS
+AdSense client 포함: PASS
+AdSense slot 포함: PASS
+
+[외부 모듈]
+GIF 인코딩은 gifenc 1.0.3 ESM 모듈을 사용합니다.
+배포 뒤 JPG → GIF 또는 PNG → GIF 대표 파일 1개를 실제 브라우저에서 확인하는 것을 권장합니다.
