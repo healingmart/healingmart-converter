@@ -1,3 +1,3 @@
-b0887cfebd18fbc29be502884ffbe05fb8d2eb0fe4c42f8114cc8db106dd4255  test/hm-converter-self-test.v1.0.0.js
-b1c0c2601583f9b9374ec965a6c1bce1774b4273f324e5200f4411ef42ac0779  SELF_TEST_USAGE.txt
-ac57b84e5334869545b00584a25368e6623832626e7a2d50ed3c424ccd209c6d  self-test-manifest.json
+ffe85246ca53894f847a818ed7d42bbdbb9148d1787f89cc85b12b4f59e83d8e  SELF_TEST_USAGE_v1.0.1.txt
+428dbd693bfb8b41bcce171269e3a321070a70be59f45ac33d9f143656454991  self-test-manifest.json
+f7fc300546c80e2818b5e98890721497e77fabebbf7a6e83d65168d2668b4152  test/hm-converter-self-test.v1.0.1.js

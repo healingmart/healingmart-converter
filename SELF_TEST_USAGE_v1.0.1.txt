@@ -1,0 +1,32 @@
+HealingMart Converter Self Test v1.0.1
+
+수정 이유
+v1.0.0은 Blogger 내부 코드를 document.scripts[].textContent에서 찾았습니다.
+일부 Blogger/테마 환경은 실행 후 inline script 노드를 제거하거나 textContent를 비울 수 있어,
+실제 코드가 정상인데도 코드 마커 8개와 ENGINE_FILES 12개를 FAIL로 오판했습니다.
+
+v1.0.1 수정
+- 현재 Converter 페이지 HTML을 same-origin fetch로 다시 읽음
+- 원본 HTML에서 코드 마커 검사
+- 원본 HTML에서 ENGINE_FILES 12개 검사
+- HTML entity 정규화 후 재검사
+- DOM 요소/Registry/배포 파일 SHA-256 검사는 기존 유지
+
+GitHub 업로드:
+test/hm-converter-self-test.v1.0.1.js
+
+실행:
+(() => {
+  const s = document.createElement("script");
+  s.src = "https://healingmart.github.io/healingmart-converter/test/hm-converter-self-test.v1.0.1.js?v=" + Date.now();
+  document.head.appendChild(s);
+})();
+
+
+참고
+Console에서 위 IIFE 실행 직후 표시되는 "undefined"는 오류가 아닙니다.
+스크립트 삽입 코드 자체가 반환값을 만들지 않아 정상적으로 undefined가 표시됩니다.
+
+Kakao.init Already initialized, googleredir ERR_CONNECTION_TIMED_OUT,
+ERR_NAME_NOT_RESOLVED 같은 콘솔 오류는 이 Self Test가 만든 오류가 아닙니다.
+Self Test 결과 패널의 PASS/FAIL을 기준으로 확인하세요.
