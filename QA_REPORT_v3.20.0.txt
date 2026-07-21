@@ -1,0 +1,103 @@
+HealingMart Converter v3.20.0 QA
+
+[레지스트리]
+전체 파일 변환기: 192
+사용 가능: 159
+준비 중: 33
+
+[이번 신규 활성화]
+비디오 16개
+- MP4 → MP3
+- MOV → MP4
+- MKV → MP4
+- AVI → MP4
+- WEBM → MP4
+- MP4 → WEBM
+- MP4 → GIF
+- MOV → GIF
+- MKV → AVI
+- AVI → MKV
+- FLV → MP4
+- M4V → MP4
+- 3GP → MP4
+- MP4 → MOV
+- WEBM → GIF
+- GIF → MP4
+
+오디오 16개
+- MP3 → WAV
+- WAV → MP3
+- M4A → MP3
+- AAC → MP3
+- FLAC → MP3
+- OGG → MP3
+- OPUS → MP3
+- WMA → MP3
+- MP3 → M4A
+- MP3 → AAC
+- MP3 → FLAC
+- MP3 → OGG
+- WAV → FLAC
+- FLAC → WAV
+- M4A → WAV
+- AAC → WAV
+
+[엔진]
+- @ffmpeg/ffmpeg 0.12.15
+- @ffmpeg/core 0.12.10 single-thread
+- 공식 문서 방식과 동일하게 coreURL / wasmURL을 Blob URL로 만들어 로딩
+- FFmpeg core WASM 약 32MB
+- 최초 미디어 변환 때만 로딩, 같은 페이지에서는 재사용
+
+[실용 안전 한도]
+- 비디오 PC 300MB / 모바일 120MB
+- 오디오 PC 180MB / 모바일 80MB
+- ffmpeg.wasm 자체 WebAssembly 입력 한도는 더 크지만 브라우저 메모리와 체감 성능을 위해 더 낮게 제한
+
+[사용성]
+- 빠르게 / 균형 / 고화질 품질 선택
+- 비디오 최대 가로 크기 선택
+- 진행률 표시
+- 변환 취소 및 엔진 초기화
+- FFmpeg 로그 보기
+- 결과 미리보기
+- 결과 다운로드
+- 서버 업로드 없음
+
+[코덱 폴백]
+- MP4: libx264 우선, 실패 시 MPEG-4 Part 2 폴백
+- MP3: libmp3lame 우선, 실패 시 mp3 encoder 폴백
+- WEBM: VP9 + Opus 우선, VP8 + Vorbis 폴백
+- 일부 컨테이너는 stream copy 우선 후 재인코딩 폴백
+
+[로컬 FFmpeg 명령 구문/대표 출력 QA]
+- generate-wav: PASS
+- wav-mp3: PASS
+- mp3-flac: PASS
+- mp3-ogg: PASS
+- generate-mp4: PASS
+- mp4-mov: PASS
+- mp4-webm: PASS
+- mp4-gif: PASS
+- mp4-mkv: PASS
+- mkv-avi: PASS
+- gif-mp4: PASS
+- outputs-nonempty: PASS
+
+[정적 검증]
+hm-engine-media.v1.0.0.js Node 구문 검사: PASS
+Registry JSON 파싱: PASS
+미디어 32개 active: PASS
+Blogger media 엔진 경로: PASS
+Blogger video/audio 라우팅: PASS
+대표 이미지 포함: PASS
+AdSense client 포함: PASS
+AdSense slot 포함: PASS
+
+[중요]
+로컬 QA는 시스템 FFmpeg 7.x에서 명령 문법과 대표 컨테이너/코덱 결과를 검증한 것입니다.
+실제 서비스에서는 ffmpeg.wasm의 @ffmpeg/core 0.12.10이 실행되므로,
+GitHub 배포 후 대표적으로 WAV → MP3, MP4 → MP3, MP4 → WEBM, MP4 → GIF,
+MOV → MP4를 각 1회 확인하는 것이 좋습니다.
+
+특수 코덱, 손상 파일, DRM 파일은 확장자가 정상이어도 변환에 실패할 수 있습니다.

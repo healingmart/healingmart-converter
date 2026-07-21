@@ -1,31 +1,33 @@
-HealingMart Converter v3.19.0
-이미지 출력 형식 확장
+HealingMart Converter v3.20.0
+오디오 · 비디오 FFmpeg WASM 엔진 확장
 
 [GitHub 업로드]
-dist/js/engines/hm-engine-image.v1.2.0.js
+dist/js/engines/hm-engine-media.v1.0.0.js
 dist/data/hm-converter-registry.v2.js
 
 [업로드 후 확인]
-https://healingmart.github.io/healingmart-converter/dist/js/engines/hm-engine-image.v1.2.0.js
+https://healingmart.github.io/healingmart-converter/dist/js/engines/hm-engine-media.v1.0.0.js
 https://healingmart.github.io/healingmart-converter/dist/data/hm-converter-registry.v2.js
 
 두 주소가 코드로 정상 표시되면 Blogger HTML 전체를
-HealingMart_변환기_Blogger_이미지출력엔진확장_v3.19.0.html
+HealingMart_변환기_Blogger_오디오비디오엔진확장_v3.20.0.html
 파일로 교체하세요.
 
 [신규 활성화]
-JPG → BMP
-PNG → BMP
-JPG → ICO
-PNG → ICO
-JPG → GIF
-PNG → GIF
+비디오 16종 + 오디오 16종 = 32종
 
 [현재 레지스트리]
 전체: 192
-사용 가능: 127
-준비 중: 65
+사용 가능: 159
+준비 중: 33
 
-[참고]
-JPG/PNG → GIF는 애니메이션 생성이 아니라 한 장짜리 정지 GIF 변환입니다.
-ICO는 최대 256×256으로 생성합니다.
+[첫 실행]
+미디어 변환은 처음 사용할 때 @ffmpeg/core WASM 약 32MB를 불러옵니다.
+같은 페이지를 유지하는 동안에는 로딩한 엔진을 재사용합니다.
+
+[대표 확인 권장]
+WAV → MP3
+MP4 → MP3
+MP4 → WEBM
+MP4 → GIF
+MOV → MP4

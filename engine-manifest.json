@@ -1,14 +1,18 @@
 {
-  "release": "3.19.0",
-  "registry": "2.8.0",
+  "release": "3.20.0",
+  "registry": "2.9.0",
   "engines": [
     {
-      "name": "image",
-      "version": "1.2.0",
-      "path": "dist/js/engines/hm-engine-image.v1.2.0.js"
+      "name": "media",
+      "version": "1.0.0",
+      "path": "dist/js/engines/hm-engine-media.v1.0.0.js"
     }
   ],
-  "activeFileConverters": 127,
-  "comingFileConverters": 65,
+  "thirdParty": {
+    "@ffmpeg/ffmpeg": "0.12.15",
+    "@ffmpeg/core": "0.12.10"
+  },
+  "activeFileConverters": 159,
+  "comingFileConverters": 33,
   "totalFileConverters": 192
 }
