@@ -1,0 +1,86 @@
+HealingMart Converter v3.26.0 QA
+
+[레지스트리]
+전체 파일 변환기: 192
+사용 가능: 190
+준비 중: 2
+
+[이번 신규 활성화 4개]
+- MOBI → EPUB
+- AZW3 → EPUB
+- MOBI → PDF
+- AZW3 → PDF
+
+[Kindle 읽기 엔진]
+- @lingo-reader/mobi-parser 0.4.6
+- 브라우저에서 File 또는 Uint8Array 입력 지원
+- MOBI: initMobiFile()
+- AZW3/KF8: initKf8File()
+- getSpine() 읽기 순서
+- loadChapter() 챕터 HTML
+- getMetadata() 제목/저자/언어
+- destroy()로 생성된 Blob URL 정리
+
+[MOBI/AZW3 → EPUB]
+- 챕터 읽기 순서 유지
+- 기본 제목/문단/목록/표 등 HTML 구조 유지
+- parser가 Blob URL로 제공한 기본 이미지 리소스를 최대 200개까지 EPUB에 재포장
+- 이미지 총량 최대 60MB
+- EPUB3 패키지 생성
+- mimetype 첫 항목 + STORE 방식
+- META-INF/container.xml
+- OEBPS/content.opf
+- OEBPS/nav.xhtml
+- OEBPS/text/*.xhtml
+- OEBPS/images/*
+- 원본 Kindle 전용 CSS/고정 레이아웃/특수 기능은 단순화될 수 있음
+
+[MOBI/AZW3 → PDF]
+- 챕터 HTML에서 본문 추출
+- 읽기 순서대로 결합
+- 기존 E-book textToPdf() 재사용
+- A4 PDF
+- 한글 안정성을 위한 Canvas 기반 본문
+- 결과 PDF 텍스트는 이미지 기반
+
+[안전 한도]
+- Kindle 파일 최대 80MB
+- 챕터 최대 500개
+- 본문 최대 120만 자
+- EPUB 이미지 최대 200개 / 총 60MB
+
+[DRM]
+- Amazon DRM 제거/우회 기능 없음
+- 암호화/DRM 적용 파일은 파싱 실패로 처리
+- UI에 DRM 미지원 안내 포함
+
+[검증]
+hm-engine-ebook.v1.2.0.js Node 구문 검사: PASS
+mobi-parser 핵심 API 호출 포함: PASS
+EPUB3 패키지 구성 코드 포함: PASS
+DRM 미지원 안내 포함: PASS
+신규 4개 active: PASS
+
+[Blogger]
+E-book Engine v1.2.0 경로: PASS
+대표 이미지 포함: PASS
+AdSense client 포함: PASS
+AdSense slot 포함: PASS
+
+[브라우저 최종 확인 필요]
+현재 실행 환경에서는 실제 MOBI/AZW3 대표 파일을 브라우저에서
+@lingo-reader/mobi-parser 0.4.6으로 끝까지 변환하는 E2E는 실행하지 않았습니다.
+
+배포 뒤 DRM이 없는 작은 대표 파일로:
+1. MOBI → EPUB
+2. MOBI → PDF
+3. AZW3 → EPUB
+4. AZW3 → PDF
+를 확인해 주세요.
+
+[남은 준비 중]
+- EPUB → MOBI
+- EPUB → AZW3
+
+현재 공개적으로 검증 가능한 브라우저용 MOBI/AZW3 writer가 부족해
+이번 버전에서는 억지로 active 처리하지 않았습니다.

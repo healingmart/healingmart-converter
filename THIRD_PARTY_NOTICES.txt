@@ -1,0 +1,8 @@
+Third Party Notices — HealingMart Converter v3.26.0
+
+@lingo-reader/mobi-parser 0.4.6
+License: MIT
+Source/Homepage: https://github.com/hhk-png/lingo-reader
+Purpose: DRM-free MOBI and KF8/AZW3 parsing in the browser.
+
+This update does not include any DRM removal or circumvention functionality.

@@ -1,25 +1,19 @@
 {
-  "release": "3.25.0",
-  "registry": "3.4.0",
+  "release": "3.26.0",
+  "registry": "3.5.0",
   "engines": [
     {
-      "name": "hwp",
+      "name": "ebook",
       "version": "1.2.0",
-      "path": "dist/js/engines/hm-engine-hwpx.v1.2.0.js"
-    },
-    {
-      "name": "font",
-      "version": "1.1.0",
-      "path": "dist/js/engines/hm-engine-font.v1.1.0.js"
+      "path": "dist/js/engines/hm-engine-ebook.v1.2.0.js"
     }
   ],
   "thirdParty": {
-    "@ssabrojs/hwpxjs": "0.4.0",
-    "mammoth": "1.12.0",
-    "pdf.js": "3.11.174",
-    "opentype.js": "2.0.0"
+    "@lingo-reader/mobi-parser": "0.4.6",
+    "jszip": "3.10.1",
+    "jspdf": "2.5.2"
   },
-  "activeFileConverters": 186,
-  "comingFileConverters": 6,
+  "activeFileConverters": 190,
+  "comingFileConverters": 2,
   "totalFileConverters": 192
 }
