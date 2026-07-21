@@ -1,0 +1,13 @@
+{
+  "version": "3.9.0",
+  "engines": {
+    "image": {
+      "version": "1.0.0",
+      "path": "dist/js/engines/hm-engine-image.v1.0.0.js"
+    },
+    "pdf": {
+      "version": "1.0.0",
+      "path": "dist/js/engines/hm-engine-pdf.v1.0.0.js"
+    }
+  }
+}
