@@ -1,0 +1,32 @@
+HealingMart Converter v3.11.0 QA REPORT
+
+[Registry]
+- total file converters: 192
+- active: 74
+- coming: 118
+- doc-docx-txt: status=active, engine=docx-txt, accept=.docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document
+- doc-docx-html: status=active, engine=docx-html, accept=.docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document
+- doc-pptx-txt: status=active, engine=pptx-txt, accept=.pptx,application/vnd.openxmlformats-officedocument.presentationml.presentation
+- doc-odt-txt: status=active, engine=odt-txt, accept=.odt,application/vnd.oasis.opendocument.text
+- doc-rtf-txt: status=active, engine=rtf-txt, accept=.rtf,application/rtf,text/rtf
+
+[Syntax]
+- document engine node --check: PASS
+- Blogger inline core node --check: PASS
+- Blogger embedded registry parse: PASS (74 active)
+
+[Preservation]
+- representative image: PASS
+- AdSense client: PASS
+- AdSense slot: PASS
+- document engine loader path: PASS
+- document dispatch: PASS
+
+[Functional smoke]
+- RTF Unicode parser: PASS (Korean sample: 안녕하세요 / 두 번째 문단)
+- DOCX/ODT/PPTX full browser conversion: requires deployed CDN/runtime browser verification after GitHub upload.
+
+[Notes]
+- DOCX -> HTML is content/semantic-structure oriented, not pixel-perfect page-layout reproduction.
+- PPTX -> TXT extracts slide text; images/charts/layout/speaker notes are not reproduced.
+- ODT -> TXT and RTF -> TXT extract text, not original formatting.

@@ -1,10 +1,16 @@
 {
-  "version": "3.10.0",
+  "version": "3.11.0",
   "engines": {
-    "data": "dist/js/engines/hm-engine-data.v1.0.0.js",
-    "color": "dist/js/engines/hm-engine-color.v1.0.0.js"
+    "document": "dist/js/engines/hm-engine-document.v1.0.0.js",
+    "registry": "dist/data/hm-converter-registry.v2.js"
   },
-  "registry": "dist/data/hm-converter-registry.v2.js",
-  "activeConverters": 69,
-  "comingConverters": 123
+  "newActive": [
+    "doc-docx-txt",
+    "doc-docx-html",
+    "doc-pptx-txt",
+    "doc-odt-txt",
+    "doc-rtf-txt"
+  ],
+  "activeConverters": 74,
+  "comingConverters": 118
 }
