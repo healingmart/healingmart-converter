@@ -1,0 +1,30 @@
+HealingMart Converter Self-Test v1.0.2
+
+대상
+- Converter v3.27.1
+- Registry v3.6.0
+- active 190 / server-required 2
+
+v1.0.2 추가 검사
+1. 각 엔진 파일명 버전과 HM_CONVERTER_ENGINES.<name>.version 내부 버전 일치 여부
+2. Converter 페이지에서 VTrick 자동목차가 실제 화면에 보이는지 검사
+3. .tocify-wrap / .tocify-inner / .tocify-title 차단 CSS가 Blogger 원본에 존재하는지 검사
+4. E-book Engine v1.2.1 반영 확인
+
+실행 코드
+(() => {
+  document.getElementById("hm-converter-self-test-host")?.remove();
+  try { delete window.HMConverterSelfTest; } catch (e) { window.HMConverterSelfTest = undefined; }
+
+  [...document.scripts]
+    .filter(s => s.src && s.src.includes("hm-converter-self-test"))
+    .forEach(s => s.remove());
+
+  const s = document.createElement("script");
+  s.src =
+    "https://healingmart.github.io/healingmart-converter/test/" +
+    "hm-converter-self-test.v1.0.2.js?v=" +
+    Date.now();
+  document.head.appendChild(s);
+})();
+
