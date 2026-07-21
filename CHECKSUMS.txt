@@ -1,4 +1,5 @@
-6819d960bed58e09c38c4fdd9c5cff25754d3ebb1708fe02ab9470ee8a5fdd63  dist/js/engines/hm-engine-image.v1.0.0.js
-b6c1d6750fb180a9bdab4b7340041e129d47193a03199d16493ebd29ff25b9ee  dist/js/engines/hm-engine-pdf.v1.0.0.js
-54f332014b31ca2c9d4a7e4fdf67c7b4ed4422f9a08bcd05e9fd64e7df749189  engine-manifest.json
-2d61d2d0e6eb685746531c1b2d7608303bd6cfce4cc2f279531fc20d659f6893  README_UPLOAD.txt
+cea258e33edfd78fe28321a83f8844465a8ab2a3002b76325406b3178d0d6a20  README_UPLOAD.txt
+d9d40485915d7ccc5ba23d334195fd14fb17dbe8dd50cfbc3b69dc0298542733  dist/data/hm-converter-registry.v2.js
+e55f93ad35ed3ff78098df9ef563886b5824002f79ed4644f76a3933bd733c70  dist/js/engines/hm-engine-color.v1.0.0.js
+a61f8d5119f9b4768ad3a05f2281914ffeba3b63e11cc76e78d3b5214385b946  dist/js/engines/hm-engine-data.v1.0.0.js
+4cef6cae72d15d146eb63a04bb487f526d5f0476718bef76739463a6bf52e568  engine-manifest.json

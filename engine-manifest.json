@@ -1,13 +1,10 @@
 {
-  "version": "3.9.0",
+  "version": "3.10.0",
   "engines": {
-    "image": {
-      "version": "1.0.0",
-      "path": "dist/js/engines/hm-engine-image.v1.0.0.js"
-    },
-    "pdf": {
-      "version": "1.0.0",
-      "path": "dist/js/engines/hm-engine-pdf.v1.0.0.js"
-    }
-  }
+    "data": "dist/js/engines/hm-engine-data.v1.0.0.js",
+    "color": "dist/js/engines/hm-engine-color.v1.0.0.js"
+  },
+  "registry": "dist/data/hm-converter-registry.v2.js",
+  "activeConverters": 69,
+  "comingConverters": 123
 }

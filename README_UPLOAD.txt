@@ -1,23 +1,21 @@
-HealingMart Converter v3.9.0 - GitHub update only
+HealingMart Converter v3.10.0 update-only
 
-업로드 위치
-1. 이 ZIP을 압축 해제합니다.
-2. 저장소 루트에서 dist 폴더가 바로 보이도록 업로드합니다.
+이번 업데이트
+- 데이터/표 변환 엔진 외부화 및 확장
+- 색상 변환 엔진 외부화 및 확장
+- Excel 기본 변환 3종 브라우저 활성화
+- 역방향 버튼은 실제 active 도구만 표시
 
-정확한 공개 주소
-https://healingmart.github.io/healingmart-converter/dist/js/engines/hm-engine-image.v1.0.0.js
-https://healingmart.github.io/healingmart-converter/dist/js/engines/hm-engine-pdf.v1.0.0.js
+활성 변환기: 69
+준비 중: 123
 
-주의
-- healingmart-converter-v3.9.0-update-only 폴더 자체를 저장소 안에 넣지 마세요.
-- dist/js/engines/ 경로가 정확해야 합니다.
-- GitHub 업로드 후 Blogger v3.9.0 HTML 전체를 교체하세요.
+GitHub 저장소 루트 기준 업로드:
+- dist/js/engines/hm-engine-data.v1.0.0.js
+- dist/js/engines/hm-engine-color.v1.0.0.js
+- dist/data/hm-converter-registry.v2.js
 
-이번 활성 기능
-- JPG/PNG/WebP/HEIC/SVG 이미지 일괄 변환
-- 품질, 최대 너비/높이, JPG 배경색
-- 개별 다운로드 및 다중 결과 ZIP
-- JPG/PNG/WebP 여러 장을 PDF 한 개로 생성
-- 이미지 순서 변경, 페이지 크기/방향/여백
-- PDF 전체/선택 페이지를 JPG 또는 PNG로 변환
-- 페이지별 다운로드 및 ZIP 다운로드
+확인 주소:
+https://healingmart.github.io/healingmart-converter/dist/js/engines/hm-engine-data.v1.0.0.js
+https://healingmart.github.io/healingmart-converter/dist/js/engines/hm-engine-color.v1.0.0.js
+
+그 뒤 Blogger HTML을 v3.10.0 파일로 전체 교체하세요.
