@@ -1,0 +1,72 @@
+HealingMart Converter v3.22.0 QA
+
+[레지스트리]
+전체 파일 변환기: 192
+사용 가능: 171
+준비 중: 21
+
+[이번 신규 활성화 6개]
+- PDF → XLSX
+- XLSX → PDF
+- PDF → PPTX
+- PPTX → PDF
+- PPTX → JPG
+- PPTX → PNG
+
+[PDF → XLSX]
+- PDF.js 텍스트 위치를 기준으로 같은 Y 좌표의 글자를 행으로 묶음
+- 글자 사이 X 간격이 큰 지점을 별도 셀로 추정
+- PDF 페이지 1개 = XLSX 워크시트 1개
+- 최대 300페이지 / 전체 약 50,000행
+- 원본 PDF의 실제 병합셀·수식·테두리를 복원하는 기능은 아님
+
+[XLSX → PDF]
+- SheetJS 0.18.5로 워크북 읽기
+- 최대 20개 시트
+- 전체 5,000행
+- 9열 × 19행 단위로 A4 가로 PDF 페이지 분할
+- 한글 안정성을 위해 Canvas 렌더링 후 PDF에 삽입
+- 차트·이미지·피벗·조건부서식의 완전 재현은 하지 않음
+
+[PDF → PPTX]
+- PDF.js로 페이지를 렌더링
+- PptxGenJS 4.0.1로 16:9 PowerPoint 생성
+- PDF 페이지 1개 = 슬라이드 1개
+- 페이지 이미지를 슬라이드 안에 비율 유지 배치
+- 결과 객체는 개별 편집 가능한 글자/도형이 아니라 페이지 이미지
+- 최대 100페이지
+
+[PPTX → PDF / JPG / PNG]
+- pptx-svg 0.6.4 PptxRenderer 사용
+- PPTX를 브라우저에서 SVG로 정적 렌더링
+- SVG를 Canvas로 변환한 뒤 PDF/JPG/PNG 생성
+- 숨김 슬라이드 제외/포함 선택
+- JPG/PNG 여러 장은 ZIP 다운로드
+- 최대 100슬라이드 / PPTX 40MB
+- 애니메이션·전환은 정적 출력에 포함되지 않음
+
+[정적 검증]
+hm-engine-office.v1.0.0.js Node 구문 검사: PASS
+Registry JSON 파싱: PASS
+신규 6개 active: PASS
+Blogger office engine 경로: PASS
+Office 라우팅 우선 처리: PASS
+대표 이미지 포함: PASS
+AdSense client 포함: PASS
+AdSense slot 포함: PASS
+
+[QA 샘플]
+실제 XLSX 생성/읽기: PASS
+XLSX OOXML ZIP 구조: PASS
+실제 PPTX 생성/슬라이드 수 확인: PASS
+PPTX OOXML ZIP 구조: PASS
+
+[배포 후 대표 브라우저 확인 권장]
+- PDF → XLSX
+- XLSX → PDF
+- PDF → PPTX
+- PPTX → PNG
+- PPTX → PDF
+
+pptx-svg는 2026-07 현재 브라우저에서 PPTX를 SVG로 렌더링하는 기능을 제공하지만,
+실제 문서의 설치 글꼴, 특수 개체, 매우 복잡한 슬라이드는 환경에 따라 차이가 날 수 있습니다.

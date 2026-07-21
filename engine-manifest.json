@@ -1,27 +1,22 @@
 {
-  "release": "3.21.0",
-  "registry": "3.0.0",
+  "release": "3.22.0",
+  "registry": "3.1.0",
   "engines": [
     {
-      "name": "pdf",
-      "version": "1.2.0",
-      "path": "dist/js/engines/hm-engine-pdf.v1.2.0.js"
-    },
-    {
-      "name": "ebook",
-      "version": "1.1.0",
-      "path": "dist/js/engines/hm-engine-ebook.v1.1.0.js"
-    },
-    {
-      "name": "subtitle",
-      "version": "1.1.0",
-      "path": "dist/js/engines/hm-engine-subtitle.v1.1.0.js"
+      "name": "office",
+      "version": "1.0.0",
+      "path": "dist/js/engines/hm-engine-office.v1.0.0.js"
     }
   ],
-  "fixes": [
-    "pdf-category-routing"
-  ],
-  "activeFileConverters": 165,
-  "comingFileConverters": 27,
+  "thirdParty": {
+    "pptx-svg": "0.6.4",
+    "pptxgenjs": "4.0.1",
+    "xlsx": "0.18.5",
+    "pdf.js": "3.11.174",
+    "jspdf": "2.5.2",
+    "jszip": "3.10.1"
+  },
+  "activeFileConverters": 171,
+  "comingFileConverters": 21,
   "totalFileConverters": 192
 }

@@ -1,7 +1,5 @@
-5027362220c64c59884e171a8e88a9ac66b95749e457579eb742933c05c8116a  dist/js/engines/hm-engine-pdf.v1.2.0.js
-dc1a38e2d593350f22c937e37a8c8cf8ebef47d441b466bd77e01521e4ca417b  dist/js/engines/hm-engine-ebook.v1.1.0.js
-378baba839d34217d078dceb1fae34f305691d056548e9f8f2d3ff599c273f2c  dist/js/engines/hm-engine-subtitle.v1.1.0.js
-c6866719d926331d73e6966d1544078100225e54c2a62c8a338082a31b7dee36  dist/data/hm-converter-registry.v2.js
-7f1c58d2831eb633b57839f63acc12deaaba3a7f664920d8493050be640e46b1  QA_REPORT_v3.21.0.txt
-566eca7190a7ec1069ac89e741a23ae74cce951af5da391ca6eda8e43f01bc1a  README_UPLOAD.txt
-6cb333bc03560d0da4c148c31360ded1bf84af5f3069b331cad0b08ecede26ac  engine-manifest.json
+977476322e4aa66425922dfa641c87fce62939071c56ed2ca770128e1ab057e9  dist/js/engines/hm-engine-office.v1.0.0.js
+b8c8c33bd324802592ee80ba651439db5fa61075654c133549cbc7b0b5436bdb  dist/data/hm-converter-registry.v2.js
+df5c21e320809c3d9ea5180ac4bae34d2de8e08eb28a574f709bc643add2c064  QA_REPORT_v3.22.0.txt
+6cfadf4612f45015915478fe915eaeb4c5fc9f5ecfadf79c67204cc701fb0448  README_UPLOAD.txt
+4fd0848560bf7f1d0086c78f74ff2ec84f269be892fdb68bfc4268de494c9a6c  engine-manifest.json
