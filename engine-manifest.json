@@ -1,16 +1,19 @@
 {
-  "version": "3.11.0",
-  "engines": {
-    "document": "dist/js/engines/hm-engine-document.v1.0.0.js",
-    "registry": "dist/data/hm-converter-registry.v2.js"
-  },
-  "newActive": [
-    "doc-docx-txt",
-    "doc-docx-html",
-    "doc-pptx-txt",
-    "doc-odt-txt",
-    "doc-rtf-txt"
+  "release": "3.12.0",
+  "registry": "2.1.0",
+  "engines": [
+    {
+      "name": "subtitle",
+      "version": "1.0.0",
+      "path": "dist/js/engines/hm-engine-subtitle.v1.0.0.js"
+    },
+    {
+      "name": "archive",
+      "version": "1.0.0",
+      "path": "dist/js/engines/hm-engine-archive.v1.0.0.js"
+    }
   ],
-  "activeConverters": 74,
-  "comingConverters": 118
+  "activeFileConverters": 83,
+  "comingFileConverters": 109,
+  "totalFileConverters": 192
 }
