@@ -1,31 +1,17 @@
-HealingMart Converter v3.26.0
-Kindle MOBI/AZW3 읽기 변환 엔진 확장
+HealingMart Converter v3.31.0 업데이트 업로드 안내
 
-[GitHub 업로드]
-dist/js/engines/hm-engine-ebook.v1.2.0.js
-dist/data/hm-converter-registry.v2.js
+[업데이트 ZIP 사용]
+ZIP의 폴더 구조를 유지한 채 GitHub 저장소 루트에 덮어씁니다.
 
-[업로드 후 확인]
-https://healingmart.github.io/healingmart-converter/dist/js/engines/hm-engine-ebook.v1.2.0.js
-https://healingmart.github.io/healingmart-converter/dist/data/hm-converter-registry.v2.js
+[핵심 변경 파일]
+- dist/data/hm-converter-registry.v2.js
+- dist/js/hm-converter-app.v3.10.0.js
+- dist/js/engines/hm-engine-data.v1.2.0.js
+- test/hm-converter-self-test.v1.4.0.js
+- blogger-converter.html
 
-두 주소가 코드로 정상 표시되면 Blogger HTML 전체를
-HealingMart_변환기_Blogger_Kindle읽기엔진확장_v3.26.0.html
-파일로 교체하세요.
+[업로드 후 체크]
+https://healingmart.github.io/healingmart-converter/test/hm-converter-self-test.v1.4.0.js
 
-[신규 활성화]
-MOBI → EPUB
-AZW3 → EPUB
-MOBI → PDF
-AZW3 → PDF
-
-[현재 레지스트리]
-전체: 192
-사용 가능: 190
-준비 중: 2
-
-[남은 준비 중 2개]
-EPUB → MOBI
-EPUB → AZW3
-
-이 두 출력 형식은 안정적인 브라우저 writer가 확보되기 전까지 준비 중으로 유지합니다.
+Self-Test 기준은 전체 312개, 활성 310개, 서버형 2개입니다.
+GitHub 업로드 확인 후 Blogger에는 HealingMart_변환기_Blogger_312개확장_v3.31.0.html 전체를 교체해 넣습니다.

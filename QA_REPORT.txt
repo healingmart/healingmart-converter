@@ -1,12 +1,10 @@
-HealingMart Converter v3.7.0 QA
+HealingMart Converter v3.31.0 QA Summary
 
-- JS syntax: PASS (node --check)
-- Blogger shell version references: 3.7.0
-- GitHub CSS reference: hm-converter.v3.7.0.css
-- GitHub JS reference: hm-converter-app.v3.7.0.js
-- Mobile app internal bottom padding: removed
-- Mobile body bottom safe space: enabled in Blogger shell
-- Internal copyright footer: removed
-- PC local quick bar: enabled
-- Mobile local quick bar: hidden
-- Mobile bottom navigation: enabled
+- Registry parse: PASS
+- Total / active / server: 312 / 310 / 2
+- Duplicate IDs: 0
+- JavaScript syntax: PASS 57 files
+- New data transforms: Chromium PASS 30 / FAIL 0
+- New route UI integration: PASS
+- Blogger embedded Registry sync: PASS 312 / 310
+- Existing 310 routes full user-file E2E: NOT RUN
