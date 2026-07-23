@@ -1,0 +1,41 @@
+HealingMart Converter v3.29.0 New Transform QA
+
+Environment: Chromium headless
+Scope: 신규 개발자·텍스트 변환 로직 30개
+Result: PASS 30 / FAIL 0
+
+Passed IDs
+- comma-line
+- semicolon-line
+- pipe-line
+- line-semicolon
+- line-pipe
+- line-sort-asc
+- line-sort-desc
+- line-reverse
+- duplicate-line-remove
+- whitespace-normalize
+- text-unicode-escape
+- unicode-escape-text
+- text-base64url
+- base64url-text
+- query-json
+- json-query
+- jsonl-json-array
+- json-array-jsonl
+- text-html-paragraph
+- html-paragraph-text
+- text-br
+- br-text
+- html-text
+- markdown-text
+- words-snake
+- snake-words
+- snake-camel
+- camel-snake
+- kebab-camel
+- camel-kebab
+
+Note
+- 실제 Chromium JavaScript 런타임에서 입력과 출력 결과를 비교했습니다.
+- Blogger UI 경로 전수 E2E와 기존 파일 변환기 250개 전체 E2E는 이 보고서 범위가 아닙니다.

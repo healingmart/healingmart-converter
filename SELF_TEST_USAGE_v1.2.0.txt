@@ -1,0 +1,15 @@
+HealingMart Converter Self-Test v1.2.0
+
+GitHub Pages 배포 후 아래 주소의 JS를 실행합니다.
+https://healingmart.github.io/healingmart-converter/test/hm-converter-self-test.v1.2.0.js
+
+검사 기준
+- 전체 파일 변환기 252개
+- 활성 250개
+- 서버 필요 2개
+- Registry v3.8.0
+- App v3.8.0
+- 신규 변환기 30개 등록 확인
+- 배포 파일 SHA-256 및 JavaScript 문법 검사
+
+전수 파일 변환 E2E 검사가 아니라 정적·통합 검사입니다.

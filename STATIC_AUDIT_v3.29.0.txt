@@ -1,0 +1,28 @@
+HealingMart Converter v3.29.0 Static Audit
+
+Registry parse: PASS
+Registry version: 3.8.0
+Total converters: 252
+Active: 250
+Server-required: 2
+Duplicate IDs: 0
+New developer converters: 30
+JavaScript syntax: PASS (Registry, App, Self-Test)
+New transform logic Chromium test: PASS 30 / FAIL 0
+UI route E2E and all existing file conversions E2E: NOT RUN
+
+Category counts
+- archive: 10
+- audio: 16
+- color: 12
+- data: 16
+- developer: 50
+- document: 16
+- ebook: 12
+- font: 10
+- hwp: 10
+- image: 44
+- other: 13
+- pdf: 17
+- subtitle: 10
+- video: 16

@@ -1,8 +1,11 @@
 {
-  "selfTestVersion": "1.0.1",
-  "targetConverterRelease": "3.27.0",
-  "targetRegistryVersion": "3.6.0",
-  "fix": "Blogger raw-source validation via same-origin fetch",
-  "nodeSyntaxCheck": true,
-  "sha256": "f7fc300546c80e2818b5e98890721497e77fabebbf7a6e83d65168d2668b4152"
+  "selfTestVersion": "1.2.0",
+  "release": "3.29.0",
+  "registryVersion": "3.8.0",
+  "appVersion": "3.8.0",
+  "expectedTotal": 252,
+  "expectedActive": 250,
+  "expectedComing": 2,
+  "newConverters": 30,
+  "sha256": "624f5c6342380870d5d6e8e6cdb6d7833b3523a9bf8fdc543dfe18e88d3f9146"
 }
