@@ -1,0 +1,27 @@
+HealingMart Converter v3.50.0 New Transform QA
+
+Scope
+- 신규 변환기 30개
+- Registry 792개 / active 790개 / server-required 2개
+- Developer category 530개
+
+New groups
+- Host·Referer·User-Agent·X-Robots-Tag: 8개
+- Alt-Svc·Priority·Prefer·Preference-Applied: 8개
+- TE·Trailer·Connection·Upgrade·Keep-Alive: 10개
+- Fetch Metadata·Client Hints: 4개
+
+Static expectations
+- 신규 ID 중복 없음
+- 신규 엔진 30개 transformText 라우팅 포함
+- Blogger 내장 Registry와 외부 Registry 동기화
+- App 3개 복사본 동일
+- JavaScript 구문 검사 필요
+- 신규 변환 샘플 30개 실행 검사 필요
+
+Execution results
+- 신규 변환 샘플: PASS 30 / FAIL 0
+- 정적 무결성 검사: PASS 35 / FAIL 0
+- JavaScript 구문 검사: 133개 파일 / 오류 0
+- Blogger 인라인 스크립트: 5개 블록 / 오류 0
+- 전체 790개 사용자 입력 브라우저 UI E2E: 별도
