@@ -1,0 +1,36 @@
+HealingMart Converter v3.40.0 New Route JavaScript Execution QA
+
+Total: 30
+PASS: 30
+FAIL: 0
+
+[PASS] url-components-json - output verified
+[PASS] json-url-components - output verified
+[PASS] url-filename-extract - output verified
+[PASS] url-extension-extract - output verified
+[PASS] url-parent-path - output verified
+[PASS] url-query-keys - output verified
+[PASS] url-sort-query - output verified
+[PASS] url-remove-tracking - output verified
+[PASS] url-canonicalize - output verified
+[PASS] url-hostname-lowercase - output verified
+[PASS] url-remove-default-port - output verified
+[PASS] url-normalize-path - output verified
+[PASS] url-lines-sitemap - output verified
+[PASS] sitemap-url-lines - output verified
+[PASS] url-lines-robots-allow - output verified
+[PASS] url-lines-robots-disallow - output verified
+[PASS] html-meta-json - output verified
+[PASS] json-html-meta - output verified
+[PASS] html-open-graph-json - output verified
+[PASS] json-open-graph-meta - output verified
+[PASS] html-twitter-card-json - output verified
+[PASS] json-twitter-card-meta - output verified
+[PASS] html-jsonld-extract - output verified
+[PASS] json-jsonld-script - output verified
+[PASS] html-canonical-url - output verified
+[PASS] html-hreflang-json - output verified
+[PASS] json-hreflang-links - output verified
+[PASS] html-link-rel-json - output verified
+[PASS] url-lines-domain-frequency-json - output verified
+[PASS] url-lines-extension-frequency-json - output verified
