@@ -1,8 +1,8 @@
 {
-  "release": "3.45.0",
-  "registry": "3.24.0",
-  "app": "3.24.0",
-  "releaseType": "stability-input-result-validation",
+  "release": "3.46.0",
+  "registry": "3.25.0",
+  "app": "3.25.0",
+  "releaseType": "stability-async-engine-file-entry",
   "totalFileConverters": 672,
   "activeFileConverters": 670,
   "serverRequiredConverters": 2,
@@ -14,13 +14,14 @@
   "platformTotalConverters": 900,
   "newConverters": [],
   "stabilityFixes": [
-    "Text converter Ctrl+Enter, accessible labels, stale-output clearing, and copy fallback",
-    "Copy status and output length feedback added",
-    "Date, Unix Timestamp, Roman numeral, and fuel unit validation hardened",
-    "Unit converter swap control and comma-formatted numeric input added",
-    "Data/text errors clear stale results and update aria-live status"
+    "Dynamic script loading now has a 20-second timeout and removes failed script elements",
+    "Rejected engine promises are removed from cache so retry can load a fresh file",
+    "Render tokens prevent a late engine response from overwriting a newer route",
+    "Engine loading and error screens keep aria-busy and live status synchronized",
+    "Home file drop area supports keyboard activation and resets file input for same-file reselection",
+    "Multiple-file drops clearly state that only the first file was inspected"
   ],
-  "selfTest": "test/hm-converter-self-test.v1.18.0.js",
+  "selfTest": "test/hm-converter-self-test.v1.19.0.js",
   "engines": [
     {
       "name": "archive",
@@ -89,12 +90,12 @@
   "stabilityRegressionTested": true,
   "bloggerEmbeddedRegistrySynced": true,
   "registryStatsSynced": true,
-  "qaReport": "STABILITY_QA_v3.45.0.txt",
+  "qaReport": "STABILITY_QA_v3.46.0.txt",
   "browserExecutionTested": true,
-  "browserExecutionNote": "Chromium embedded interaction regression PASS 21/21.",
-  "javascriptSyntaxFiles": 113,
+  "browserExecutionNote": "Chromium embedded async-engine and file-entry regression PASS 36/36.",
+  "javascriptSyntaxFiles": 117,
   "bloggerInlineScriptBlocks": 6,
-  "stabilityRegressionPass": 21,
+  "stabilityRegressionPass": 36,
   "stabilityRegressionFail": 0,
   "selfTestRulesConsistent": true,
   "appCopiesIdentical": true

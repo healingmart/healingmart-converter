@@ -1,11 +1,11 @@
-HealingMart Converter v3.45.0 QA Summary
+HealingMart Converter v3.46.0 QA Summary
 
-- Release type: stability / input / result / validation
+- Release type: stability / async engine / file entry
 - New converters: 0
 - Registry: 672 total / 670 active / 2 server-required
 - Platform total: 900
-- Chromium interaction regression: PASS 21 / FAIL 0
-- JavaScript syntax: PASS (113 files)
+- Chromium interaction regression: PASS 36 / FAIL 0
+- JavaScript syntax: PASS (117 files)
 - Blogger inline JavaScript: PASS (6 blocks)
 - Blogger embedded Registry: exact match
 - App copies: 3 identical

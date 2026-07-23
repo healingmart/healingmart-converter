@@ -1,0 +1,29 @@
+HealingMart Converter v3.46.0 Stability QA
+
+Status: PASS
+
+Release scope
+- 신규 변환기 추가 없음
+- Registry 672개 / active 670개 / 서버형 2개 유지
+- 단위변환 228개 / 플랫폼 전체 900개 유지
+
+Stability fixes
+- 동적 스크립트 로딩 20초 제한과 실패 script 요소 제거
+- 엔진 로딩 실패 Promise를 캐시에서 제거해 재시도가 새 요청으로 실행
+- 렌더 토큰으로 늦게 완료된 이전 엔진이 현재 화면을 덮어쓰는 경합 차단
+- 엔진 로딩·완료·오류와 aria-busy 상태 동기화
+- 엔진 오류 화면 role=alert 및 안전한 실패 원인 안내
+- 홈 파일 선택 영역 키보드 Enter·Space 지원
+- 파일 입력값 초기화로 같은 파일 재선택 지원
+- 여러 파일 드롭 시 첫 파일만 검사했다는 명시적 안내
+
+Regression checks
+- Chromium interaction regression: PASS 36 / FAIL 0
+- 지연 엔진 로딩 후 다른 경로 이동 시 화면 덮어쓰기 차단: PASS
+- 첫 엔진 로딩 실패 후 재시도 새 요청: PASS
+- 엔진 aria-busy 로딩·오류·완료 전환: PASS
+- 파일 키보드 선택·같은 파일 재선택·다중 파일 안내: PASS
+- 기존 v3.45 입력·복사·날짜·로마 숫자·연비·단위 회귀검사: PASS
+
+Limit
+- 기존 active 670개에 실제 사용자 파일을 모두 넣는 전수 E2E 검사는 실행하지 않음
