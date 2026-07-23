@@ -1,7 +1,7 @@
 {
-  "release": "3.41.0",
-  "registry": "3.20.0",
-  "app": "3.20.0",
+  "release": "3.42.0",
+  "registry": "3.21.0",
+  "app": "3.21.0",
   "engines": [
     {
       "name": "archive",
@@ -69,7 +69,7 @@
     "js-yaml": "4.1.0",
     "xlsx": "0.18.5"
   },
-  "activeFileConverters": 610,
+  "activeFileConverters": 640,
   "comingFileConverters": 2,
-  "totalFileConverters": 612
+  "totalFileConverters": 642
 }

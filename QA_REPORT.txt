@@ -1,10 +1,10 @@
-HealingMart Converter v3.41.0 QA Summary
+HealingMart Converter v3.42.0 QA Summary
 
-- New transforms: PASS 30 / FAIL 0 (Node.js)
-- New transforms: PASS 30 / FAIL 0 (Chromium)
-- Registry: 612 total / 610 active / 2 server-required
+- New transforms: PASS 30 / FAIL 0 (Node.js VM)
+- New transforms: NOT RUN (Chromium headless unavailable in build environment)
+- Registry: 642 total / 640 active / 2 server-required
 - Duplicate IDs: 0
-- JavaScript syntax: PASS
+- JavaScript syntax: PASS (101 files)
 - Blogger embedded registry/app sync: PASS
-- Cache query synchronization: PASS (v3.41.0)
+- Cache query synchronization: PASS (v3.42.0)
 - Full existing-route user-file E2E: NOT RUN
