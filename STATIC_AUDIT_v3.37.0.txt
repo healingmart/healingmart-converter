@@ -1,0 +1,35 @@
+HealingMart Converter v3.37.0 Static Audit
+
+Registry parse: PASS
+Registry version: 3.16.0
+Total converters: 492
+Active: 490
+Server-required: 2
+Duplicate IDs: 0
+New developer converters: 30
+Developer implementation coverage: PASS (230/230)
+JavaScript syntax: PASS (81 files)
+Blogger inline JavaScript syntax: PASS (6 blocks)
+New-transform JavaScript execution: PASS 30 / FAIL 0
+Registry stats: PASS (492 file / 228 unit / 720 total)
+Blogger embedded Registry: PASS (492 total / 490 active)
+Blogger external Registry sync: PASS
+App copies: PASS (dist/js, js, root)
+Self-Test SHA-256: PASS
+All existing routes E2E: NOT RUN
+
+Category counts
+- archive: 10
+- audio: 16
+- color: 12
+- data: 76
+- developer: 230
+- document: 16
+- ebook: 12
+- font: 10
+- hwp: 10
+- image: 44
+- other: 13
+- pdf: 17
+- subtitle: 10
+- video: 16
