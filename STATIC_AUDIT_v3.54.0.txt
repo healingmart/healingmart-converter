@@ -1,0 +1,35 @@
+HealingMart Converter v3.54.0 Static Audit
+
+PASS registry JSON parse
+PASS registry version — 3.33.0
+PASS registry total — 900
+PASS registry active
+PASS registry coming
+PASS registry duplicate IDs
+PASS developer count
+PASS stats synchronized — {'fileConverters': 900, 'unitConverters': 228, 'totalConverters': 1128}
+PASS new IDs count — 108
+PASS new IDs present
+PASS new IDs active developer
+PASS app copies identical
+PASS app release header
+PASS new route markers — []
+PASS embedded registry exact
+PASS embedded app exact
+PASS named Blogger HTML exact
+PASS Blogger tool version
+PASS Blogger current cache version
+PASS index dynamic registry base
+PASS index app version
+PASS all JavaScript syntax — 137 files; failures=0
+PASS Blogger inline script syntax — 7 script blocks; failures=0
+PASS self-test CONFIG parse
+PASS self-test versions
+PASS self-test expected counts
+PASS self-test new IDs
+PASS self-test developer count — {'total': 638, 'active': 638, 'coming': 0}
+PASS self-test file hashes — []
+PASS self-test manifest hash
+PASS new transform sample execution — (108, 0)
+
+Summary: 31 passed, 0 failed.
