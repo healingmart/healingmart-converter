@@ -1,0 +1,241 @@
+
+
+/* HealingMart Converter Platform v3.32.0 */
+(function(w,d){"use strict";
+var script=d.currentScript,base=(script&&script.dataset.base)||"https://healingmart.github.io/healingmart-converter",stage=d.querySelector('[data-hm-converter-stage]');if(!stage)return;
+function loadScript(src){return new Promise(function(res,rej){var s=d.createElement('script');s.src=src;s.onload=res;s.onerror=rej;d.head.appendChild(s)})}
+function loadStyle(href){if(d.querySelector('link[data-hm-converter-style]'))return;var l=d.createElement('link');l.rel='stylesheet';l.href=href;l.dataset.hmConverterStyle='1';d.head.appendChild(l)}
+loadStyle(base+'/css/hm-converter.v3.7.1.css?v=3.32.0');
+
+var HM_AMP=String.fromCharCode(38);
+function decodeEntities(v){
+  var s=String(v==null?'':v),box=d.createElement('textarea'),i,next;
+  for(i=0;i<4;i++){
+    s=s.split(HM_AMP+'amp;').join(HM_AMP);
+    box.innerHTML=s;
+    next=box.value;
+    if(next===s)break;
+    s=next;
+  }
+  return s;
+}
+function esc(v){
+  return decodeEntities(v).replace(/[&<>"']/g,function(c){
+    return({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])
+  })
+}
+function repairDataEntities(obj){
+  if(!obj)return obj;
+  if(typeof obj==='string')return decodeEntities(obj);
+  if(Array.isArray(obj)){
+    for(var i=0;i<obj.length;i++)obj[i]=repairDataEntities(obj[i]);
+    return obj;
+  }
+  if(typeof obj==='object'){
+    Object.keys(obj).forEach(function(k){obj[k]=repairDataEntities(obj[k])});
+  }
+  return obj;
+}
+function repairRenderedEntities(root){
+  if(!root)return;
+  var walker=d.createTreeWalker(root,NodeFilter.SHOW_TEXT),nodes=[],n,i,val;
+  while((n=walker.nextNode()))nodes.push(n);
+  for(i=0;i<nodes.length;i++){
+    val=decodeEntities(nodes[i].nodeValue);
+    if(val!==nodes[i].nodeValue)nodes[i].nodeValue=val;
+  }
+  root.querySelectorAll('[placeholder],[title],[aria-label],[value]').forEach(function(el){
+    ['placeholder','title','aria-label','value'].forEach(function(attr){
+      if(!el.hasAttribute(attr))return;
+      var before=el.getAttribute(attr),after=decodeEntities(before);
+      if(after!==before)el.setAttribute(attr,after);
+    });
+  });
+}
+repairDataEntities(w.HM_CONVERTER_PLATFORM);
+repairDataEntities(w.HM_UNIT_CONVERTER_DATA);
+
+function route(obj){var u=new URL(w.location.href);u.searchParams.delete('category');u.searchParams.delete('convert');if(obj.category)u.searchParams.set('category',obj.category);if(obj.convert)u.searchParams.set('convert',obj.convert);u.hash='';return u.pathname+u.search}
+function current(){var u=new URL(w.location.href);return{category:u.searchParams.get('category'),convert:u.searchParams.get('convert')}}
+function fixedTopOffset(){var els=d.querySelectorAll('header,#header,.header,.header-wrapper,.header-outer,.site-header,.main-header,.navbar,.top-bar'),max=0;for(var i=0;i<els.length;i++){var s=w.getComputedStyle(els[i]),r=els[i].getBoundingClientRect();if((s.position==='fixed'||s.position==='sticky')&&r.height>0&&r.height<180&&r.top<=4&&r.bottom>0)max=Math.max(max,r.bottom)}return Math.max(0,Math.round(max))}
+function stageTop(){return Math.max(0,Math.round(w.pageYOffset+stage.getBoundingClientRect().top-fixedTopOffset()-2))}
+function jumpToApp(fixedTop){var top=typeof fixedTop==='number'?fixedTop:stageTop();function run(){w.scrollTo({top:top,left:0,behavior:'auto'})}run();requestAnimationFrame(run);setTimeout(run,120)}
+function go(href){var top=stageTop();w.scrollTo({top:top,left:0,behavior:'auto'});history.pushState({},'',href);render();jumpToApp(top)}
+function cat(id){return w.HM_CONVERTER_PLATFORM.categories.find(function(x){return x.id===id})}
+function conv(id){var x=w.HM_CONVERTER_PLATFORM.converters.find(function(q){return q.id===id});if(x)return x;var u=w.HM_UNIT_CONVERTER_DATA&&w.HM_UNIT_CONVERTER_DATA.converters.find(function(q){return q.id===id});if(u)return Object.assign({},u,{category:'unit',fromFormat:u.from||'',toFormat:u.to||'',status:'active',engine:'unit'});return null}
+function countCategory(id){if(id==='unit')return w.HM_UNIT_CONVERTER_DATA.converters.length;return w.HM_CONVERTER_PLATFORM.converters.filter(function(x){return x.category===id}).length}
+function badge(x){var s=x.status==='active'?'active':'coming';return '<span class="hm-fx-badge '+s+'">'+(s==='active'?'바로 사용':'준비 중')+'</span>'}
+function card(x){return '<a class="hm-fx-conv-card" href="'+route({convert:x.id,category:x.category})+'" data-route>'+badge(x)+'<div class="hm-fx-format-row"><div class="hm-fx-format">'+esc(x.fromFormat)+'</div><div class="hm-fx-arrow">\u2192</div><div class="hm-fx-format">'+esc(x.toFormat)+'</div></div><div class="hm-fx-conv-title">'+esc(x.name)+'</div></a>'}
+function categoryCard(c){return '<a class="hm-fx-cat hm-tone-'+c.tone+'" href="'+route({category:c.id})+'" data-route><div class="hm-fx-cat-icon">'+esc(c.icon)+'</div><strong>'+esc(c.name)+'</strong><small>'+esc(c.description)+'</small><em>'+countCategory(c.id)+'개 도구</em></a>'}
+
+function listForCategory(id){return id==='unit'?w.HM_UNIT_CONVERTER_DATA.converters.map(function(x){return Object.assign({},x,{category:'unit',fromFormat:x.from||'',toFormat:x.to||'',status:'active',engine:'unit'})}):w.HM_CONVERTER_PLATFORM.converters.filter(function(x){return x.category===id})}
+function simpleToolCard(x){return '<a class="hm-fx-acc-tool" href="'+route({category:x.category,convert:x.id})+'" data-route><strong>'+esc(x.name)+'</strong><span>'+(x.status==='active'?'바로 사용 가능':'준비 중')+'</span></a>'}
+function toolGridCard(x,id){return '<a class="hm-fx-tool-card" href="'+route({category:id,convert:x.id})+'" data-route><strong>'+esc(x.name)+'</strong><small>'+esc(x.description||'빠르게 변환합니다.')+'</small><div class="hm-fx-mini-status">'+(x.status==='active'?'바로 사용 가능':'준비 중')+'</div></a>'}
+function featuredCard(x,i){var labels=['문서 변환','PDF 변환','이미지\u00B7미디어'];return '<a class="hm-fx-feature-card" href="'+route({category:x.category,convert:x.id})+'" data-route><span class="hm-fx-feature-best">BEST</span><div class="hm-fx-feature-icon">'+esc(labels[i]||'추천')+'</div><div class="hm-fx-feature-formats"><b>'+esc(x.fromFormat)+'</b><span>\u2192</span><b>'+esc(x.toFormat)+'</b></div><h3>'+esc(x.name)+'</h3><p>'+esc(x.description||'자주 찾는 변환 도구입니다.')+'</p><div class="hm-fx-feature-go">바로 사용하기 \u2192</div></a>'}
+function accordionCategory(c,idx){var list=listForCategory(c.id),shown=list.slice(0,8);return '<details class="hm-fx-acc hm-tone-'+c.tone+'" data-acc><summary class="hm-fx-acc-summary"><div class="hm-fx-acc-icon">'+esc(c.icon)+'</div><div class="hm-fx-acc-name"><strong>'+esc(c.name)+'</strong><span>'+esc(c.description)+'</span></div><div class="hm-fx-acc-count">'+list.length+'개</div><div class="hm-fx-acc-chevron">⌄</div></summary><div class="hm-fx-acc-body"><div class="hm-fx-acc-guide">자주 쓰는 도구를 먼저 보여드려요. 전체 목록은 카테고리 페이지에서 확인할 수 있습니다.</div><div class="hm-fx-acc-tools">'+shown.map(simpleToolCard).join('')+'</div><div class="hm-fx-acc-actions"><a class="hm-fx-acc-all" href="'+route({category:c.id})+'" data-route>'+esc(c.name)+' 전체 보기 \u2192</a></div></div></details>'}
+function home(){var p=w.HM_CONVERTER_PLATFORM,pops=p.popular.map(conv).filter(Boolean),compact=pops.slice(0,6),extra=pops.slice(6,12),quickPopular=pops.slice(0,6);stage.innerHTML='<div class="hm-fx-home"><section id="hmFxQuickFinderSection" class="hm-fx-quickfinder hm-fx-quick-sheet" data-quick-sheet hidden><details class="hm-fx-quickfinder-details" data-quickfinder open><summary class="hm-fx-quickfinder-summary"><span class="hm-fx-quickfinder-icon">⌕</span><span class="hm-fx-quickfinder-copy"><strong>원하는 변환 도구를 직접 찾아보세요</strong><small>파일 형식이나 카테고리를 알고 있다면 여기에서 바로 찾을 수 있어요.</small></span><b class="hm-fx-quickfinder-state" data-quickfinder-state>닫기</b></summary><div class="hm-fx-quickfinder-body"><div class="hm-fx-quick-block"><div class="hm-fx-quick-title"><strong>카테고리로 찾기</strong><span>원하는 종류를 누르세요.</span></div><div class="hm-fx-quick-categories">'+p.categories.map(function(c){return '<a class="hm-fx-quick-category hm-tone-'+c.tone+'" href="'+route({category:c.id})+'" data-route><span class="hm-fx-quick-category-icon">'+esc(c.icon)+'</span><strong>'+esc(c.name)+'</strong><small>'+countCategory(c.id)+'개</small></a>'}).join('')+'</div></div><div class="hm-fx-quick-block"><div class="hm-fx-quick-title"><strong>자주 찾는 변환</strong><span>많이 사용하는 도구를 바로 선택하세요.</span></div><div class="hm-fx-quick-popular">'+quickPopular.map(card).join('')+'</div></div><div class="hm-fx-quick-block"><label class="hm-fx-quick-search-label" for="hmFxQuickSearch">변환 도구 검색</label><input id="hmFxQuickSearch" class="hm-fx-quick-search" data-quick-search placeholder="예: HWP PDF \u00B7 PDF JPG \u00B7 HEIC JPG \u00B7 MP4 MP3"><div class="hm-fx-quick-results" data-quick-results hidden></div></div></div></details></section><section id="hmFxUploadSection" class="hm-fx-intro-hero"><div class="hm-fx-hero-eyebrow">파일 변환 도구</div><h1><span>어떤 변환 도구를 써야 할지 모르겠다면</span><br><em>파일을 여기 넣어보세요</em></h1><p>파일을 선택하거나 끌어놓기만 하세요. 파일 형식을 확인한 뒤 사용할 수 있는 변환도구를 바로 추천해 드립니다.</p><div class="hm-fx-smart-drop" data-home-drop><div class="hm-fx-smart-drop-icon">⇄</div><div class="hm-fx-smart-drop-copy"><strong>파일을 여기 넣어보세요</strong><span>이곳에 파일을 끌어놓거나 아래 큰 버튼을 누르세요</span></div><b class="hm-fx-smart-drop-button">파일 선택하기</b><small>PDF \u00B7 HWP \u00B7 HWPX \u00B7 JPG \u00B7 PNG \u00B7 HEIC \u00B7 WEBP \u00B7 MP4 \u00B7 MP3 등</small><input type="file" hidden data-home-file></div><div class="hm-fx-detected hm-fx-detected-large" data-detected hidden></div><div class="hm-fx-simple-guide"><span><b>1</b> 파일 넣기</span><span><b>2</b> 추천 변환 선택</span><span><b>3</b> 변환 결과 저장</span></div></section><section id="hmFxPopularSection" class="hm-fx-section-card hm-fx-section-card-large"><div class="hm-fx-section-head hm-fx-section-head-large"><div><h2>많이 사용하는 변환</h2><p>원하는 변환이 보이면 바로 누르세요. 직접 찾으려면 검색창에 형식을 입력하면 됩니다.</p></div></div><input class="hm-fx-search hm-fx-search-main" data-search placeholder="예: HWP PDF \u00B7 PDF JPG \u00B7 HEIC JPG \u00B7 MP4 MP3"><div class="hm-fx-popular-compact hm-fx-popular-large" data-popular>'+compact.map(card).join('')+'</div>'+(extra.length?'<button type="button" class="hm-fx-disclosure hm-fx-disclosure-large" data-popular-more>인기 변환 더 보기</button>':'')+'</section><section id="hmFxCategoriesSection" class="hm-fx-section-card hm-fx-section-card-large"><div class="hm-fx-section-head hm-fx-section-head-large"><div><h2>변환 카테고리</h2><p>필요한 종류를 누르면 해당 카테고리만 펼쳐집니다.</p></div></div><div class="hm-fx-category-accordion hm-fx-category-accordion-large" data-accordion>'+p.categories.map(accordionCategory).join('')+'</div></section></div>';
+var quickSection=stage.querySelector('[data-quick-sheet]'),quickDetails=stage.querySelector('[data-quickfinder]'),quickState=stage.querySelector('[data-quickfinder-state]'),quickSearch=stage.querySelector('[data-quick-search]'),quickResults=stage.querySelector('[data-quick-results]');if(quickDetails)quickDetails.ontoggle=function(){if(quickState)quickState.textContent=quickDetails.open?'닫기':'열기';if(!quickDetails.open&&quickSection)quickSection.hidden=true};if(quickSection)quickSection.onclick=function(e){if(e.target===quickSection){if(quickDetails)quickDetails.open=false;quickSection.hidden=true}};if(quickSearch)quickSearch.oninput=function(){var term=quickSearch.value.trim().toLowerCase();if(!term){quickResults.hidden=true;quickResults.innerHTML='';return}var allQuick=p.converters.concat((w.HM_UNIT_CONVERTER_DATA&&w.HM_UNIT_CONVERTER_DATA.converters||[]).map(function(x){return Object.assign({},x,{category:'unit',fromFormat:x.from||'',toFormat:x.to||'',status:'active'})}));var found=allQuick.filter(function(x){return (x.name+' '+(x.fromFormat||'')+' '+(x.toFormat||'')+' '+(x.description||'')).toLowerCase().includes(term)}).slice(0,12);quickResults.hidden=false;quickResults.innerHTML=found.length?'<div class="hm-fx-quick-results-head">검색 결과 '+found.length+'개</div><div class="hm-fx-quick-results-grid">'+found.map(card).join('')+'</div>':'<div class="hm-fx-empty">검색 결과가 없습니다. PDF, JPG, HWP처럼 파일 형식으로 다시 검색해 보세요.</div>'};
+var drop=stage.querySelector('[data-home-drop]'),file=stage.querySelector('[data-home-file]'),det=stage.querySelector('[data-detected]');drop.onclick=function(e){if(e.target.closest('[data-route]'))return;file.click()};drop.ondragover=function(e){e.preventDefault();drop.classList.add('is-drag')};drop.ondragleave=function(){drop.classList.remove('is-drag')};drop.ondrop=function(e){e.preventDefault();drop.classList.remove('is-drag');if(e.dataTransfer.files[0])detect(e.dataTransfer.files[0])};file.onchange=function(){if(file.files[0])detect(file.files[0])};
+function detect(f){var ext=(f.name.split('.').pop()||'').toUpperCase();var matches=p.converters.filter(function(x){return x.fromFormat.toUpperCase()===ext}).slice(0,8);det.hidden=false;det.innerHTML='<div class="hm-fx-detect-title"><strong>'+esc(f.name)+'</strong><span>'+Math.max(1,Math.round(f.size/1024))+'KB \u00B7 '+esc(ext||'파일')+'</span></div>'+(matches.length?'<div class="hm-fx-detect-help">이 파일로 할 수 있는 변환을 찾았어요. 원하는 도구를 선택하세요.</div><div class="hm-fx-detect-links">'+matches.map(function(x){return '<a href="'+route({convert:x.id,category:x.category})+'" data-route>'+esc(x.name)+'<b>\u2192</b></a>'}).join('')+'</div>':'<div class="hm-fx-detect-help">현재 이 파일 형식의 자동 추천 도구를 준비 중입니다. 아래 카테고리에서 직접 찾아보세요.</div>')}
+var more=stage.querySelector('[data-popular-more]');if(more)more.onclick=function(){var box=stage.querySelector('[data-popular]'),expanded=more.dataset.open==='1';if(expanded){box.innerHTML=compact.map(card).join('');more.textContent='인기 변환 더 보기';more.dataset.open='0'}else{box.innerHTML=compact.concat(extra).map(card).join('');more.textContent='접기';more.dataset.open='1'}};
+var q=stage.querySelector('[data-search]');q.oninput=function(){var term=q.value.trim().toLowerCase(),box=stage.querySelector('[data-popular]');if(!term){box.innerHTML=(more&&more.dataset.open==='1'?compact.concat(extra):compact).map(card).join('');if(more)more.style.display='';return}var all=p.converters.concat((w.HM_UNIT_CONVERTER_DATA&&w.HM_UNIT_CONVERTER_DATA.converters||[]).map(function(x){return Object.assign({},x,{category:'unit',fromFormat:x.from||'',toFormat:x.to||'',status:'active'})}));var found=all.filter(function(x){return (x.name+' '+(x.fromFormat||'')+' '+(x.toFormat||'')+' '+(x.description||'')).toLowerCase().includes(term)}).slice(0,24);box.innerHTML=found.map(card).join('')||'<div class="hm-fx-empty">검색 결과가 없습니다. PDF, JPG, HWP처럼 파일 형식으로 다시 검색해 보세요.</div>';if(more)more.style.display=term?'none':''};
+var acc=stage.querySelector('[data-accordion]');acc.addEventListener('toggle',function(e){var opened=e.target;if(opened.tagName!=='DETAILS'||!opened.open)return;acc.querySelectorAll('details[open]').forEach(function(x){if(x!==opened)x.open=false})},true)
+}
+function categoryPage(id){var c=cat(id);if(!c){home();return}var list=listForCategory(id),popular=list.filter(function(x){return x.popular}).slice(0,8);if(!popular.length)popular=list.slice(0,8);var visible=24,filtered=list.slice();function renderGrid(){var grid=stage.querySelector('[data-tool-grid]'),more=stage.querySelector('[data-load-more]');grid.innerHTML=filtered.slice(0,visible).map(function(x){return toolGridCard(x,id)}).join('')||'<div class="hm-fx-empty">검색 결과가 없습니다.</div>';if(more){more.hidden=filtered.length<=visible;more.textContent='더 보기 ('+Math.min(visible,filtered.length)+' / '+filtered.length+')'}}stage.innerHTML='<div class="hm-fx-toolbar"><a class="hm-fx-back" href="'+route({})+'" data-route>\u2190 변환기 홈</a><input class="hm-fx-search" data-cat-search placeholder="'+esc(c.name)+'에서 검색"></div><section class="hm-fx-category-intro hm-tone-'+c.tone+'"><div><h1>'+esc(c.name)+'</h1><p>'+esc(c.description)+' \u00B7 먼저 자주 쓰는 도구를 보여드리고, 전체 목록은 필요한 만큼만 펼쳐볼 수 있습니다.</p></div><div class="hm-fx-category-stat">총 '+list.length+'개</div></section>'+(popular.length?'<div class="hm-fx-category-popular">'+popular.slice(0,8).map(card).join('')+'</div>':'')+'<section class="hm-fx-category-list-wrap"><div class="hm-fx-category-list-head"><div><h2>전체 '+esc(c.name)+' 도구</h2><span>처음에는 24개만 표시합니다.</span></div></div><div class="hm-fx-tool-grid" data-tool-grid></div><button class="hm-fx-load-more" type="button" data-load-more>더 보기</button></section>';
+var q=stage.querySelector('[data-cat-search]');q.oninput=function(){var t=q.value.toLowerCase().trim();filtered=list.filter(function(x){return (x.name+' '+(x.description||'')+' '+(x.fromFormat||'')+' '+(x.toFormat||'')).toLowerCase().includes(t)});visible=24;renderGrid()};var more=stage.querySelector('[data-load-more]');more.onclick=function(){visible+=24;renderGrid()};renderGrid()
+}
+function reverseConverter(x){var p=w.HM_CONVERTER_PLATFORM;if(!p||!p.converters)return null;var from=String(x.fromFormat||'').toUpperCase(),to=String(x.toFormat||'').toUpperCase();if(!from||!to)return null;return p.converters.find(function(y){return y.id!==x.id&&y.status==='active'&&String(y.fromFormat||'').toUpperCase()===to&&String(y.toFormat||'').toUpperCase()===from})||null}
+function titleBlock(x){var rev=reverseConverter(x),reverseHtml=rev?'<div class="hm-fx-reverse-wrap"><a class="hm-fx-reverse-btn" href="'+route({category:rev.category,convert:rev.id})+'" data-route aria-label="'+esc(rev.name)+'로 방향 바꾸기"><b>\u21C4</b><span>'+esc(rev.name)+'로 방향 바꾸기</span></a></div>':'';return '<div class="hm-fx-title"><h1>'+esc(x.name)+'</h1><p>'+esc(x.description||'파일 형식을 변환합니다.')+'</p></div><div class="hm-fx-format-large"><b>'+esc(x.fromFormat)+'</b><span>\u2192</span><b>'+esc(x.toFormat)+'</b></div>'+reverseHtml}
+function coming(x){var server=!!x.serverRequired;stage.innerHTML='<div class="hm-fx-detail"><div class="hm-fx-toolbar"><a class="hm-fx-back" href="'+route({category:x.category})+'" data-route>\u2190 '+esc(cat(x.category).name)+'</a></div>'+titleBlock(x)+'<div class="hm-fx-workbox hm-fx-statusbox"><h2>'+(server?'이 변환기는 서버형 전자책 엔진이 필요합니다.':'이 변환기는 엔진을 준비하고 있습니다.')+'</h2><p>'+(server?'현재 HealingMart Converter는 파일을 브라우저 안에서 처리하는 것을 우선하고 있습니다. 이 형식은 브라우저에서 안정적으로 출력하는 검증된 writer가 없어 무리하게 활성화하지 않았습니다.':'정확성과 파일 보안을 확인한 뒤 활성화됩니다.')+'</p><div class="hm-fx-note">'+(server?'권장 구현: Calibre ebook-convert 기반의 별도 변환 서버. 단순히 확장자만 바꾸거나 비표준 파일을 생성하지 않습니다.':'현재 목록과 주소 구조는 미리 준비되어 있습니다.')+'</div></div></div>'}
+/* Image/PDF/Data/Color/Document/Subtitle/Archive engines loaded from GitHub external engine files in v3.12.0 */
+function textTool(x){stage.innerHTML='<div class="hm-fx-detail"><div class="hm-fx-toolbar"><a class="hm-fx-back" href="'+route({category:x.category})+'" data-route>\u2190 '+esc(cat(x.category).name)+'</a></div>'+titleBlock(x)+'<div class="hm-fx-workbox"><div class="hm-fx-two"><textarea class="hm-fx-textarea" data-in placeholder="원본 내용을 입력하세요"></textarea><div class="hm-fx-two-center">\u2192</div><textarea class="hm-fx-textarea" data-out readonly placeholder="변환 결과"></textarea></div><div class="hm-fx-actions"><button class="hm-fx-btn primary" data-run>변환</button><button class="hm-fx-btn" data-copy>결과 복사</button></div><div class="hm-fx-note" data-msg>텍스트는 브라우저에서 바로 변환합니다.</div></div></div>';var i=stage.querySelector('[data-in]'),o=stage.querySelector('[data-out]'),msg=stage.querySelector('[data-msg]');function run(){try{o.value=transformText(x.engine,i.value);msg.textContent='변환이 완료되었습니다.'}catch(e){o.value='';msg.textContent=e.message}}stage.querySelector('[data-run]').onclick=run;stage.querySelector('[data-copy]').onclick=function(){navigator.clipboard&&navigator.clipboard.writeText(o.value)} }
+function hmUtf8Bytes(v){return Array.from(new TextEncoder().encode(String(v)))}
+function hmBytesText(bytes){return new TextDecoder('utf-8',{fatal:true}).decode(new Uint8Array(bytes))}
+function hmNonEmptyLines(v){return String(v).split(/\r?\n/).map(function(s){return s.trim()}).filter(Boolean)}
+function hmLocaleSort(lines,dir){return lines.slice().sort(function(a,b){return a.localeCompare(b,'ko',{numeric:true,sensitivity:'base'})*(dir||1)})}
+function hmEscapeHtml(v){var box=d.createElement('div');box.textContent=String(v);return box.innerHTML}
+function hmHtmlToText(v){var box=d.createElement('div');box.innerHTML=String(v).replace(/<br\s*\/?\s*>/gi,'\n').replace(/<\/(?:p|div|li|h[1-6]|tr|section|article)>/gi,'\n');return (box.textContent||'').replace(/\u00a0/g,' ').replace(/[ \t]+\n/g,'\n').replace(/\n{3,}/g,'\n\n').trim()}
+function hmNameWords(v){return String(v).replace(/([a-z0-9])([A-Z])/g,'$1 $2').replace(/([A-Z]+)([A-Z][a-z])/g,'$1 $2').replace(/[_\-\s]+/g,' ').replace(/[^0-9A-Za-z가-힣 ]+/g,' ').trim().split(/\s+/).filter(Boolean)}
+function hmUpperFirst(v){return v?String(v).charAt(0).toUpperCase()+String(v).slice(1):''}
+function hmUnicodeEscape(v){return Array.from(String(v)).map(function(ch){var cp=ch.codePointAt(0);if(ch==='\\')return '\\\\';if(ch==='\n')return '\\n';if(ch==='\r')return '\\r';if(ch==='\t')return '\\t';if(cp>=32&&cp<=126)return ch;if(cp<=65535)return '\\u'+cp.toString(16).toUpperCase().padStart(4,'0');return '\\u{'+cp.toString(16).toUpperCase()+'}'}).join('')}
+function hmUnicodeUnescape(v){return String(v).replace(/\\(u\{([0-9a-fA-F]{1,6})\}|u([0-9a-fA-F]{4})|x([0-9a-fA-F]{2})|n|r|t|b|f|v|0|\\)/g,function(all,token,ucp,u4,x2){if(ucp)return String.fromCodePoint(parseInt(ucp,16));if(u4)return String.fromCharCode(parseInt(u4,16));if(x2)return String.fromCharCode(parseInt(x2,16));return{n:'\n',r:'\r',t:'\t',b:'\b',f:'\f',v:'\v','0':'\0','\\':'\\'}[token]})}
+function hmQueryObject(v){var input=String(v).trim(),q=input;try{if(/^[a-z][a-z0-9+.-]*:\/\//i.test(input))q=new URL(input).search;else if(input.indexOf('?')>=0)q=input.slice(input.indexOf('?'))}catch(ignore){}q=q.replace(/^[?#]/,'');var params=new URLSearchParams(q),out={};params.forEach(function(value,key){if(Object.prototype.hasOwnProperty.call(out,key)){if(!Array.isArray(out[key]))out[key]=[out[key]];out[key].push(value)}else out[key]=value});return out}
+function hmObjectQuery(v){var obj=JSON.parse(v);if(!obj||Array.isArray(obj)||typeof obj!=='object')throw new Error('JSON 객체를 입력해 주세요.');var params=new URLSearchParams();Object.keys(obj).forEach(function(key){var value=obj[key],items=Array.isArray(value)?value:[value];items.forEach(function(item){if(item==null)params.append(key,'');else if(typeof item==='object')params.append(key,JSON.stringify(item));else params.append(key,String(item))})});return params.toString()}
+function hmMarkdownText(v){return hmHtmlToText(String(v).replace(/```[^\n]*\n([\s\S]*?)```/g,'$1').replace(/`([^`]+)`/g,'$1').replace(/!\[([^\]]*)\]\([^)]*\)/g,'$1').replace(/\[([^\]]+)\]\([^)]*\)/g,'$1').replace(/^\s{0,3}(#{1,6}|>|[-+*]|\d+[.)])\s+/gm,'').replace(/(\*\*|__)(.*?)\1/g,'$2').replace(/(\*|_)(.*?)\1/g,'$2').replace(/^\s*([-*_])(?:\s*\1){2,}\s*$/gm,'').replace(/~~(.*?)~~/g,'$1'))}
+
+function hmJsonArray(v){var a=JSON.parse(v);if(!Array.isArray(a))throw new Error('JSON 배열을 입력해 주세요.');return a}
+function hmJoinJsonArray(v,separator){return hmJsonArray(v).map(function(item){return typeof item==='string'?item:JSON.stringify(item)}).join(separator)}
+function hmSplitList(v,separator){return String(v).split(separator).map(function(s){return s.trim()}).filter(Boolean)}
+function hmLineArray(v){return String(v).replace(/\r\n?/g,'\n').split('\n')}
+function hmCommonUnindent(v){var lines=hmLineArray(v),width=null;lines.forEach(function(line){if(!line.trim())return;var m=line.match(/^[ \t]*/);var n=(m?m[0]:'').length;width=width===null?n:Math.min(width,n)});if(!width)return lines.join('\n');return lines.map(function(line){return line.trim()?line.slice(width):line}).join('\n')}
+function hmSentenceCase(v){var s=String(v).toLowerCase();return s.replace(/(^|[.!?]\s+|\n+)([a-z])/g,function(all,prefix,ch){return prefix+ch.toUpperCase()})}
+function hmSlug(v){var s=String(v).normalize?String(v).normalize('NFKD'):String(v);s=s.replace(/[\u0300-\u036f]/g,'');if(s.normalize)s=s.normalize('NFC');return s.toLowerCase().replace(/[^0-9a-z가-힣]+/g,'-').replace(/^-+|-+$/g,'').replace(/-{2,}/g,'-')}
+
+function transformText(e,v){if(e==='text-base64')return btoa(unescape(encodeURIComponent(v)));if(e==='base64-text')return decodeURIComponent(escape(atob(v.trim())));if(e==='url-encode')return encodeURIComponent(v);if(e==='url-decode')return decodeURIComponent(v);if(e==='html-escape'){var t=d.createElement('div');t.textContent=v;return t.innerHTML}if(e==='html-unescape'){var q=d.createElement('textarea');q.innerHTML=v;return q.value}if(e==='json-pretty')return JSON.stringify(JSON.parse(v),null,2);if(e==='json-minify')return JSON.stringify(JSON.parse(v));if(e==='upper-lower')return v.toLowerCase();if(e==='lower-upper')return v.toUpperCase();if(e==='space-hyphen')return v.trim().replace(/\s+/g,'-');if(e==='line-comma')return hmNonEmptyLines(v).join(', ');if(e==='text-hex')return hmUtf8Bytes(v).map(function(b){return b.toString(16).padStart(2,'0').toUpperCase()}).join(' ');if(e==='hex-text'){var hs=v.replace(/0x/gi,'').replace(/[\s,;:_-]+/g,'');if(!hs||hs.length%2||!/^[0-9a-f]+$/i.test(hs))throw new Error('HEX 값은 두 자리 바이트 단위로 입력해 주세요.');var hb=[];for(var hi=0;hi<hs.length;hi+=2)hb.push(parseInt(hs.slice(hi,hi+2),16));return hmBytesText(hb)}if(e==='text-binary')return hmUtf8Bytes(v).map(function(b){return b.toString(2).padStart(8,'0')}).join(' ');if(e==='binary-text'){var bs=v.replace(/[\s,;:_-]+/g,'');if(!bs||bs.length%8||!/^[01]+$/.test(bs))throw new Error('2진수는 8비트 바이트 단위로 입력해 주세요.');var bb=[];for(var bi=0;bi<bs.length;bi+=8)bb.push(parseInt(bs.slice(bi,bi+8),2));return hmBytesText(bb)}if(e==='text-json-string')return JSON.stringify(String(v));if(e==='json-string-text'){var js=JSON.parse(v);if(typeof js!=='string')throw new Error('JSON 문자열 형식을 입력해 주세요.');return js}if(e==='line-json-array')return JSON.stringify(hmNonEmptyLines(v),null,2);if(e==='json-array-line'){var ja=JSON.parse(v);if(!Array.isArray(ja))throw new Error('JSON 배열을 입력해 주세요.');return ja.map(function(item){return typeof item==='string'?item:JSON.stringify(item)}).join('\n')}if(e==='comma-line')return String(v).split(',').map(function(s){return s.trim()}).filter(Boolean).join('\n');if(e==='semicolon-line')return String(v).split(';').map(function(s){return s.trim()}).filter(Boolean).join('\n');if(e==='pipe-line')return String(v).split('|').map(function(s){return s.trim()}).filter(Boolean).join('\n');if(e==='line-semicolon')return hmNonEmptyLines(v).join('; ');if(e==='line-pipe')return hmNonEmptyLines(v).join(' | ');if(e==='line-sort-asc')return hmLocaleSort(hmNonEmptyLines(v),1).join('\n');if(e==='line-sort-desc')return hmLocaleSort(hmNonEmptyLines(v),-1).join('\n');if(e==='line-reverse')return String(v).split(/\r?\n/).reverse().join('\n');if(e==='duplicate-line-remove'){var seen=new Set();return hmNonEmptyLines(v).filter(function(line){if(seen.has(line))return false;seen.add(line);return true}).join('\n')}if(e==='whitespace-normalize')return String(v).replace(/\r\n?/g,'\n').split('\n').map(function(line){return line.replace(/[\t ]+/g,' ').trim()}).join('\n').replace(/\n{3,}/g,'\n\n').trim();if(e==='text-unicode-escape')return hmUnicodeEscape(v);if(e==='unicode-escape-text')return hmUnicodeUnescape(v);if(e==='text-base64url')return btoa(unescape(encodeURIComponent(v))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');if(e==='base64url-text'){var b64=String(v).trim().replace(/-/g,'+').replace(/_/g,'/');while(b64.length%4)b64+='=';return decodeURIComponent(escape(atob(b64)))}if(e==='query-json')return JSON.stringify(hmQueryObject(v),null,2);if(e==='json-query')return hmObjectQuery(v);if(e==='jsonl-json-array'){var jl=String(v).split(/\r?\n/).map(function(s){return s.trim()}).filter(Boolean).map(function(line,idx){try{return JSON.parse(line)}catch(err){throw new Error((idx+1)+'번째 줄의 JSON 형식을 확인해 주세요.')}});return JSON.stringify(jl,null,2)}if(e==='json-array-jsonl'){var arr=JSON.parse(v);if(!Array.isArray(arr))throw new Error('JSON 배열을 입력해 주세요.');return arr.map(function(item){return JSON.stringify(item)}).join('\n')}if(e==='text-html-paragraph'){var paragraphs=String(v).trim().split(/\n\s*\n/).filter(Boolean);return paragraphs.map(function(p){return '<p>'+hmEscapeHtml(p.trim()).replace(/\r?\n/g,'<br>')+'</p>'}).join('\n')}if(e==='html-paragraph-text'||e==='html-text')return hmHtmlToText(v);if(e==='text-br')return hmEscapeHtml(v).replace(/\r\n?|\n/g,'<br>\n');if(e==='br-text')return hmHtmlToText(String(v).replace(/<br\s*\/?\s*>/gi,'\n'));if(e==='markdown-text')return hmMarkdownText(v);if(e==='words-snake')return hmNameWords(v).map(function(x){return x.toLowerCase()}).join('_');if(e==='snake-words')return String(v).trim().replace(/_+/g,' ').replace(/\s+/g,' ');if(e==='snake-camel'){var sw=String(v).trim().split(/_+/).filter(Boolean).map(function(x){return x.toLowerCase()});return sw.length?sw[0]+sw.slice(1).map(hmUpperFirst).join(''):''}if(e==='camel-snake')return hmNameWords(v).map(function(x){return x.toLowerCase()}).join('_');if(e==='kebab-camel'){var kw=String(v).trim().split(/-+/).filter(Boolean).map(function(x){return x.toLowerCase()});return kw.length?kw[0]+kw.slice(1).map(hmUpperFirst).join(''):''}if(e==='camel-kebab')return hmNameWords(v).map(function(x){return x.toLowerCase()}).join('-');if(e==='text-title-case')return hmNameWords(v).map(function(x){return hmUpperFirst(x.toLowerCase())}).join(' ');if(e==='text-sentence-case')return hmSentenceCase(v);if(e==='words-kebab')return hmNameWords(v).map(function(x){return x.toLowerCase()}).join('-');if(e==='words-camel'){var wc=hmNameWords(v).map(function(x){return x.toLowerCase()});return wc.length?wc[0]+wc.slice(1).map(hmUpperFirst).join(''):''}if(e==='words-pascal')return hmNameWords(v).map(function(x){return hmUpperFirst(x.toLowerCase())}).join('');if(e==='words-constant')return hmNameWords(v).map(function(x){return x.toUpperCase()}).join('_');if(e==='words-dot')return hmNameWords(v).map(function(x){return x.toLowerCase()}).join('.');if(e==='words-path')return hmNameWords(v).map(function(x){return x.toLowerCase()}).join('/');if(e==='line-number-add')return hmLineArray(v).map(function(line,index){return String(index+1)+'. '+line}).join('\n');if(e==='line-number-remove')return hmLineArray(v).map(function(line){return line.replace(/^\s*\d+(?:[.)\]:-])?\s+/,'')}).join('\n');if(e==='line-trim')return hmLineArray(v).map(function(line){return line.trim()}).join('\n');if(e==='line-remove-empty')return hmLineArray(v).filter(function(line){return line.trim()!==''}).join('\n');if(e==='duplicate-line-remove-ci'){var ci=new Set();return hmLineArray(v).filter(function(line){var key=line.trim().toLocaleLowerCase('ko');if(!key||ci.has(key))return false;ci.add(key);return true}).join('\n')}if(e==='line-length-sort-asc')return hmLineArray(v).sort(function(a,b){return a.length-b.length||a.localeCompare(b,'ko',{numeric:true,sensitivity:'base'})}).join('\n');if(e==='line-length-sort-desc')return hmLineArray(v).sort(function(a,b){return b.length-a.length||a.localeCompare(b,'ko',{numeric:true,sensitivity:'base'})}).join('\n');if(e==='comma-json-array')return JSON.stringify(hmSplitList(v,','),null,2);if(e==='semicolon-json-array')return JSON.stringify(hmSplitList(v,';'),null,2);if(e==='pipe-json-array')return JSON.stringify(hmSplitList(v,'|'),null,2);if(e==='json-array-comma')return hmJoinJsonArray(v,', ');if(e==='json-array-semicolon')return hmJoinJsonArray(v,'; ');if(e==='json-array-pipe')return hmJoinJsonArray(v,' | ');if(e==='text-slug')return hmSlug(v);if(e==='text-reverse-chars')return Array.from(String(v)).reverse().join('');if(e==='text-reverse-words')return String(v).trim().split(/\s+/).filter(Boolean).reverse().join(' ');if(e==='text-single-line')return String(v).replace(/\s+/g,' ').trim();if(e==='text-indent-2')return hmLineArray(v).map(function(line){return '  '+line}).join('\n');if(e==='text-indent-4')return hmLineArray(v).map(function(line){return '    '+line}).join('\n');if(e==='text-unindent')return hmCommonUnindent(v);if(e==='tabs-spaces-2')return String(v).replace(/\t/g,'  ');if(e==='tabs-spaces-4')return String(v).replace(/\t/g,'    ');if(e==='srt-vtt')return 'WEBVTT\n\n'+v.replace(/(\d{2}:\d{2}:\d{2}),(\d{3})/g,'$1.$2');if(e==='vtt-srt')return v.replace(/^WEBVTT\s*/,'').replace(/(\d{2}:\d{2}:\d{2})\.(\d{3})/g,'$1,$2').trim();if(e==='srt-txt'||e==='vtt-txt')return v.replace(/^WEBVTT\s*/,'').replace(/^\d+\s*$/gm,'').replace(/\d{2}:\d{2}:\d{2}[,.]\d{3}\s+-->\s+\d{2}:\d{2}:\d{2}[,.]\d{3}.*$/gm,'').replace(/\n{3,}/g,'\n\n').trim();throw new Error('지원하지 않는 변환입니다.')}
+function dataTool(x){stage.innerHTML='<div class="hm-fx-detail"><div class="hm-fx-toolbar"><a class="hm-fx-back" href="'+route({category:x.category})+'" data-route>\u2190 '+esc(cat(x.category).name)+'</a></div>'+titleBlock(x)+'<div class="hm-fx-workbox"><div class="hm-fx-two"><textarea class="hm-fx-textarea" data-in placeholder="'+esc(x.fromFormat)+' 내용을 붙여넣으세요"></textarea><div class="hm-fx-two-center">\u2192</div><textarea class="hm-fx-textarea" data-out readonly></textarea></div><div class="hm-fx-actions"><button class="hm-fx-btn primary" data-run>변환</button><button class="hm-fx-btn" data-copy>복사</button></div><div class="hm-fx-note" data-msg>표 데이터의 기본 형식을 기준으로 변환합니다.</div></div></div>';var i=stage.querySelector('[data-in]'),o=stage.querySelector('[data-out]'),msg=stage.querySelector('[data-msg]');stage.querySelector('[data-run]').onclick=async function(){try{o.value=await transformData(x.engine,i.value);msg.textContent='변환이 완료되었습니다.'}catch(e){msg.textContent=e.message}};stage.querySelector('[data-copy]').onclick=function(){navigator.clipboard&&navigator.clipboard.writeText(o.value)}}
+function parseCSV(s,sep){return s.trim().split(/\r?\n/).map(function(line){return line.split(sep).map(function(v){return v.trim().replace(/^"|"$/g,'')})})}
+function csvString(rows,sep){return rows.map(function(r){return r.map(function(v){var s=String(v==null?'':v);return s.includes(sep)||/["\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s}).join(sep)}).join('\n')}
+async function transformData(e,v){if(e==='json-csv'){var a=JSON.parse(v);if(!Array.isArray(a))a=[a];var keys=Array.from(new Set(a.flatMap(function(o){return Object.keys(o)})));return csvString([keys].concat(a.map(function(o){return keys.map(function(k){return o[k]})})),',')}if(e==='csv-json'){var r=parseCSV(v,','),h=r.shift()||[];return JSON.stringify(r.map(function(row){var o={};h.forEach(function(k,j){o[k]=row[j]||''});return o}),null,2)}if(e==='csv-tsv')return csvString(parseCSV(v,','),'\t');if(e==='tsv-csv')return csvString(parseCSV(v,'\t'),',');if(e==='json-yaml'||e==='yaml-json'){if(!w.jsyaml)await loadScript('https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js');return e==='json-yaml'?w.jsyaml.dump(JSON.parse(v)):JSON.stringify(w.jsyaml.load(v),null,2)}throw new Error('지원하지 않는 데이터 변환입니다.')}
+function colorTool(x){stage.innerHTML='<div class="hm-fx-detail"><div class="hm-fx-toolbar"><a class="hm-fx-back" href="'+route({category:x.category})+'" data-route>\u2190 '+esc(cat(x.category).name)+'</a></div>'+titleBlock(x)+'<div class="hm-fx-workbox"><div class="hm-fx-field"><label>값 입력</label><input class="hm-fx-input" data-in placeholder="#3366ff 또는 51,102,255"></div><div class="hm-fx-actions"><button class="hm-fx-btn primary" data-run>변환</button></div><div class="hm-fx-unit-result" data-out>결과</div></div></div>';var i=stage.querySelector('[data-in]'),o=stage.querySelector('[data-out]');stage.querySelector('[data-run]').onclick=function(){try{o.textContent=convertColor(x.engine,i.value)}catch(e){o.textContent=e.message}}}
+function rgbToHsl(r,g,b){r/=255;g/=255;b/=255;var max=Math.max(r,g,b),min=Math.min(r,g,b),h=0,s=0,l=(max+min)/2;if(max!==min){var d=max-min;s=l>.5?d/(2-max-min):d/(max+min);switch(max){case r:h=(g-b)/d+(g<b?6:0);break;case g:h=(b-r)/d+2;break;default:h=(r-g)/d+4}h/=6}return[Math.round(h*360),Math.round(s*100),Math.round(l*100)]}
+function hslToRgb(h,s,l){h/=360;s/=100;l/=100;var r,g,b;if(s===0)r=g=b=l;else{var q=l<.5?l*(1+s):l+s-l*s,p=2*l-q;function hue(t){if(t<0)t+=1;if(t>1)t-=1;if(t<1/6)return p+(q-p)*6*t;if(t<1/2)return q;if(t<2/3)return p+(q-p)*(2/3-t)*6;return p}r=hue(h+1/3);g=hue(h);b=hue(h-1/3)}return[Math.round(r*255),Math.round(g*255),Math.round(b*255)]}
+function convertColor(e,v){v=v.trim();function hex(){var s=v.replace('#','');if(s.length===3)s=s.split('').map(function(x){return x+x}).join('');if(!/^[0-9a-fA-F]{6}$/.test(s))throw new Error('HEX 값을 확인해 주세요.');return[parseInt(s.slice(0,2),16),parseInt(s.slice(2,4),16),parseInt(s.slice(4,6),16)]}function rgb(){var a=v.match(/\d+(?:\.\d+)?/g);if(!a||a.length<3)throw new Error('RGB 값을 확인해 주세요.');return a.slice(0,3).map(Number)}if(e==='hex-rgb'){var a=hex();return 'rgb('+a.join(', ')+')'}if(e==='rgb-hex'){var b=rgb();return '#'+b.map(function(n){return Math.max(0,Math.min(255,Math.round(n))).toString(16).padStart(2,'0')}).join('').toUpperCase()}if(e==='hex-hsl'){var c=hex(),h=rgbToHsl(c[0],c[1],c[2]);return 'hsl('+h[0]+', '+h[1]+'%, '+h[2]+'%)'}if(e==='rgb-hsl'){var r=rgb(),hh=rgbToHsl(r[0],r[1],r[2]);return 'hsl('+hh[0]+', '+hh[1]+'%, '+hh[2]+'%)'}if(e==='hsl-rgb'||e==='hsl-hex'){var q=v.match(/-?\d+(?:\.\d+)?/g);if(!q||q.length<3)throw new Error('HSL 값을 확인해 주세요.');var rr=hslToRgb(Number(q[0]),Number(q[1]),Number(q[2]));if(e==='hsl-rgb')return 'rgb('+rr.join(', ')+')';return '#'+rr.map(function(n){return n.toString(16).padStart(2,'0')}).join('').toUpperCase()}throw new Error('지원하지 않는 색상 변환입니다.')}
+function hmBaseRadix(format){var f=String(format||'').toUpperCase();if(f==='BIN')return 2;if(f==='OCT')return 8;if(f==='DEC')return 10;if(f==='HEX')return 16;throw new Error('지원하지 않는 진법입니다.')}
+function hmParseBaseInteger(value,radix){var s=String(value||'').trim().replace(/\s+/g,'');if(!s)throw new Error('값을 입력해 주세요.');var sign=1n;if(s.charAt(0)==='-'){sign=-1n;s=s.slice(1)}else if(s.charAt(0)==='+')s=s.slice(1);if(radix===16)s=s.replace(/^0x/i,'');if(radix===8)s=s.replace(/^0o/i,'');if(radix===2)s=s.replace(/^0b/i,'');if(!s)throw new Error('값을 확인해 주세요.');var digits='0123456789ABCDEF',n=0n,r=BigInt(radix);for(var i=0;i<s.length;i++){var dgt=digits.indexOf(s.charAt(i).toUpperCase());if(dgt<0||dgt>=radix)throw new Error('입력한 진법에 맞지 않는 숫자가 있습니다.');n=n*r+BigInt(dgt)}return n*sign}
+function otherTool(x){stage.innerHTML='<div class="hm-fx-detail"><div class="hm-fx-toolbar"><a class="hm-fx-back" href="'+route({category:x.category})+'" data-route>\u2190 '+esc(cat(x.category).name)+'</a></div>'+titleBlock(x)+'<div class="hm-fx-workbox"><div class="hm-fx-field"><label>값 입력</label><input class="hm-fx-input" data-in></div><div class="hm-fx-actions"><button class="hm-fx-btn primary" data-run>변환</button></div><div class="hm-fx-unit-result" data-out>결과</div></div></div>';var i=stage.querySelector('[data-in]'),o=stage.querySelector('[data-out]');stage.querySelector('[data-run]').onclick=function(){try{var v=i.value.trim(),r;if(x.engine==='unix-date')r=new Date(Number(v)*1000).toLocaleString('ko-KR');else if(x.engine==='date-unix')r=Math.floor(new Date(v).getTime()/1000);else if(x.engine==='base-number'){var from=hmBaseRadix(x.fromFormat),to=hmBaseRadix(x.toFormat);r=hmParseBaseInteger(v,from).toString(to).toUpperCase()}else if(x.engine==='roman'){r=roman(v)}if(r===undefined)throw new Error('지원하지 않는 변환입니다.');o.textContent=r}catch(e){o.textContent=e&&e.message?e.message:'값을 확인해 주세요.'}}}
+function roman(v){if(/^\d+$/.test(v)){var n=Number(v),map=[['M',1000],['CM',900],['D',500],['CD',400],['C',100],['XC',90],['L',50],['XL',40],['X',10],['IX',9],['V',5],['IV',4],['I',1]],s='';map.forEach(function(p){while(n>=p[1]){s+=p[0];n-=p[1]}});return s}var vals={I:1,V:5,X:10,L:50,C:100,D:500,M:1000},t=v.toUpperCase(),sum=0;for(var i=0;i<t.length;i++)sum+=(vals[t[i]]<(vals[t[i+1]]||0)?-1:1)*vals[t[i]];return sum}
+function unitTool(x){var u=w.HM_UNIT_CONVERTER_DATA,g=u.groups[x.group];if(!g){coming(x);return}stage.innerHTML='<div class="hm-fx-detail"><div class="hm-fx-toolbar"><a class="hm-fx-back" href="'+route({category:'unit'})+'" data-route>\u2190 단위변환</a></div>'+titleBlock(x)+'<div class="hm-fx-workbox"><div class="hm-fx-two"><div><div class="hm-fx-field"><label>값</label><input type="number" class="hm-fx-input" data-value value="1"></div><div class="hm-fx-field"><label>변환 전</label><select class="hm-fx-select" data-from>'+g.units.map(function(z){return '<option value="'+z.id+'" '+(z.id===x.from?'selected':'')+'>'+esc(z.name)+' ('+esc(z.symbol)+')</option>'}).join('')+'</select></div></div><div class="hm-fx-two-center">⇄</div><div><div class="hm-fx-field"><label>변환 후</label><select class="hm-fx-select" data-to>'+g.units.map(function(z){return '<option value="'+z.id+'" '+(z.id===x.to?'selected':'')+'>'+esc(z.name)+' ('+esc(z.symbol)+')</option>'}).join('')+'</select></div><div class="hm-fx-unit-result" data-result></div></div></div><div class="hm-fx-note">'+esc(g.note||'단위 기준값을 이용해 계산합니다.')+'</div></div></div>';var val=stage.querySelector('[data-value]'),fr=stage.querySelector('[data-from]'),to=stage.querySelector('[data-to]'),res=stage.querySelector('[data-result]');function run(){var n=Number(val.value),a=g.units.find(function(z){return z.id===fr.value}),b=g.units.find(function(z){return z.id===to.value});if(!isFinite(n)||!a||!b){res.textContent='값을 확인해 주세요.';return}var out;if(g.kind==='affine'){var basev=n*a.scale+a.offset;out=(basev-b.offset)/b.scale}else if(g.kind==='fuel'){out=convertReciprocal(g,n,a,b)}else{out=n*a.factor/b.factor}res.textContent=Number(out.toPrecision(12)).toLocaleString('ko-KR',{maximumFractionDigits:10})+' '+b.symbol}val.oninput=fr.onchange=to.onchange=run;run()}
+function convertReciprocal(g,n,a,b){if(g.id==='fuel'){function toKmpl(v,u){if(u.id==='kmpl')return v;if(u.id==='l100km')return 100/v;if(u.id==='mpgus')return v*0.425143707;if(u.id==='mpguk')return v*0.35400619;return v}function fromKmpl(v,u){if(u.id==='kmpl')return v;if(u.id==='l100km')return 100/v;if(u.id==='mpgus')return v/0.425143707;if(u.id==='mpguk')return v/0.35400619;return v}return fromKmpl(toKmpl(n,a),b)}return n}
+
+var HM_ENGINE_FILES={
+  image:"/dist/js/engines/hm-engine-image.v1.3.0.js?v=3.32.0",
+  pdf:"/dist/js/engines/hm-engine-pdf.v1.2.0.js?v=3.32.0",
+  data:"/dist/js/engines/hm-engine-data.v1.2.0.js?v=3.32.0",
+  color:"/dist/js/engines/hm-engine-color.v1.0.0.js?v=3.32.0",
+  document:"/dist/js/engines/hm-engine-document.v1.1.0.js?v=3.32.0",
+  subtitle:"/dist/js/engines/hm-engine-subtitle.v1.1.0.js?v=3.32.0",
+  archive:"/dist/js/engines/hm-engine-archive.v1.1.0.js?v=3.32.0",
+  ebook:"/dist/js/engines/hm-engine-ebook.v1.2.1.js?v=3.32.0",
+  hwp:"/dist/js/engines/hm-engine-hwpx.v1.2.0.js?v=3.32.0",
+  font:"/dist/js/engines/hm-engine-font.v1.1.0.js?v=3.32.0",
+  media:"/dist/js/engines/hm-engine-media.v1.0.0.js?v=3.32.0",
+  office:"/dist/js/engines/hm-engine-office.v1.0.0.js?v=3.32.0"
+};
+var HM_ENGINE_LOADS={};
+
+function engineContext(){
+  return {
+    window:w,
+    document:d,
+    stage:stage,
+    base:base,
+    route:route,
+    esc:esc,
+    cat:cat,
+    titleBlock:titleBlock,
+    loadScript:loadScript,
+    decodeEntities:decodeEntities
+  };
+}
+
+function engineLoading(x){
+  stage.innerHTML=
+    '<div class="hm-fx-detail">'+
+      '<div class="hm-fx-toolbar"><a class="hm-fx-back" href="'+
+        route({category:x.category})+
+        '" data-route>\u2190 '+esc(cat(x.category).name)+'</a></div>'+
+      titleBlock(x)+
+      '<div class="hm-fx-workbox hm-fx-statusbox">'+
+        '<h2>변환 엔진을 불러오고 있습니다.</h2>'+
+        '<p>처음 실행할 때만 필요한 기능을 안전하게 준비합니다.</p>'+
+        '<div class="hm-fx-note">잠시만 기다려 주세요.</div>'+
+      '</div>'+
+    '</div>';
+}
+
+function engineError(x,name,error){
+  stage.innerHTML=
+    '<div class="hm-fx-detail">'+
+      '<div class="hm-fx-toolbar"><a class="hm-fx-back" href="'+
+        route({category:x.category})+
+        '" data-route>\u2190 '+esc(cat(x.category).name)+'</a></div>'+
+      titleBlock(x)+
+      '<div class="hm-fx-workbox hm-fx-statusbox">'+
+        '<h2>변환 엔진을 불러오지 못했습니다.</h2>'+
+        '<p>GitHub의 엔진 파일 경로를 확인한 뒤 다시 시도해 주세요.</p>'+
+        '<div class="hm-fx-note">'+esc(
+          base+HM_ENGINE_FILES[name].replace(/\?v=.*$/,'')
+        )+'</div>'+
+        '<div class="hm-fx-actions">'+
+          '<button class="hm-fx-btn primary" type="button" data-engine-retry>다시 시도</button>'+
+        '</div>'+
+      '</div>'+
+    '</div>';
+  var retry=stage.querySelector('[data-engine-retry]');
+  if(retry)retry.onclick=function(){
+    delete HM_ENGINE_LOADS[name];
+    runConverterEngine(name,x);
+  };
+  console.error('[HealingMart Converter Engine]',name,error);
+}
+
+function loadConverterEngine(name){
+  w.HM_CONVERTER_ENGINES=w.HM_CONVERTER_ENGINES||{};
+  if(w.HM_CONVERTER_ENGINES[name]){
+    return Promise.resolve(w.HM_CONVERTER_ENGINES[name]);
+  }
+  if(HM_ENGINE_LOADS[name])return HM_ENGINE_LOADS[name];
+  var file=HM_ENGINE_FILES[name];
+  if(!file)return Promise.reject(new Error('등록되지 않은 엔진입니다.'));
+  HM_ENGINE_LOADS[name]=loadScript(base+file).then(function(){
+    var engine=w.HM_CONVERTER_ENGINES&&w.HM_CONVERTER_ENGINES[name];
+    if(!engine||typeof engine.open!=='function'){
+      throw new Error('엔진 등록 함수가 없습니다.');
+    }
+    return engine;
+  });
+  return HM_ENGINE_LOADS[name];
+}
+
+function runConverterEngine(name,x){
+  engineLoading(x);
+  return loadConverterEngine(name).then(function(engine){
+    return engine.open(x,engineContext());
+  }).catch(function(error){
+    engineError(x,name,error);
+  });
+}
+
+function detail(id){var x=conv(id);if(!x){home();return}if(x.engine==='unit')return unitTool(x);if(x.status!=='active')return coming(x);if(x.engine==='image'||x.engine==='heic-image')return runConverterEngine('image',x);if(x.engine==='office')return runConverterEngine('office',x);if(x.category==='pdf')return runConverterEngine('pdf',x);if(x.category==='ebook')return runConverterEngine('ebook',x);if(x.category==='hwp')return runConverterEngine('hwp',x);if(x.category==='document')return runConverterEngine('document',x);if(x.category==='data'||['xlsx-csv','csv-xlsx','xlsx-tsv'].includes(x.engine))return runConverterEngine('data',x);if(x.category==='subtitle')return runConverterEngine('subtitle',x);if(x.category==='archive')return runConverterEngine('archive',x);if(x.category==='font')return runConverterEngine('font',x);if(x.category==='video'||x.category==='audio')return runConverterEngine('media',x);if(x.category==='developer')return textTool(x);if(x.category==='color')return runConverterEngine('color',x);if(x.category==='other')return otherTool(x);coming(x)}
+function render(){var r=current();if(r.convert)detail(r.convert);else if(r.category)categoryPage(r.category);else home();repairRenderedEntities(stage)}
+stage.addEventListener('click',function(e){var a=e.target.closest('[data-route]');if(!a)return;e.preventDefault();go(a.getAttribute('href'))});
+if('MutationObserver' in w){
+  var hmEntityObserver=new MutationObserver(function(){repairRenderedEntities(stage)});
+  hmEntityObserver.observe(stage,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:['placeholder','title','aria-label','value']});
+}
+w.addEventListener('popstate',function(){var top=stageTop();w.scrollTo({top:top,left:0,behavior:'auto'});render();var r=current();if(r.category||r.convert)jumpToApp(top)});
+(async function(){try{if('scrollRestoration' in history)history.scrollRestoration='manual';if(!w.HM_CONVERTER_PLATFORM)await loadScript(base+'/dist/data/hm-converter-registry.v2.js?v=3.32.0');if(!w.HM_UNIT_CONVERTER_DATA)await loadScript(base+'/dist/data/hm-unit-registry.v1.js?v=1.0.0');var r=current(),top=stageTop();if(r.category||r.convert)w.scrollTo({top:top,left:0,behavior:'auto'});render();if(r.category||r.convert)jumpToApp(top)}catch(e){stage.innerHTML='<div class="hm-fx-note">변환기 데이터를 불러오지 못했습니다.</div>';console.error(e)}})();
+w.addEventListener('pageshow',function(){var r=current();if(r.category||r.convert)jumpToApp(stageTop())});
+})(window,document);
+
+

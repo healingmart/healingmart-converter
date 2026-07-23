@@ -1,0 +1,36 @@
+HealingMart Converter v3.32.0 New Route Chromium E2E
+
+Total: 30
+PASS: 30
+FAIL: 0
+
+[PASS] text-title-case - output verified
+[PASS] text-sentence-case - output verified
+[PASS] words-kebab - output verified
+[PASS] words-camel - output verified
+[PASS] words-pascal - output verified
+[PASS] words-constant - output verified
+[PASS] words-dot - output verified
+[PASS] words-path - output verified
+[PASS] line-number-add - output verified
+[PASS] line-number-remove - output verified
+[PASS] line-trim - output verified
+[PASS] line-remove-empty - output verified
+[PASS] duplicate-line-remove-ci - output verified
+[PASS] line-length-sort-asc - output verified
+[PASS] line-length-sort-desc - output verified
+[PASS] comma-json-array - output verified
+[PASS] semicolon-json-array - output verified
+[PASS] pipe-json-array - output verified
+[PASS] json-array-comma - output verified
+[PASS] json-array-semicolon - output verified
+[PASS] json-array-pipe - output verified
+[PASS] text-slug - output verified
+[PASS] text-reverse-chars - output verified
+[PASS] text-reverse-words - output verified
+[PASS] text-single-line - output verified
+[PASS] text-indent-2 - output verified
+[PASS] text-indent-4 - output verified
+[PASS] text-unindent - output verified
+[PASS] tabs-spaces-2 - output verified
+[PASS] tabs-spaces-4 - output verified

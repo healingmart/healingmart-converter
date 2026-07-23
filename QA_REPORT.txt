@@ -1,10 +1,5 @@
-HealingMart Converter v3.31.0 QA Summary
-
-- Registry parse: PASS
-- Total / active / server: 312 / 310 / 2
-- Duplicate IDs: 0
-- JavaScript syntax: PASS 57 files
-- New data transforms: Chromium PASS 30 / FAIL 0
-- New route UI integration: PASS
-- Blogger embedded Registry sync: PASS 312 / 310
-- Existing 310 routes full user-file E2E: NOT RUN
+HealingMart Converter v3.32.0
+Static audit PASS
+New route E2E PASS 30 / FAIL 0
+Total 342, active 340, server-required 2
+Registry stats synced
