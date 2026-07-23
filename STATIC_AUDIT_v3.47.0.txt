@@ -1,0 +1,19 @@
+HealingMart Converter v3.47.0 Static Audit
+
+PASS
+- Registry JSON 파싱 및 version 3.26.0
+- 파일 변환기 702개 / active 700개 / coming 2개
+- 중복 ID 없음
+- 신규 30개 ID·engine·developer category·active 상태 일치
+- Developer category 440개
+- stats: file 702 / unit 228 / platform 930
+- App v3.26.0 3개 복사본 동일
+- 신규 transformText 라우팅 30개 각각 1회 존재
+- Blogger 내장 Registry/App 동기화
+- Blogger 배포 HTML 두 파일 동일
+- 전체 JavaScript Node 구문 검사 통과
+- Self-Test v1.20.0 설정, 예상 수량, 신규 ID, SHA-256 일치
+- 신규 변환 샘플 30/30 통과
+
+LIMIT
+- 전체 active 700개에 실제 사용자 파일을 넣는 전수 E2E 변환 검사는 별도입니다.

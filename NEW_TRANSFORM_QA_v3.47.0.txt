@@ -1,0 +1,26 @@
+HealingMart Converter v3.47.0 New Transform QA
+
+검사 범위
+- 신규 변환기 30개
+- Registry 702개 / active 700개 / server-required 2개
+- Developer category 440개
+
+신규 그룹
+- IPv6·IPv4 주소 표현 및 역방향 DNS: 10개
+- 호스트명·역순 도메인: 4개
+- DNS A·AAAA·CNAME·MX·TXT·SRV 및 일반 레코드: 8개
+- Forwarded·Range·Content-Range·Vary HTTP 헤더: 8개
+
+검사 결과
+- 신규 변환 로직 샘플: 30 PASS / 0 FAIL
+- 신규 ID 중복: 없음
+- 신규 엔진 transformText 라우팅: 30/30 확인
+- Registry 수량·상태·카테고리 통계: 일치
+- App 3개 복사본 SHA-256: 동일
+- Blogger 내장 Registry/App: 외부 배포본과 동일(CDATA 래퍼 제외)
+- JavaScript 구문 검사: 통과
+- Self-Test 설정·배포 파일 해시: 일치
+
+참고
+- 이 빌드 환경의 Chromium URL 차단 정책 때문에 로컬 페이지 자동 클릭 E2E는 실행하지 않았습니다.
+- 배포 후 hm-converter-self-test.v1.20.0.js로 실제 GitHub/Blogger 통합 상태를 확인합니다.
