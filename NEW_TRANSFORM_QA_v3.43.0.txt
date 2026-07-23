@@ -1,0 +1,36 @@
+HealingMart Converter v3.43.0 New Route JavaScript Execution QA
+
+Total: 30
+PASS: 30
+FAIL: 0
+
+[PASS] json-go-struct - output verified
+[PASS] json-java-class - output verified
+[PASS] json-csharp-class - output verified
+[PASS] json-kotlin-data-class - output verified
+[PASS] json-swift-codable - output verified
+[PASS] json-rust-struct - output verified
+[PASS] json-graphql-type - output verified
+[PASS] json-sql-create-table - output verified
+[PASS] json-form-urlencoded - output verified
+[PASS] form-urlencoded-json - output verified
+[PASS] json-shell-export - output verified
+[PASS] shell-export-json - output verified
+[PASS] http-json-fetch - output verified
+[PASS] http-json-axios - output verified
+[PASS] http-json-python-requests - output verified
+[PASS] curl-fetch - output verified
+[PASS] curl-python-requests - output verified
+[PASS] ipv4-binary - output verified
+[PASS] binary-ipv4 - output verified
+[PASS] cidr-subnet-mask - output verified
+[PASS] subnet-mask-cidr - output verified
+[PASS] ipv4-cidr-report - output verified
+[PASS] ipv4-range-report - output verified
+[PASS] mac-colon-format - output verified
+[PASS] mac-hyphen-format - output verified
+[PASS] mac-plain-format - output verified
+[PASS] mac-report-json - output verified
+[PASS] port-list-normalize - output verified
+[PASS] port-range-expand - output verified
+[PASS] http-status-json - output verified
