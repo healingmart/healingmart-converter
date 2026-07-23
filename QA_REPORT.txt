@@ -1,8 +1,9 @@
-HealingMart Converter v3.37.0 QA Summary
+HealingMart Converter v3.38.0 QA Summary
 
 - New transforms: PASS 30 / FAIL 0
-- Registry: 492 total / 490 active / 2 server-required
+- Registry: 522 total / 520 active / 2 server-required
 - Duplicate IDs: 0
 - JavaScript syntax: PASS
 - Blogger embedded registry/app sync: PASS
+- Cache query synchronization: PASS (v3.38.0)
 - Full existing-route user-file E2E: NOT RUN
