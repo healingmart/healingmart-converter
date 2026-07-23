@@ -1,7 +1,8 @@
-HealingMart Converter v3.35.0
-Static audit PASS
-New route E2E PASS 30 / FAIL 0
-JavaScript syntax PASS 73 files
-Blogger inline JavaScript syntax PASS
-Total 432, active 430, server-required 2
-Registry stats and Blogger embedded registry synced
+HealingMart Converter v3.36.0 QA Summary
+
+- New transforms: PASS 30 / FAIL 0
+- Registry: 462 total / 460 active / 2 server-required
+- Duplicate IDs: 0
+- JavaScript syntax: PASS
+- Blogger embedded registry/app sync: PASS
+- Full existing-route user-file E2E: NOT RUN

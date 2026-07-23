@@ -1,0 +1,39 @@
+HealingMart Converter v3.36.0 New Transform JavaScript Execution QA
+
+Total: 30
+PASS: 30
+FAIL: 0
+
+[PASS] text-base36 - output verified
+[PASS] base36-text - output verified
+[PASS] text-base62 - output verified
+[PASS] base62-text - output verified
+[PASS] text-decimal-entities - output verified
+[PASS] decimal-entities-text - output verified
+[PASS] ascii-fullwidth - output verified
+[PASS] fullwidth-ascii - output verified
+[PASS] smart-quotes-straight - output verified
+[PASS] straight-quotes-smart - output verified
+[PASS] text-regex-escape - output verified
+[PASS] regex-escape-text - output verified
+[PASS] markdown-codeblock-add - output verified
+[PASS] markdown-codeblock-remove - output verified
+[PASS] markdown-inline-code-add - output verified
+[PASS] markdown-inline-code-remove - output verified
+[PASS] line-ordered-list-add - output verified
+[PASS] line-ordered-list-remove - output verified
+[PASS] line-html-list - output verified
+[PASS] html-list-line - output verified
+[PASS] line-html-options - output verified
+[PASS] html-options-line - output verified
+[PASS] text-emails-extract - output verified
+[PASS] email-lines-normalize - output verified
+[PASS] email-lines-mailto - output verified
+[PASS] url-lines-add-trailing-slash - output verified
+[PASS] url-lines-remove-trailing-slash - output verified
+[PASS] json-flatten-dot - output verified
+[PASS] json-unflatten-dot - output verified
+[PASS] json-remove-null - output verified
+
+Scope: exact transformText implementation execution with representative inputs and expected outputs.
+Full UI route E2E and all existing user-file conversions: NOT RUN.
