@@ -1,0 +1,30 @@
+HealingMart Converter v3.45.0 Stability QA
+
+Status: PASS
+
+Release scope
+- 신규 변환기 추가 없음
+- Registry 672개 / active 670개 / 서버형 2개 유지
+- 단위변환 228개 / 플랫폼 전체 900개 유지
+
+Stability fixes
+- 텍스트 변환 Ctrl+Enter 실행과 입력·결과 label 연결
+- 결과 길이, 복사 성공·실패 상태 안내
+- Clipboard API 실패 시 선택 복사 대체 경로
+- 입력 변경 시 이전 결과와 복사 가능 상태 초기화
+- 오류 발생 시 이전 결과가 남는 문제 차단
+- 잘못된 날짜와 Unix Timestamp의 NaN·Invalid Date 출력 차단
+- 로마 숫자 정규 형식 및 1~3999 범위 검증
+- 연비 0·음수 입력과 무한대 결과 차단
+- 단위 숫자 쉼표 입력 및 변환 전후 바꾸기 추가
+- Self-Test의 오래된 610개 전수검사 안내를 670개로 수정
+
+Regression checks
+- Chromium interaction regression: PASS 21 / FAIL 0
+- 텍스트 Ctrl+Enter·복사·입력 변경 초기화: PASS
+- JSON 오류 결과 초기화와 aria-live 상태: PASS
+- 날짜·로마 숫자 경계값 검증: PASS
+- 연비 0 차단·단위 전후 바꾸기·쉼표 숫자: PASS
+
+Limit
+- 기존 active 670개에 실제 사용자 파일을 모두 넣는 전수 E2E 검사는 실행하지 않음

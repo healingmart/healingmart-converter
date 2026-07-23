@@ -1,16 +1,14 @@
-HealingMart Converter v3.44.0 QA Summary
+HealingMart Converter v3.45.0 QA Summary
 
-- Release type: stability / search / self-test
+- Release type: stability / input / result / validation
 - New converters: 0
 - Registry: 672 total / 670 active / 2 server-required
 - Platform total: 900
-- Duplicate IDs: 0
-- Chromium stability regression: PASS 15 / FAIL 0
-- JavaScript syntax: PASS (109 files)
+- Chromium interaction regression: PASS 21 / FAIL 0
+- JavaScript syntax: PASS (113 files)
 - Blogger inline JavaScript: PASS (6 blocks)
 - Blogger embedded Registry: exact match
 - App copies: 3 identical
 - Developer implementation coverage: PASS (410/410)
-- Version/cache metadata: PASS
-- Self-Test rule and SHA-256 consistency: PASS
+- Self-Test marker, file hash, and stale disclaimer consistency: PASS
 - Full existing-route user-file E2E: NOT RUN
