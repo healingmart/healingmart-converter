@@ -1,0 +1,44 @@
+HealingMart Converter v3.28.0 · Static Integration Audit
+
+[결론]
+전체 정적 통합 감사: PASS
+
+[Registry]
+- Registry version: 3.7.0
+- 파일 변환 도구: 222
+- active: 220
+- coming/server-required: 2
+- ID 중복: 없음
+- 잘못된 category/status: 없음
+- 통합 단위변환 포함 전체 도구: 450
+
+[라우팅]
+- 신규 이미지 16개: Image Engine v1.3.0 라우팅 PASS
+- 신규 개발자·텍스트 8개: Blogger inline-developer 라우팅 PASS
+- 신규 진법 6개: Blogger inline-other 라우팅 PASS
+- active인데 coming으로 떨어지는 항목: 없음
+
+[카테고리]
+- pdf: 17 active / 17 total / 0 coming
+- document: 16 active / 16 total / 0 coming
+- image: 44 active / 44 total / 0 coming
+- video: 16 active / 16 total / 0 coming
+- audio: 16 active / 16 total / 0 coming
+- hwp: 10 active / 10 total / 0 coming
+- data: 16 active / 16 total / 0 coming
+- subtitle: 10 active / 10 total / 0 coming
+- ebook: 10 active / 12 total / 2 coming
+- archive: 10 active / 10 total / 0 coming
+- font: 10 active / 10 total / 0 coming
+- developer: 20 active / 20 total / 0 coming
+- color: 12 active / 12 total / 0 coming
+- unit: 0 active / 0 total / 0 coming
+- other: 13 active / 13 total / 0 coming
+
+[서버형 유지]
+- EPUB → MOBI
+- EPUB → AZW3
+
+[검증 한계]
+이 PASS는 Registry, 라우팅, 엔진 파일, SHA-256, JavaScript 문법과 새 순수 JavaScript 변환 함수 단위검사를 의미합니다.
+220개 전체 변환 경로에 서로 다른 실제 사용자 파일을 넣어 브라우저 E2E 테스트를 전수 수행한 것은 아닙니다.
