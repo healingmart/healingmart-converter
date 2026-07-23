@@ -1,5 +1,5 @@
-HealingMart Converter v3.43.0 전체 저장소
+HealingMart Converter v3.44.0 전체 배포
 
-압축을 풀고 healingmart-converter-main 폴더의 내용을 저장소 루트에 업로드합니다.
-Blogger 교체 파일: HealingMart_변환기_Blogger_672개확장_v3.43.0.html
-Self-Test: test/hm-converter-self-test.v1.16.0.js
+FULL ZIP의 healingmart-converter-main 폴더 내용을 GitHub 저장소에 업로드합니다.
+Blogger 게시물은 HealingMart_변환기_Blogger_672개안정화_v3.44.0.html 파일의 전체 HTML로 교체합니다.
+배포 후 Self-Test v1.17.0를 실행합니다.

@@ -1,0 +1,30 @@
+HealingMart Converter v3.44.0 Stability QA
+
+Status: PASS
+
+Release scope
+- 신규 변환기 추가 없음
+- Registry 672개 / active 670개 / 서버형 2개 유지
+- 단위변환 228개 / 플랫폼 전체 900개 유지
+
+Stability fixes
+- Blogger data-tool-version: v3.44.0 동기화
+- Blogger TOOL_INFO.version: v3.44.0 동기화
+- Self-Test 필수·금지 캐시 규칙 충돌 제거
+- 검색어 다중 토큰 AND 검색과 점수 정렬 적용
+- 워드·엑셀·한글·JPEG 등 검색 별칭 적용
+- 메인·빠른찾기·카테고리 검색 로직 통일
+- 파일 확장자 별칭과 MIME 기반 자동추천 적용
+- 비활성 서버형 도구 자동추천 제외
+- 작은 파일 크기 B 단위 표시
+- 렌더 완료 및 오류 시 aria-busy=false 전환
+
+Regression checks
+- Chromium embedded-app regression: PASS 15 / FAIL 0
+- 검색 별칭·다중 토큰·Escape 초기화: PASS
+- 빠른찾기 검색·결과 개수: PASS
+- JPEG 파일 감지·활성 도구 추천·10 B 표시: PASS
+- 검색 접근성 속성·aria-live·브라우저 오류 없음: PASS
+
+Limit
+- 기존 active 670개에 실제 사용자 파일을 모두 넣는 전수 E2E 검사는 실행하지 않음

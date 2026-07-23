@@ -1,5 +1,3 @@
-# HealingMart Converter
-
 HealingMart Converter v3.44.0
 
 - 파일 변환기: 672개

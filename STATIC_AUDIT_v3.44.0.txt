@@ -1,0 +1,17 @@
+HealingMart Converter v3.44.0 Static Audit
+
+Registry: PASS (672 total / 670 active / 2 server-required)
+Platform total: PASS (900)
+Duplicate IDs: PASS (0)
+Category/status/required fields: PASS
+JavaScript syntax: PASS (109 files)
+Blogger inline syntax: PASS (6 blocks; JSON-LD 1)
+App copies: PASS (3 identical)
+Blogger embedded Registry: PASS (exact match)
+Version metadata: PASS (v3.44.0 / App v3.23.0)
+Self-Test consistency: PASS (required/forbidden intersection 0)
+Self-Test asset SHA-256: PASS
+Search regression: PASS (Chromium 15-check suite)
+File detection regression: PASS
+Developer implementation coverage: PASS (410/410)
+Full existing-route user-file E2E: NOT RUN

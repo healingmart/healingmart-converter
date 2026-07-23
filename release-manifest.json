@@ -1,8 +1,8 @@
 {
-  "release": "3.43.0",
-  "registry": "3.22.0",
-  "app": "3.22.0",
-  "releaseType": "final-developer-network-expansion",
+  "release": "3.44.0",
+  "registry": "3.23.0",
+  "app": "3.23.0",
+  "releaseType": "stability-search-self-test",
   "totalFileConverters": 672,
   "activeFileConverters": 670,
   "serverRequiredConverters": 2,
@@ -12,102 +12,89 @@
   ],
   "unitConverters": 228,
   "platformTotalConverters": 900,
-  "newConverters": [
-    "json-go-struct",
-    "json-java-class",
-    "json-csharp-class",
-    "json-kotlin-data-class",
-    "json-swift-codable",
-    "json-rust-struct",
-    "json-graphql-type",
-    "json-sql-create-table",
-    "json-form-urlencoded",
-    "form-urlencoded-json",
-    "json-shell-export",
-    "shell-export-json",
-    "http-json-fetch",
-    "http-json-axios",
-    "http-json-python-requests",
-    "curl-fetch",
-    "curl-python-requests",
-    "ipv4-binary",
-    "binary-ipv4",
-    "cidr-subnet-mask",
-    "subnet-mask-cidr",
-    "ipv4-cidr-report",
-    "ipv4-range-report",
-    "mac-colon-format",
-    "mac-hyphen-format",
-    "mac-plain-format",
-    "mac-report-json",
-    "port-list-normalize",
-    "port-range-expand",
-    "http-status-json"
+  "newConverters": [],
+  "stabilityFixes": [
+    "Blogger data-tool-version and TOOL_INFO version synchronized",
+    "Self-Test contradictory cache marker rules removed",
+    "Tokenized alias-aware ranked search added",
+    "File extension, MIME detection, and readable size improved"
   ],
-  "selfTest": "test/hm-converter-self-test.v1.16.0.js",
+  "selfTest": "test/hm-converter-self-test.v1.17.0.js",
   "engines": [
     {
       "name": "archive",
+      "version": "1.1.0",
       "path": "dist/js/engines/hm-engine-archive.v1.1.0.js"
     },
     {
       "name": "color",
+      "version": "1.0.0",
       "path": "dist/js/engines/hm-engine-color.v1.0.0.js"
     },
     {
       "name": "data",
+      "version": "1.2.0",
       "path": "dist/js/engines/hm-engine-data.v1.2.0.js"
     },
     {
       "name": "document",
+      "version": "1.1.0",
       "path": "dist/js/engines/hm-engine-document.v1.1.0.js"
     },
     {
       "name": "ebook",
+      "version": "1.2.1",
       "path": "dist/js/engines/hm-engine-ebook.v1.2.1.js"
     },
     {
       "name": "font",
+      "version": "1.1.0",
       "path": "dist/js/engines/hm-engine-font.v1.1.0.js"
     },
     {
       "name": "hwp",
+      "version": "1.2.0",
       "path": "dist/js/engines/hm-engine-hwpx.v1.2.0.js"
     },
     {
       "name": "image",
+      "version": "1.3.0",
       "path": "dist/js/engines/hm-engine-image.v1.3.0.js"
     },
     {
       "name": "media",
+      "version": "1.0.0",
       "path": "dist/js/engines/hm-engine-media.v1.0.0.js"
     },
     {
       "name": "office",
+      "version": "1.0.0",
       "path": "dist/js/engines/hm-engine-office.v1.0.0.js"
     },
     {
       "name": "pdf",
+      "version": "1.2.0",
       "path": "dist/js/engines/hm-engine-pdf.v1.2.0.js"
     },
     {
       "name": "subtitle",
+      "version": "1.1.0",
       "path": "dist/js/engines/hm-engine-subtitle.v1.1.0.js"
     }
   ],
-  "newRoutesEndToEndTested": true,
+  "newRoutesEndToEndTested": false,
   "allExistingRoutesEndToEndTested": false,
   "staticAuditPass": true,
-  "newRoutesE2EPass": 30,
-  "newRoutesE2EFail": 0,
+  "stabilityRegressionTested": true,
   "bloggerEmbeddedRegistrySynced": true,
   "registryStatsSynced": true,
-  "qaReport": "NEW_TRANSFORM_QA_v3.43.0.txt",
-  "newTransformExecutionTested": true,
-  "newTransformExecutionPass": 30,
-  "newTransformExecutionFail": 0,
-  "browserExecutionTested": false,
-  "browserExecutionNote": "Chromium headless did not complete in the build environment; deploy-time Self-Test and user representative checks remain required.",
-  "javascriptSyntaxFiles": 105,
-  "bloggerInlineScriptBlocks": 6
+  "qaReport": "STABILITY_QA_v3.44.0.txt",
+  "browserExecutionTested": true,
+  "browserExecutionNote": "Chromium embedded-app regression PASS 15/15.",
+  "javascriptSyntaxFiles": 109,
+  "bloggerInlineScriptBlocks": 6,
+  "stabilityRegressionPass": 15,
+  "stabilityRegressionFail": 0,
+  "selfTestRulesConsistent": true,
+  "appCopiesIdentical": true
 }
