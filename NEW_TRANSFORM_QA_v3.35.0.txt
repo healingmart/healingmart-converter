@@ -1,0 +1,36 @@
+HealingMart Converter v3.35.0 New Route Chromium E2E
+
+Total: 30
+PASS: 30
+FAIL: 0
+
+[PASS] text-base32 - output verified
+[PASS] base32-text - output verified
+[PASS] text-base58 - output verified
+[PASS] base58-text - output verified
+[PASS] text-ascii85 - output verified
+[PASS] ascii85-text - output verified
+[PASS] text-octal-bytes - output verified
+[PASS] octal-bytes-text - output verified
+[PASS] text-decimal-bytes - output verified
+[PASS] decimal-bytes-text - output verified
+[PASS] text-quoted-printable - output verified
+[PASS] quoted-printable-text - output verified
+[PASS] text-nato-phonetic - output verified
+[PASS] nato-phonetic-text - output verified
+[PASS] url-lines-query-json - output verified
+[PASS] url-lines-remove-query - output verified
+[PASS] url-lines-remove-hash - output verified
+[PASS] url-lines-force-https - output verified
+[PASS] domain-lines-add-https - output verified
+[PASS] html-links-extract - output verified
+[PASS] html-images-extract - output verified
+[PASS] html-headings-extract - output verified
+[PASS] markdown-links-extract - output verified
+[PASS] markdown-images-extract - output verified
+[PASS] url-lines-html-links - output verified
+[PASS] url-lines-markdown-links - output verified
+[PASS] line-sql-quoted-list - output verified
+[PASS] line-sql-in-clause - output verified
+[PASS] text-cdata-wrap - output verified
+[PASS] cdata-text - output verified
