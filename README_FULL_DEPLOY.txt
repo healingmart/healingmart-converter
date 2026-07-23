@@ -1,5 +1,5 @@
-HealingMart Converter v3.32.0 전체 저장소
+HealingMart Converter v3.33.0 전체 저장소
 
 압축을 풀고 healingmart-converter-main 폴더의 내용을 저장소 루트에 업로드합니다.
-Blogger 교체 파일: HealingMart_변환기_Blogger_342개확장_v3.32.0.html
-Self-Test: test/hm-converter-self-test.v1.5.0.js
+Blogger 교체 파일: HealingMart_변환기_Blogger_372개확장_v3.33.0.html
+Self-Test: test/hm-converter-self-test.v1.6.0.js

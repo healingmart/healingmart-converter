@@ -1,0 +1,36 @@
+HealingMart Converter v3.33.0 New Route Chromium E2E
+
+Total: 30
+PASS: 30
+FAIL: 0
+
+[PASS] line-bullet-add - output verified
+[PASS] line-bullet-remove - output verified
+[PASS] line-quote-add - output verified
+[PASS] line-quote-remove - output verified
+[PASS] markdown-checkbox-add - output verified
+[PASS] markdown-checkbox-remove - output verified
+[PASS] line-comma-suffix - output verified
+[PASS] line-comma-suffix-remove - output verified
+[PASS] line-semicolon-suffix - output verified
+[PASS] line-semicolon-suffix-remove - output verified
+[PASS] text-trim - output verified
+[PASS] text-collapse-blank-lines - output verified
+[PASS] text-normalize-nfc - output verified
+[PASS] text-normalize-nfd - output verified
+[PASS] text-normalize-nfkc - output verified
+[PASS] text-normalize-nfkd - output verified
+[PASS] text-remove-diacritics - output verified
+[PASS] text-remove-control-chars - output verified
+[PASS] html-remove-comments - output verified
+[PASS] html-minify-basic - output verified
+[PASS] css-minify-basic - output verified
+[PASS] json-sort-keys-deep - output verified
+[PASS] json-array-unique - output verified
+[PASS] json-array-sort-asc - output verified
+[PASS] json-array-sort-desc - output verified
+[PASS] json-array-reverse - output verified
+[PASS] env-json - output verified
+[PASS] json-env - output verified
+[PASS] properties-json - output verified
+[PASS] json-properties - output verified

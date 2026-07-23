@@ -1,11 +1,11 @@
 {
-  "selfTestVersion": "1.5.0",
-  "release": "3.32.0",
-  "registryVersion": "3.11.0",
-  "appVersion": "3.11.0",
-  "expectedTotal": 342,
-  "expectedActive": 340,
+  "selfTestVersion": "1.6.0",
+  "release": "3.33.0",
+  "registryVersion": "3.12.0",
+  "appVersion": "3.12.0",
+  "expectedTotal": 372,
+  "expectedActive": 370,
   "expectedComing": 2,
   "newConverters": 30,
-  "sha256": "634e58194bae7e895ac5a592c625a134c84abe70642d25f0f88ac96215e29f97"
+  "sha256": "c839cb6b4a180c8cac00687530cb0d3482d40bdb61716ddb6ec00c38cb4fc26a"
 }
