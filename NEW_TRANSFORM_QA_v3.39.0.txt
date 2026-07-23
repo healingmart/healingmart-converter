@@ -1,0 +1,36 @@
+HealingMart Converter v3.39.0 New Route JavaScript Execution QA
+
+Total: 30
+PASS: 30
+FAIL: 0
+
+[PASS] iso-kst-datetime - output verified
+[PASS] kst-datetime-iso - output verified
+[PASS] iso-rfc2822-date - output verified
+[PASS] rfc2822-iso-date - output verified
+[PASS] iso-http-date - output verified
+[PASS] http-date-iso - output verified
+[PASS] iso-date-only - output verified
+[PASS] date-compact - output verified
+[PASS] compact-date - output verified
+[PASS] date-korean - output verified
+[PASS] korean-date - output verified
+[PASS] date-weekday-ko - output verified
+[PASS] date-day-of-year - output verified
+[PASS] date-iso-week - output verified
+[PASS] date-quarter - output verified
+[PASS] date-month-start - output verified
+[PASS] date-month-end - output verified
+[PASS] date-lines-sort-asc - output verified
+[PASS] date-lines-sort-desc - output verified
+[PASS] seconds-hms - output verified
+[PASS] hms-seconds - output verified
+[PASS] milliseconds-hms - output verified
+[PASS] hms-milliseconds - output verified
+[PASS] seconds-iso-duration - output verified
+[PASS] iso-duration-seconds - output verified
+[PASS] timezone-offset-minutes - output verified
+[PASS] minutes-timezone-offset - output verified
+[PASS] json-toml - output verified
+[PASS] toml-json - output verified
+[PASS] jsonc-json - output verified
