@@ -1,0 +1,27 @@
+HealingMart Converter v3.48.0 New Transform QA
+
+Scope
+- 신규 변환기 30개
+- Registry 732개 / active 730개 / server-required 2개
+- Developer category 470개
+
+New groups
+- Content-Type·Content-Language: 4개
+- ETag·If-Match·If-None-Match·Retry-After·Allow: 10개
+- CORS 요청·응답 헤더: 6개
+- CSP·Permissions-Policy·HSTS·Referrer-Policy: 8개
+- X-Forwarded-For: 2개
+
+Validation results
+- 신규 변환 샘플 실행: PASS 30 / FAIL 0
+- 정적 무결성 검사: PASS 33 / FAIL 0
+- 전체 JavaScript 구문 검사: 125 files / failures 0
+- Blogger inline script 구문 검사: 5 blocks / failures 0
+- Registry ID 중복: 0
+- App 3개 복사본 SHA-256 동일
+- Blogger 내장 Registry 및 App 외부 파일과 정확히 일치
+- Self-Test v1.21.0 설정 및 파일 해시 일치
+
+Limitations
+- 전체 730개 활성 변환기의 사용자 입력 전수 브라우저 E2E는 이번 패키징에서 재실행하지 않았습니다.
+- 신규 30개는 transformText 경로를 통한 독립 실행 샘플로 검증했습니다.
