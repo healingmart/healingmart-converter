@@ -1,0 +1,36 @@
+HealingMart Converter v3.34.0 New Route Chromium E2E
+
+Total: 30
+PASS: 30
+FAIL: 0
+
+[PASS] text-rot13 - output verified
+[PASS] text-atbash - output verified
+[PASS] text-morse - output verified
+[PASS] morse-text - output verified
+[PASS] text-utf16-codes - output verified
+[PASS] utf16-codes-text - output verified
+[PASS] text-code-points - output verified
+[PASS] code-points-text - output verified
+[PASS] text-decimal-codes - output verified
+[PASS] decimal-codes-text - output verified
+[PASS] text-hex-entities - output verified
+[PASS] hex-entities-text - output verified
+[PASS] xml-pretty - output verified
+[PASS] xml-minify - output verified
+[PASS] xml-remove-comments - output verified
+[PASS] sql-keywords-upper - output verified
+[PASS] sql-keywords-lower - output verified
+[PASS] sql-minify-basic - output verified
+[PASS] markdown-heading-add - output verified
+[PASS] markdown-heading-remove - output verified
+[PASS] markdown-bold-add - output verified
+[PASS] markdown-bold-remove - output verified
+[PASS] markdown-italic-add - output verified
+[PASS] markdown-italic-remove - output verified
+[PASS] url-lines-domain - output verified
+[PASS] url-lines-origin - output verified
+[PASS] url-lines-path - output verified
+[PASS] url-lines-normalize - output verified
+[PASS] key-value-json - output verified
+[PASS] json-key-value - output verified
