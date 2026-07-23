@@ -1,0 +1,36 @@
+HealingMart Converter v3.41.0 New Route JavaScript Execution QA
+
+Total: 30
+PASS: 30
+FAIL: 0
+
+[PASS] basic-auth-header - output verified
+[PASS] basic-auth-json - output verified
+[PASS] bearer-token-header - output verified
+[PASS] authorization-header-json - output verified
+[PASS] text-data-uri - output verified
+[PASS] data-uri-text - output verified
+[PASS] data-uri-json - output verified
+[PASS] extension-mime-type - output verified
+[PASS] mime-type-extensions - output verified
+[PASS] accept-header-lines - output verified
+[PASS] lines-accept-header - output verified
+[PASS] accept-language-json - output verified
+[PASS] json-accept-language - output verified
+[PASS] cache-control-json - output verified
+[PASS] json-cache-control - output verified
+[PASS] content-disposition-json - output verified
+[PASS] json-content-disposition - output verified
+[PASS] link-header-json - output verified
+[PASS] json-link-header - output verified
+[PASS] set-cookie-json - output verified
+[PASS] json-set-cookie - output verified
+[PASS] curl-json - output verified
+[PASS] json-curl - output verified
+[PASS] http-request-json - output verified
+[PASS] json-http-request - output verified
+[PASS] http-response-json - output verified
+[PASS] json-http-response - output verified
+[PASS] jwt-header-json - output verified
+[PASS] jwt-payload-json - output verified
+[PASS] jwt-summary-json - output verified
