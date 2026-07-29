@@ -1,0 +1,23 @@
+HealingMart Converter v3.55.1 통합 구조화 보고서
+
+생성 시각: 2026-07-30T01:37:15.299+09:00
+
+- 통합 등록: 1128개
+- 공개: 1126개
+- 준비 중: 2개
+- 전체 검색 노출: 1109개
+- 공개 검색 노출: 1107개
+- 준비 중 검색 노출: 2개
+- 검색 숨김 중복: 19개
+- 파일형: 237개
+- 텍스트형: 638개
+- 단위형: 211개
+- 특수형: 42개
+- 신규 메타데이터: 108개
+- canonical ID 중복: 0개
+- 대문자 canonical ID: 0개
+- 원본 레지스트리 충돌: 11개(단위 canonical 격리)
+- 오류: 0개
+- 경고: 1개
+오류 없음
+WARN: 원본 레지스트리 간 ID 충돌 11개: bin-hex, camel-snake, dec-bin, dec-hex, dec-oct, html-escape, line-comma, roman-number, space-hyphen, upper-lower, url-encode

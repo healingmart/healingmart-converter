@@ -1,0 +1,79 @@
+<!-- HealingMart Converter search example: load the lightweight index only when used. -->
+<div id="hmConverterFinder" class="hm-converter-finder">
+  <label for="hmConverterFinderInput">변환 도구 검색</label>
+  <input id="hmConverterFinderInput" type="search" autocomplete="off" inputmode="search" placeholder="예: 평 제곱미터, PDF JPG, 아이폰 사진 JPG">
+  <p><a id="hmConverterFinderAllLink" href="https://www.healing-mart.com/p/converter.html">변환기 모음</a></p>
+  <p id="hmConverterFinderStatus" role="status" aria-live="polite"></p>
+  <div id="hmConverterFinderResults"></div>
+</div>
+<script defer src="https://healingmart.github.io/healingmart-converter/dist/js/hm-converter-search-client.v1.js"></script>
+<script>
+window.addEventListener("DOMContentLoaded", function () {
+(function (w, d) {
+  "use strict";
+  var root = d.getElementById("hmConverterFinder");
+  if (!root) return;
+  var input = d.getElementById("hmConverterFinderInput");
+  var status = d.getElementById("hmConverterFinderStatus");
+  var allLink = d.getElementById("hmConverterFinderAllLink");
+  var results = d.getElementById("hmConverterFinderResults");
+  var converterPage = "https://www.healing-mart.com/p/converter.html";
+  var timer = 0;
+
+  function clearResults() {
+    while (results.firstChild) results.removeChild(results.firstChild);
+  }
+
+  function render(items, total) {
+    clearResults();
+    status.textContent = total ? "검색 결과 " + total + "개" : "검색 결과가 없습니다.";
+    items.forEach(function (item) {
+      var link = d.createElement("a");
+      var title = d.createElement("strong");
+      var description = d.createElement("span");
+      link.className = "hm-converter-finder-item";
+      link.href = w.HM_CONVERTER_SEARCH.buildUrl(converterPage, item);
+      title.textContent = item.name;
+      description.textContent = item.description;
+      link.appendChild(title);
+      link.appendChild(description);
+      results.appendChild(link);
+    });
+  }
+
+  function search() {
+    var query = input.value.trim();
+    if (!query) {
+      clearResults();
+      status.textContent = "";
+      return;
+    }
+    if (!w.HM_CONVERTER_SEARCH) {
+      status.textContent = "검색 클라이언트를 불러오지 못했습니다.";
+      return;
+    }
+    w.HM_CONVERTER_SEARCH.loadLatest().then(function () {
+      var manifest = w.HM_CONVERTER_SEARCH.manifest();
+      if (manifest && allLink) allLink.textContent = "공개 변환 도구 " + manifest.publishedCount.toLocaleString("ko-KR") + "종";
+      var found = w.HM_CONVERTER_SEARCH.search(query, { limit: 12 });
+      render(found.items, found.total);
+    }).catch(function () {
+      status.textContent = "검색 데이터를 불러오지 못했습니다.";
+    });
+  }
+
+  input.addEventListener("focus", function () {
+    if (!w.HM_CONVERTER_SEARCH) return;
+    w.HM_CONVERTER_SEARCH.loadLatest().then(function () {
+      var manifest = w.HM_CONVERTER_SEARCH.manifest();
+      if (manifest && allLink) allLink.textContent = "공개 변환 도구 " + manifest.publishedCount.toLocaleString("ko-KR") + "종";
+    }).catch(function () {});
+  }, { once: true });
+
+  input.addEventListener("input", function () {
+    w.clearTimeout(timer);
+    timer = w.setTimeout(search, 150);
+  });
+})(window, document);
+});
+</script>
