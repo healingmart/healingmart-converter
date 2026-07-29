@@ -1,12 +1,18 @@
 {
-  "selfTestVersion": "1.27.0",
-  "release": "3.54.0",
+  "selfTestVersion": "1.28.0",
+  "release": "3.55.1",
   "registryVersion": "3.33.0",
-  "appVersion": "3.33.0",
-  "expectedTotal": 900,
-  "expectedActive": 898,
-  "expectedComing": 2,
-  "newConverters": 108,
-  "releaseType": "feature",
-  "sha256": "d5a9b44700d4bbde051dfe45e6071ec8e7317507d3167fa21b1d9fc1fa8435d0"
+  "appVersion": "3.34.1",
+  "catalogVersion": "1.1.0",
+  "countMode": "dynamic-contract",
+  "fixedCountAssertions": false,
+  "contracts": {
+    "registered": "platform registry + unit registry = unified catalog = search index = route map = public manifest registeredCount",
+    "published": "catalog computed published = stats.published = public manifest publishedCount",
+    "coming": "catalog computed coming = stats.coming = public manifest comingCount",
+    "publicSearch": "published and searchVisible catalog items = stats.publishedSearchVisible = public manifest publishedSearchVisibleCount = HM_CONVERTER_SEARCH.publicItems()",
+    "hidden": "catalog computed search hidden = stats.searchHidden = public manifest searchHiddenCount",
+    "newItems": "catalog computed isNew = stats.newItems"
+  },
+  "releaseType": "catalog-search-runtime-integrity"
 }
