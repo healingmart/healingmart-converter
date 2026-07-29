@@ -1,0 +1,13 @@
+/* HealingMart Converter Validator v1.1.0 */
+(function(w){"use strict";
+function ids(value){return value&&Array.isArray(value.items)?value.items.map(function(x){return x.id||x.i}):[]}
+function duplicates(values){var seen=new Set(),out=[];values.forEach(function(v){if(seen.has(v)&&out.indexOf(v)<0)out.push(v);seen.add(v)});return out}
+function validate(data,searchIndex,routes){var result={ok:true,errors:[],warnings:[],stats:{registered:0,published:0,coming:0,searchVisible:0,searchHidden:0,newItems:0}};
+if(!data||!Array.isArray(data.items)){result.ok=false;result.errors.push("통합 컨버터 데이터가 없습니다.");return result}
+var allIds=ids(data),idSet=new Set(allIds);result.stats.registered=data.items.length;duplicates(allIds).forEach(function(id){result.errors.push(id+": canonical ID 중복")});
+data.items.forEach(function(item,index){var label=item&&item.id?item.id:"#"+(index+1);if(!item||!item.id)result.errors.push(label+": ID 누락");else if(!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(item.id))result.errors.push(label+": canonical ID 규칙 위반");if(!item||!item.name)result.errors.push(label+": 이름 누락");if(!item||!item.category)result.errors.push(label+": 카테고리 누락");if(!item||!item.runtimeId)result.errors.push(label+": runtimeId 누락");if(!item||!Array.isArray(item.supportedDirections)||!item.supportedDirections.length)result.errors.push(label+": 변환 방향 누락");if(!item||!item.searchText)result.errors.push(label+": 검색 데이터 누락");if(item&&item.status==="published")result.stats.published++;else result.stats.coming++;if(item&&item.searchVisible===false)result.stats.searchHidden++;else result.stats.searchVisible++;if(item&&item.isNew)result.stats.newItems++;if(item&&item.duplicateOf&&!idSet.has(item.duplicateOf))result.errors.push(label+": duplicateOf 대상 없음");if(item&&item.source==="unit"&&(!item.legacyIds||!item.legacyIds.length))result.errors.push(label+": 단위 legacyIds 누락")});
+if(searchIndex&&Array.isArray(searchIndex.items)){var searchIds=ids(searchIndex);if(searchIds.length!==allIds.length)result.errors.push("검색 인덱스 항목 수 불일치");var searchSet=new Set(searchIds);allIds.forEach(function(id){if(!searchSet.has(id))result.errors.push("검색 인덱스 ID 누락: "+id)});searchIds.forEach(function(id){if(!idSet.has(id))result.errors.push("검색 인덱스 미등록 ID: "+id)})}else result.warnings.push("검색 인덱스를 함께 전달하지 않았습니다.");
+if(routes&&routes.items){var routeIds=Object.keys(routes.items);if(routeIds.length!==allIds.length)result.errors.push("주소 맵 항목 수 불일치");var routeSet=new Set(routeIds);allIds.forEach(function(id){if(!routeSet.has(id))result.errors.push("주소 맵 ID 누락: "+id)})}else result.warnings.push("주소 맵을 함께 전달하지 않았습니다.");
+result.ok=result.errors.length===0;return result}
+w.HM_CONVERTER_VALIDATOR={version:"1.1.0",validate:validate};
+})(window);
