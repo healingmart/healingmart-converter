@@ -1,0 +1,44 @@
+HealingMart Converter v3.55.1 최종 자동연동 QA 보고서
+
+현재 생성 통계
+- 통합 등록: 1,128개
+- 공개: 1,126개
+- 준비 중: 2개
+- 전체 검색 노출: 1,109개
+- 기본 외부 통합검색: 1,107개
+- 검색 숨김 중복: 19개
+
+자동연동
+- 공식 공개 카탈로그: dist/data/hm-converter-search-index.v1.js
+- 외부 매니페스트: dist/catalog/hm-converter-public-manifest.v1.js
+- 고정 클라이언트: dist/js/hm-converter-search-client.v1.js
+- loadLatest 반환: published + searchVisible 공개 목록
+- 준비 완료 이벤트 catalog: published + searchVisible 공개 목록
+- all(): 전체 등록 목록
+- publicItems(): 외부 기본 검색 목록
+
+연비 오류 수정
+- 잘못된 l100km 참조를 실제 레지스트리 ID l100으로 수정
+- 앱 3개 복사본과 Blogger 2개 파일 동기화
+- 20 km/L = 5 L/100km
+- 5 L/100km = 20 km/L
+- 30 mpg US ≈ 7.84049 L/100km
+- 40 mpg UK ≈ 7.06207 L/100km
+
+Self-Test
+- 등록·공개·준비 중·플랫폼·단위·숨김·신규 개수 고정값 제거
+- 원본 레지스트리, 통합 카탈로그, 검색 인덱스, 주소 맵, 공개 매니페스트 상호 비교
+- 임시 1개 확장 시 브라우저 Self-Test 실행 포함
+
+자동 테스트
+- 일반 카탈로그: 43/43
+- 공개 매니페스트: 27/27
+- 최신 로더: 20/20
+- 연비 회귀: 9/9
+- 자동 확장 및 브라우저 Self-Test: 10/10
+
+배포 형태
+- 전체 GitHub 배포본
+- 빈 폴더 또는 새 저장소 검증 가능
+- release-files 선언 62개 + 내부 생성 매니페스트 1개 = 검증 대상 63개
+- 실제 GitHub Pages 브라우저 UI 확인 후 main 병합

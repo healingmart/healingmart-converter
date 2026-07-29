@@ -1,0 +1,120 @@
+{
+  "release": "3.55.1",
+  "catalogVersion": "1.1.0",
+  "generatedAt": "2026-07-29T16:37:18.888Z",
+  "counts": {
+    "registered": 1128,
+    "published": 1126,
+    "coming": 2,
+    "platform": 900,
+    "unit": 228,
+    "file": 237,
+    "text": 638,
+    "unitKind": 211,
+    "special": 42,
+    "serverRequired": 2,
+    "searchVisible": 1109,
+    "publishedSearchVisible": 1107,
+    "comingSearchVisible": 2,
+    "searchHidden": 19,
+    "newItems": 108,
+    "canonicalIdDuplicates": 0,
+    "uppercaseCanonicalIds": 0,
+    "sourceIdConflicts": 11
+  },
+  "publicSearchIndexHash": "faa9ee5269a2c14f02a3eaf8991f0fb696627409fc3002462671da20c3f5fe27",
+  "files": {
+    "HealingMart_Converter_Blogger_v3.55.1.html": {
+      "bytes": 858852,
+      "sha256": "a7674872dca9915453cf84f29abe4b243ed1ff8898a7bb54292a12dee2d1899d"
+    },
+    "dist/data/hm-converter-registry.v2.js": {
+      "bytes": 368228,
+      "sha256": "dd514a01384187b07ab79cb732559b4e7249121f3919af15e2952c0c75bf5b23"
+    },
+    "dist/data/hm-unit-registry.v1.js": {
+      "bytes": 82076,
+      "sha256": "98d518c456134ddc9c1ae1af76ed35fdfdda77fc948bd60a25e330a27920c7c8"
+    },
+    "dist/data/hm-converters-data.v1.js": {
+      "bytes": 2098674,
+      "sha256": "5eac355adb19584c302180433fca147c0fa3a442ed1b53233c4a8b2722292045"
+    },
+    "dist/data/hm-converters-data.v1.json": {
+      "bytes": 2885844,
+      "sha256": "2ec19da9ef77c5ab7fd3493868eef8854304d4cff03f1c52eb8d2e99717708c7"
+    },
+    "dist/data/hm-converter-search-index.v1.js": {
+      "bytes": 1005711,
+      "sha256": "13f5a3e80d72df5afa5e044093d44213feb74369dd0fdf6c9505dc0fba5fb9fe"
+    },
+    "dist/data/hm-converter-search-index.v1.json": {
+      "bytes": 1261189,
+      "sha256": "7e03fc31c9f77072e1951b884c3199e0afc6e41c0e5e1d131a7c28e895a6263a"
+    },
+    "dist/data/hm-converter-routes.v1.js": {
+      "bytes": 292444,
+      "sha256": "50e311cb71442e2376b78864728230c68f70eac069e695ed7f59b263048027a8"
+    },
+    "dist/data/hm-converter-routes.v1.json": {
+      "bytes": 399090,
+      "sha256": "41c01e937e59011f4514c83c82dd48d7b516f64d9f39816c1c0c58ac1516d4b5"
+    },
+    "dist/js/hm-converter-app.v3.34.1.js": {
+      "bytes": 302994,
+      "sha256": "3fe0651a73a008821fe5171b4a795ce3fcfd5fb242fe53173243bfffd7bede25"
+    },
+    "dist/js/hm-converter-search-client.v1.js": {
+      "bytes": 14163,
+      "sha256": "bfca693c45d2f3564c8a50476b8c6f8138c307dbe6ee6bc1c9eccf4f0eab23cd"
+    },
+    "dist/js/hm-converter-search-client.v1.1.0.js": {
+      "bytes": 14163,
+      "sha256": "bfca693c45d2f3564c8a50476b8c6f8138c307dbe6ee6bc1c9eccf4f0eab23cd"
+    },
+    "dist/js/hm-converter-validator.v1.js": {
+      "bytes": 2971,
+      "sha256": "f3a0680cc2216b598d507cf58b91a21da67386b961e4b7d2c83dcda906499b82"
+    },
+    "dist/js/hm-converter-validator.v1.1.0.js": {
+      "bytes": 2971,
+      "sha256": "f3a0680cc2216b598d507cf58b91a21da67386b961e4b7d2c83dcda906499b82"
+    },
+    "test/hm-converter-catalog-test.v1.1.0.js": {
+      "bytes": 8996,
+      "sha256": "15ffc970f8fa9384052c35dbd841477afca9874eed7ff46a682289c5c941f4f2"
+    },
+    "test/hm-converter-self-test.v1.28.0.js": {
+      "bytes": 8452,
+      "sha256": "eebba7ffe71c113c7642232f335d03de5d4491e35bb71304c36a67ac993f59d7"
+    },
+    "audit/converter-inventory-v3.55.1.csv": {
+      "bytes": 486769,
+      "sha256": "91540911a5bcd5576209569c51b33e15d2c406e627e8cefabd6599c7d34954f3"
+    },
+    "release-config.json": {
+      "bytes": 318,
+      "sha256": "db11a4929672c0c2e890c52c0d10d605961b20d8c2797ebdc9013fd2ec01a95e"
+    },
+    "dist/catalog/hm-converter-public-manifest.v1.js": {
+      "bytes": 649,
+      "sha256": "665f980e2ef84bc544f1e39151a6a80853cb0553047ce685ad5c61593f83f963"
+    },
+    "test/hm-converter-public-manifest-contract.v1.js": {
+      "bytes": 7356,
+      "sha256": "8b009aa5bbeb44e70138e9356381fe7a9936188b87a53d494974428c501d3b52"
+    },
+    "test/hm-converter-latest-loader-contract.v1.js": {
+      "bytes": 6291,
+      "sha256": "2db70510e06dcd54af0a8831f9ee531c9f59ec6a125528c0026ef9f3bf448412"
+    },
+    "test/hm-converter-expansion-contract.v1.js": {
+      "bytes": 7665,
+      "sha256": "8cde2447bc5467ff2186bc6593c1b9cb9cea533492fe62eab0bd068c2fe737f5"
+    },
+    "test/hm-converter-fuel-regression.v1.js": {
+      "bytes": 3796,
+      "sha256": "886193dd81e7396e0d85c1e92b6637306f48101bf3a86938f85390bbcc011aa3"
+    }
+  }
+}

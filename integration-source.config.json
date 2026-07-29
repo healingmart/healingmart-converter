@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "2.0.0",
+  "sourceId": "converter",
+  "sourceName": "컨버터",
+  "sourceType": "converter",
+  "icon": "convert",
+  "priority": 20,
+  "launchBaseUrl": "https://www.healing-mart.com/p/converter.html",
+  "searchClientUrl": "https://healingmart.github.io/healingmart-converter/dist/js/hm-converter-search-client.v1.js",
+  "publicManifestUrl": "https://healingmart.github.io/healingmart-converter/dist/catalog/hm-converter-public-manifest.v1.js"
+}

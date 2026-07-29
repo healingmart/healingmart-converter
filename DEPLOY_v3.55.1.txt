@@ -1,0 +1,63 @@
+HealingMart Converter v3.55.1 최종 자동연동 배포 순서
+
+1. 전체 저장소 파일 업로드
+
+- 이 릴리스는 단독 실행 가능한 전체 GitHub 배포본입니다.
+- 기존 저장소에 덮어쓰거나 새 저장소에 전체 업로드할 수 있습니다.
+- 구형 `dist/public/` AutoSync 산출물은 사용하지 않습니다.
+
+2. 로컬 검증
+
+npm test
+npm run release:check
+
+3. 원본 레지스트리를 변경한 경우
+
+npm run release:write
+
+이 명령은 다음을 자동 처리합니다.
+
+- 통합 카탈로그 생성
+- 검색 인덱스 생성
+- 공개 매니페스트 생성
+- 주소 맵 생성
+- 카탈로그·매니페스트·최신 로더·연비·확장 테스트
+- release-manifest 실제값 동기화
+- converter-catalog-manifest.json 생성
+- CHECKSUMS.txt 재생성
+- 최종 재검증
+
+4. 외부 자동연동 고정 파일
+
+- dist/js/hm-converter-search-client.v1.js
+- dist/catalog/hm-converter-public-manifest.v1.js
+- dist/data/hm-converter-search-index.v1.js
+
+`loadLatest()`는 매니페스트에 캐시 방지값을 붙이고, 검색 인덱스에는 내용 해시를 붙여 로딩합니다.
+
+5. 외부 목록 계약
+
+- all(): 전체 등록 항목
+- publicItems(): status=published 및 searchVisible=true인 항목
+- loadLatest(): publicItems() 반환
+- hm:converter-catalog-ready detail.catalog: publicItems() 반환
+
+준비 중 항목은 `search(query, { includeComing: true })`에서만 검색합니다.
+
+6. 릴리스 검증 파일
+
+- release-files 선언: 62개
+- 내부 카탈로그 매니페스트: 1개
+- 총 체크섬·검증 대상: 63개
+
+7. GitHub Pages 운영 확인
+
+- 정적 경로 HTTP 200
+- 공개 매니페스트 개수와 검색 결과 개수 일치
+- 검색 인덱스 해시 일치
+- 연비 변환 회귀값 확인
+- 데스크톱·모바일 실제 화면 확인
+
+8. main 병합
+
+모든 로컬 테스트와 GitHub Pages 브라우저 확인 후 main에 병합합니다.

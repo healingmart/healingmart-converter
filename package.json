@@ -1,0 +1,17 @@
+{
+  "name": "healingmart-converter",
+  "version": "3.55.1",
+  "private": true,
+  "description": "HealingMart converter catalog and public search manifest automation",
+  "scripts": {
+    "build:catalog": "node tools/build-unified-catalog.js",
+    "test:catalog": "node test/hm-converter-catalog-test.v1.1.0.js",
+    "test:manifest": "node test/hm-converter-public-manifest-contract.v1.js",
+    "test:loader": "node test/hm-converter-latest-loader-contract.v1.js",
+    "test:expansion": "node test/hm-converter-expansion-contract.v1.js",
+    "test": "npm run test:catalog && npm run test:manifest && npm run test:loader && npm run test:fuel && npm run test:expansion",
+    "release:write": "npm run build:catalog && npm test && node tools/verify-release.js --write && node tools/verify-release.js",
+    "release:check": "npm test && node tools/verify-release.js",
+    "test:fuel": "node test/hm-converter-fuel-regression.v1.js"
+  }
+}
