@@ -1,4 +1,4 @@
-/*
+﻿/*
  * HealingMart Converter Office Render Engine v1.0.0
  *
  * PDF -> XLSX
@@ -303,7 +303,7 @@
     g.fillRect(0, 0, pageW, pageH);
 
     g.fillStyle = "#10233b";
-    g.font = '700 30px "Noto Sans KR","Malgun Gothic",Arial,sans-serif';
+    g.font = '700 30px "Noto Sans KR",Arial,sans-serif';
     g.fillText(sheetName, margin, 45);
 
     var y = margin + titleH;
@@ -327,7 +327,7 @@
         if (value.length > maxChars) value = value.slice(0, Math.max(2, maxChars - 3)) + "...";
 
         g.fillStyle = "#24364b";
-        g.font = (isHeader ? '700 ' : '500 ') + '18px "Noto Sans KR","Malgun Gothic",Arial,sans-serif';
+        g.font = (isHeader ? '700 ' : '500 ') + '18px "Noto Sans KR",Arial,sans-serif';
         g.fillText(value, x + 8, y + (isHeader ? headerH : rowH) / 2);
       }
 
@@ -335,7 +335,7 @@
     }
 
     g.fillStyle = "#7b8899";
-    g.font = '500 15px "Noto Sans KR","Malgun Gothic",Arial,sans-serif';
+    g.font = '500 15px "Noto Sans KR",Arial,sans-serif';
     g.textAlign = "right";
     g.fillText(
       "행 " + (rowStart + 1) + "-" + rowEnd + " · 열 " + (colStart + 1) + "-" + colEnd,

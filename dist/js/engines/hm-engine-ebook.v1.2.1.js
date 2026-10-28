@@ -1,4 +1,4 @@
-/*
+﻿/*
  * HealingMart Converter E-book Engine v1.2.1
  * TXT / HTML / DOCX -> EPUB
  * EPUB -> TXT / PDF
@@ -476,7 +476,7 @@
 
     var measure = d.createElement("canvas");
     var mg = measure.getContext("2d");
-    mg.font = fontPx + 'px "Noto Sans KR","Malgun Gothic","Apple SD Gothic Neo",Arial,sans-serif';
+    mg.font = fontPx + 'px "Noto Sans KR","Apple SD Gothic Neo",Arial,sans-serif';
 
     var wrapped = [];
     String(text || "").replace(/\r\n?/g, "\n").split("\n").forEach(function (line) {
@@ -500,7 +500,7 @@
       g.fillStyle = "#ffffff";
       g.fillRect(0, 0, pageW, pageH);
       g.fillStyle = "#111827";
-      g.font = fontPx + 'px "Noto Sans KR","Malgun Gothic","Apple SD Gothic Neo",Arial,sans-serif';
+      g.font = fontPx + 'px "Noto Sans KR","Apple SD Gothic Neo",Arial,sans-serif';
       g.textBaseline = "top";
 
       var from = pageIndex * linesPerPage;

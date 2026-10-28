@@ -1,4 +1,4 @@
-(function (w) {
+﻿(function (w) {
   "use strict";
 
   var NS = w.HM_CONVERTER_ENGINES = w.HM_CONVERTER_ENGINES || {};
@@ -547,7 +547,7 @@
       return rtfEscapeText(block.text || "") + "\\par";
     }).join("\n");
     return "{\\rtf1\\ansi\\ansicpg65001\\deff0\\uc1\n" +
-      "{\\fonttbl{\\f0\\fnil Malgun Gothic;}}\n" +
+      "{\\fonttbl{\\f0\\fnil Pretendard;}}\n" +
       "\\viewkind4\\pard\\f0\\fs22\n" + body + "\n}";
   }
 
@@ -613,7 +613,7 @@
       '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
       '<w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">' +
       '<w:docDefaults><w:rPrDefault><w:rPr>' +
-      '<w:rFonts w:ascii="Malgun Gothic" w:eastAsia="맑은 고딕" w:hAnsi="Malgun Gothic"/>' +
+      '<w:rFonts w:ascii="Pretendard" w:eastAsia="Pretendard" w:hAnsi="Pretendard"/>' +
       '<w:sz w:val="22"/><w:szCs w:val="22"/>' +
       "</w:rPr></w:rPrDefault></w:docDefaults></w:styles>");
     zip.file("word/_rels/document.xml.rels",
