@@ -1,4 +1,4 @@
-/*
+﻿/*
  * HealingMart Converter PDF Engine v1.0.0
  * Multi-image to PDF / all PDF pages to JPG or PNG
  */
@@ -933,7 +933,7 @@
 
     var measureCanvas = d.createElement("canvas");
     var mg = measureCanvas.getContext("2d");
-    mg.font = fontPx + 'px "Noto Sans KR","Malgun Gothic","Apple SD Gothic Neo",Arial,sans-serif';
+    mg.font = fontPx + 'px "Noto Sans KR","Apple SD Gothic Neo",Arial,sans-serif';
 
     var wrapped = [];
     String(text || "").replace(/\r\n?/g, "\n").split("\n").forEach(function (line) {
@@ -957,7 +957,7 @@
       g.fillStyle = "#ffffff";
       g.fillRect(0, 0, pageW, pageH);
       g.fillStyle = "#111827";
-      g.font = fontPx + 'px "Noto Sans KR","Malgun Gothic","Apple SD Gothic Neo",Arial,sans-serif';
+      g.font = fontPx + 'px "Noto Sans KR","Apple SD Gothic Neo",Arial,sans-serif';
       g.textBaseline = "top";
 
       var startLine = pageIndex * linesPerPage;
@@ -1190,7 +1190,7 @@
         host.style.boxSizing = "border-box";
         host.style.background = "#ffffff";
         host.style.color = "#172033";
-        host.style.fontFamily = '"Noto Sans KR","Malgun Gothic","Apple SD Gothic Neo",Arial,sans-serif';
+        host.style.fontFamily = '"Noto Sans KR","Apple SD Gothic Neo",Arial,sans-serif';
         host.style.fontSize = "16px";
         host.style.lineHeight = "1.7";
         host.style.wordBreak = "break-word";
@@ -1325,7 +1325,7 @@
       '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
       '<w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">' +
       '<w:docDefaults><w:rPrDefault><w:rPr>' +
-      '<w:rFonts w:ascii="Malgun Gothic" w:eastAsia="맑은 고딕" w:hAnsi="Malgun Gothic"/>' +
+      '<w:rFonts w:ascii="Pretendard" w:eastAsia="Pretendard" w:hAnsi="Pretendard"/>' +
       '<w:sz w:val="22"/><w:szCs w:val="22"/>' +
       '</w:rPr></w:rPrDefault></w:docDefaults>' +
       '</w:styles>');
@@ -1442,7 +1442,7 @@
     host.style.boxSizing = "border-box";
     host.style.background = "#ffffff";
     host.style.color = "#172033";
-    host.style.fontFamily = '"Noto Sans KR","Malgun Gothic","Apple SD Gothic Neo",Arial,sans-serif';
+    host.style.fontFamily = '"Noto Sans KR","Apple SD Gothic Neo",Arial,sans-serif';
     host.style.fontSize = "16px";
     host.style.lineHeight = "1.7";
     host.style.wordBreak = "break-word";

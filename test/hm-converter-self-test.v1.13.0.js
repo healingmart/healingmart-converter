@@ -1,4 +1,4 @@
-/*
+﻿/*
  * HealingMart Converter Self Test v1.13.0
  * Target release: HealingMart Converter v3.40.0
  *
@@ -796,7 +796,7 @@
           pointer-events:auto;position:fixed;top:12px;right:12px;width:min(620px,calc(100vw - 24px));
           max-height:calc(100vh - 24px);display:flex;flex-direction:column;background:#fff;color:#172033;
           border:1px solid #dce5ee;border-radius:18px;box-shadow:0 22px 70px rgba(15,23,42,.24);
-          overflow:hidden;font-family:Pretendard,"Noto Sans KR","Malgun Gothic",system-ui,sans-serif
+          overflow:hidden;font-family:Pretendard,"Noto Sans KR",system-ui,sans-serif
         }
         .hmst-head{padding:15px 16px 12px;background:linear-gradient(135deg,#eef8ff,#f7fbff);border-bottom:1px solid #e2eaf2}
         .hmst-headline{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
